@@ -1,8 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# webstorm config
+/.idea
+.idea
+
 # vscode config
 /.history
 /.vscode
+
+#eslint
+.eslintcache
+/.eslintcache
 
 # dependencies
 /node_modules
