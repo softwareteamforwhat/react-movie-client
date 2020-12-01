@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import './login.less';
 import logo from "./images/logo.png";
-import {Form, Input, Button, Checkbox} from 'antd';
+import {Form, Input, Button, Checkbox, message} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
+
 
 /*
 登陆的路由组件
@@ -10,15 +11,36 @@ import {UserOutlined, LockOutlined} from '@ant-design/icons';
 
 const NormalLoginForm = () => {
     const onFinish = (values: any) => {
-        console.log('Received values of form: ', values);
+        console.log(values);
+        if (values.remember) {
+            localStorage.setItem('username', values.username);
+            localStorage.setItem('password', values.password);
+            localStorage.setItem('remember', String(Number(values.remember)));
+        }
     };
 
+    let remember: Number = Number(localStorage.getItem('remember') || 0);
+    const username: string = localStorage.getItem('username') || "";
+    const password: string = localStorage.getItem('password') || "";
+    const onChange = () => {
+        if (remember) {
+            remember = 0;
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
+            localStorage.setItem('remember', "0");
+        } else {
+            remember = 1;
+            message.warning('请在信任的电脑上保存密码');
+        }
+    }
     return (
         <Form
             name="normal_login"
             className="login-form"
             initialValues={{
-                remember: false,
+                remember: remember,
+                username: username,
+                password: password
             }}
             onFinish={onFinish}
         >
@@ -50,7 +72,9 @@ const NormalLoginForm = () => {
             </Form.Item>
             <Form.Item>
                 <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox>记住密码</Checkbox>
+                    <Checkbox onChange={() => {
+                        onChange()
+                    }}>记住密码</Checkbox>
                 </Form.Item>
 
                 <a className="login-form-forgot" href="/forget">
@@ -70,6 +94,20 @@ const NormalLoginForm = () => {
 
 
 export default class Login extends Component {
+    // constructor(props: any) {
+    //     super(props);
+    //     this.state = {
+    //         username: "",
+    //         password: "",
+    //         remember: 0
+    //     };
+    // }
+    // componentDidMount() {
+    //     const remember: Number = Number(localStorage.getItem('remember') || false);
+    //     const username: string = localStorage.getItem('username') || "";
+    //     const password: string = localStorage.getItem('password') || "";
+    //     this.setState({remember: remember, username: username, password: password});
+    // }
 
     render() {
         return (
@@ -80,7 +118,7 @@ export default class Login extends Component {
                 </header>
                 <section className="login-content">
                     <h2>用户登录</h2>
-                    <NormalLoginForm />
+                    <NormalLoginForm/>
                 </section>
             </div>
         )
