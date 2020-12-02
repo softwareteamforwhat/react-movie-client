@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './login.less';
-import logo from "./images/logo.png";
+import logo from './images/logo.png';
 import {Form, Input, Button, Checkbox, message} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
 
@@ -94,14 +94,14 @@ const NormalLoginForm = () => {
 
 
 export default class Login extends Component {
-    // constructor(props: any) {
-    //     super(props);
-    //     this.state = {
-    //         username: "",
-    //         password: "",
-    //         remember: 0
-    //     };
-    // }
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            username: "",
+            password: "",
+            remember: 0
+        };
+    }
     // componentDidMount() {
     //     const remember: Number = Number(localStorage.getItem('remember') || false);
     //     const username: string = localStorage.getItem('username') || "";
