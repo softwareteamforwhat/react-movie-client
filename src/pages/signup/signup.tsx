@@ -8,3 +8,4 @@ export default class Signup extends Component {
         return (<div>Signup</div>);
     }
 }
+
