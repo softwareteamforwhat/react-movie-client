@@ -5,6 +5,7 @@ import Login from './pages/login/login';
 import Index from "./pages/index";
 import Signup from "./pages/signup/signup";
 import Forget from "./pages/forget/forget";
+import Favorite from './pages/favorite/favorite';
 import Agreement from "./pages/signup/agreement";
 
 /**
@@ -21,6 +22,7 @@ export default class App extends Component {
                     <Route path='/signup' component={Signup}/>
                     <Route path='/agreement' component={Agreement}/>
                     <Route path='/forget' component={Forget}/>
+                    <Route path='/favorite' component={Favorite} />
                     <Route exact path='/' component={Index}/>
                 </Switch>
             </BrowserRouter>
