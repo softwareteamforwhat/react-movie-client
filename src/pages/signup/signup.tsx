@@ -10,7 +10,7 @@ import {
     Button,
 } from 'antd';
 import {QuestionCircleOutlined} from '@ant-design/icons';
-import logo from "./images/logo.png";
+import logo from "../../assets/images/logo.png";
 
 
 const formItemLayout = {
@@ -133,7 +133,7 @@ const RegistrationForm = () => {
             </Form.Item>
 
 
-            <Form.Item label="验证码" extra="获取邮箱验证码">
+            <Form.Item label="验证码">
                 <Row gutter={8}>
                     <Col span={12}>
                         <Form.Item
@@ -180,6 +180,7 @@ export default class Signup extends Component {
 
 
     render() {
+        document.title = '注册';
         return (
             <div className="signup">
                 <header className="signup-header">

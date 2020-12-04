@@ -5,6 +5,7 @@ import './agreement.less'
  */
 export default class Agreement extends Component {
     render() {
+        document.title = '用户协议';
         return <div>
             <h1 >
                 <strong className="agreement-title">用户注册及使用网站隐私协议</strong>

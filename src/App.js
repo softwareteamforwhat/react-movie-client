@@ -20,8 +20,8 @@ export default class App extends Component {
                     <Route path='/login'  component={Login}/>
                     <Route path='/signup' component={Signup}/>
                     <Route path='/agreement' component={Agreement}/>
-                    <Route path='/' component={Index}/>
                     <Route path='/forget' component={Forget}/>
+                    <Route exact path='/' component={Index}/>
                 </Switch>
             </BrowserRouter>
         )

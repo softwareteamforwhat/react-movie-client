@@ -1,21 +1,39 @@
 import React, {Component} from 'react';
 import './login.less';
-import logo from './images/logo.png';
+import logo from '../../assets/images/logo.png';
 import {Form, Input, Button, Checkbox, message} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
-
+import {loginInfoResponse} from "../../api/response/loginResponse";
+// import {apiLogin} from '../../api';
 
 /*
 登陆的路由组件
  */
 
 const NormalLoginForm = () => {
-    const onFinish = (values: any) => {
-        console.log(values);
+    const onFinish = async (values: any) => {
+        const result: loginInfoResponse = {
+            "status": 0,
+            "data": {
+                "_id": "5c3b297dea95883f340178b0",
+                "token": "21232f297a57a5a743894a0e4a801fc3",
+                "avatar": "https://img.meituan.net/maoyanuser/c524afeb2e56c93093a1b7c26d5ac6b114424.png"
+            }
+        };
         if (values.remember) {
             localStorage.setItem('username', values.username);
             localStorage.setItem('password', values.password);
             localStorage.setItem('remember', String(Number(values.remember)));
+        }
+        if (result.status === 0) {
+            message.success('登录成功！');
+            const avatar = result.data.avatar;
+            const token = result.data.token;
+            const _id = result.data._id;
+            localStorage.setItem("avatar", avatar);
+            localStorage.setItem("id",_id);
+            localStorage.setItem("token", token);
+            window.location.href = '/';
         }
     };
 
@@ -49,7 +67,7 @@ const NormalLoginForm = () => {
                 rules={[
                     {
                         required: true,
-                        message: '请输入用户名!',
+                        message: '请输入昵称或邮箱!',
                     },
                 ]}
             >
@@ -102,14 +120,15 @@ export default class Login extends Component {
             remember: 0
         };
     }
-    // componentDidMount() {
-    //     const remember: Number = Number(localStorage.getItem('remember') || false);
-    //     const username: string = localStorage.getItem('username') || "";
-    //     const password: string = localStorage.getItem('password') || "";
-    //     this.setState({remember: remember, username: username, password: password});
-    // }
 
     render() {
+
+        // const nickName = localStorage.getItem("nickName");
+        // const token = localStorage.getItem("token");
+        // if(token && nickName) {
+        //     return <Redirect to='/'/>
+        // }
+        document.title = '登录';
         return (
             <div className="login">
                 <header className="login-header">
