@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import logo from '../../assets/images/logo.png';
-
+import './index.less';
 
 export default class Header extends Component {
     render() {
