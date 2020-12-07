@@ -11,10 +11,13 @@ import ajax from './ajax'
 export const apiLogin = (username, password) => ajax('/login', {username, password}, 'POST')
 
 // 注册
-export const apiRegister = (email, username, password, nickname) => ajax('/login', {
+export const apiRegister = (email, username, password, nickname) => ajax('/register', {
     email,
     username,
     password,
     nickname
 }, 'POST')
+
+//获取验证码
+export const apiGetCode = (email) => ajax('/code',{email},'GET')
 

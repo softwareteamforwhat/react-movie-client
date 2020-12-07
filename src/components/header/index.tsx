@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import logo from '../../assets/images/logo.png';
 import './index.less';
 import User from "../user";
-import Search from "../search";
+import MySearch from "../search";
 
 export default class Header extends Component<{ index: number }, { color: string[] }> {
     constructor(props) {
@@ -32,7 +32,7 @@ export default class Header extends Component<{ index: number }, { color: string
                         <User/>
                     </div>
                     <div className="search">
-                        <Search/>
+                        <MySearch/>
                     </div>
                 </div>
             </div>
