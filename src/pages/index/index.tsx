@@ -15,7 +15,7 @@ export default class Index extends Component {
     render() {
         document.title = '主页';
         return (<div>
-            <Header/>
+            <Header index={0}/>
         </div>);
     }
 }
