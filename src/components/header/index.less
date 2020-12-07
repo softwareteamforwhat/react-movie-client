@@ -1,0 +1,39 @@
+@height: 80px;
+.header {
+  width: 100vw;
+  height: @height;
+  display: block;
+  align-items: center;
+  text-align: center;
+  background-color: blueviolet;
+
+  img {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 20px 15px 0 20px;
+  }
+
+  ul {
+    list-style: none;
+    margin-left: 50px;
+    justify-content: center;
+  }
+
+  li {
+    width: 10vw;
+    height: 80px;
+    display: inline;
+    line-height: @height;
+    text-align: center;
+    float: left;
+    margin: auto 10px;
+    a{
+      display: block;
+      color: white;
+    }
+  }
+  li:hover{
+    background-color: blue;
+  }
+}

@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import './App.less';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route,Switch} from 'react-router-dom';
 import Login from './pages/login/login';
 import Index from "./pages/index";
 import Signup from "./pages/signup/signup";
 import Forget from "./pages/forget/forget";
 import Favorite from './pages/favorite/favorite';
+import Movies from './pages/movie/movies';
+import MovieInfo from './pages/movie/movieinfo';
 import Agreement from "./pages/signup/agreement";
 
 /**
@@ -23,6 +25,8 @@ export default class App extends Component {
                     <Route path='/agreement' component={Agreement}/>
                     <Route path='/forget' component={Forget}/>
                     <Route path='/favorite' component={Favorite} />
+                    <Route path='/movies' component={Movies}/>
+                    <Route path='/movieinfo' component={MovieInfo}/>
                     <Route exact path='/' component={Index}/>
                 </Switch>
             </BrowserRouter>
