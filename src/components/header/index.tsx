@@ -11,7 +11,7 @@ export default class Header extends Component {
                     <div className="nav">
                         <ul className="navbar">
                             <li><a href="/" data-act="home-click">首页</a></li>
-                            <li><a href="/films" data-act="movies-click" className="active">电影</a></li>
+                            <li><a href="/movies" data-act="movies-click" className="active">电影</a></li>
                             <li><a href="/cinemas" data-act="cinemas-click">影院</a></li>
                             <li><a href="/board" data-act="board-click">榜单</a></li>
                         </ul>
