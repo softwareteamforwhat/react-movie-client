@@ -9,6 +9,7 @@ import Favorite from './pages/favorite/favorite';
 import Movies from './pages/movie/movies';
 import MovieInfo from './pages/movie/movieinfo';
 import Agreement from "./pages/signup/agreement";
+import Expense from './pages/expense/expense';
 
 /**
  * 应用的根组件
@@ -27,6 +28,7 @@ export default class App extends Component {
                     <Route path='/favorite' component={Favorite} />
                     <Route path='/movies' component={Movies}/>
                     <Route path='/movieinfo' component={MovieInfo}/>
+                    <Route path='/expense' component={Expense}/>
                     <Route exact path='/' component={Index}/>
                 </Switch>
             </BrowserRouter>
