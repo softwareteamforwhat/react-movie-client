@@ -12,22 +12,24 @@
 import axios from 'axios'
 import {message} from 'antd'
 
-export default function ajax(url, data = {}, type = 'GET') {
+export default function ajax(url, data = {}, type = 'GET',config={}) {
 
     return new Promise((resolve) => {
         let promise
         // 1. 执行异步ajax请求
         if (type === 'GET') { // 发GET请求
             promise = axios.get(url, { // 配置对象
-                params: data // 指定请求参数
+                params: data,
+                headers:config.headers // 指定请求参数
             })
         } else if (type === 'POST') { // 发POST请求
-            promise = axios.post(url, data)
+            promise = axios.post(url, data,config)
         } else if (type === 'PUT') { //发PUT请求
-            promise = axios.put(url, data)
+            promise = axios.put(url, data,config)
         } else if (type === 'DELETE'){//发DELETE请求
             promise = axios.delete(url, { // 配置对象
-                params: data // 指定请求参数
+                params: data,
+                headers:config.headers // 指定请求参数
             })
         }
         // 2. 如果成功了, 调用resolve(value)

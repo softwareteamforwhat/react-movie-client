@@ -19,5 +19,10 @@ export const apiRegister = (email, username, password, nickname) => ajax('/regis
 }, 'POST')
 
 //获取验证码
-export const apiGetCode = (email) => ajax('/code',{email},'GET')
+export const apiGetCode = (email) => ajax('/code', {email}, 'GET')
 
+//改变收藏状态
+export const apiChangeFollow = (id, token, followId) => ajax('/code', {
+    id,
+    followId
+}, 'POST', {headers: {"Authorization": token}})
