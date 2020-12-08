@@ -1,0 +1,328 @@
+.movie-info{
+
+  .banner{
+    width: 100%;
+    min-width: 1200px;
+    background: #392f59  no-repeat 50%;
+    margin: 0 auto;
+
+    height: 376px;
+    position: relative;
+
+    .wrapper{
+      margin-left: 400px;
+      .celeinfo-left{
+        width: 300px;
+        float: left;
+        position: relative;
+        top: 70px;
+        overflow: hidden;
+        z-index: 9;
+
+        .avatar-shadow {
+          position: relative;
+          margin: 0 30px;
+          width: 240px;
+          height: 330px;
+          padding-bottom: 40px;
+
+          .avatar {
+            border: 4px solid #fff;
+            height: 322px;
+            width: 232px;
+          }
+
+        }
+
+
+
+      }
+
+      .celeinfo-right{
+        position: relative;
+        margin-right: 30px;
+        margin-left: 300px;
+        margin-top: 70px;
+
+        .movie-brief-container{
+          position: absolute;
+          color: #fff;
+          font-size: 14px;
+          z-index: 1;
+          margin-top: 70px;
+
+          .name {
+            width: 900px;
+            margin-top: 0;
+            font-size: 26px;
+            line-height: 32px;
+            font-weight: 700;
+            margin-bottom: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            max-height: 64px;
+            text-align: left;
+            color: white;
+          }
+
+          .subname {
+            width: 340px;
+            font-size: 18px;
+            line-height: 1.3;
+            margin-bottom: 14px;
+          }
+
+          ul {
+            width: 250px;
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+
+            li {
+              margin: 12px 0;
+              line-height: 100%;
+
+              .movietypes{
+                display: flex;
+                flex-direction: row;
+
+              }
+            }
+          }
+        }
+
+        .action-button{
+          position: absolute;
+          margin-top: 250px;
+
+          button {
+            cursor: pointer;
+            float: left;
+            width: 120px;
+            height: 25px;
+            background-color: #756189;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            margin-right: 10px;
+
+          }
+        }
+
+        .movie-status-container{
+          position: absolute;
+          top: 300px;
+
+          width: 250px;
+          height: 50px;
+
+          .buy-button{
+            width: 100%;
+            height: 100%;
+            background-color: #cd0200;
+            border: none;
+            color: white;
+            font-size: 18px;
+          }
+
+          .no-text{
+            width: 100%;
+            height: 100%;
+            background-color:gray;
+            border: none;
+            color: white;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+
+  }
+
+  .container{
+    margin-left: 400px;
+    margin-top: 80px;
+
+    .container-title{
+
+      .tab-title {
+        cursor: pointer;
+        float: left;
+        margin-right: 30px;
+        margin-bottom: -2px;
+        padding-bottom: 10px;
+        font-size: 18px;
+        color: #333;
+        line-height: 100%;
+        border-bottom: 2px solid transparent;
+      }
+
+      .active {
+        color: #ef4238;
+        border-bottom-color: #ef4238;
+      }
+
+
+    }
+
+    .container-content{
+      padding-top: 70px;
+      width: 1200px;
+      .module{
+
+        position: relative;
+        margin-bottom: 60px;
+        display: block;
+        .module-title{
+
+          h2 {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            font-weight: 400;
+            font-size: 18px;
+            color: #333;
+            line-height: 18px;
+          }
+        }
+
+        .module-content{
+          margin-top: 20px;
+          color: #333;
+
+          .dra {
+            font-size: 14px;
+            line-height: 26px;
+          }
+
+
+          .celebrity-group{
+            float: left;
+            margin-left: 30px;
+
+            .celebrity-type {
+              margin-bottom: 16px;
+            }
+
+            .celebrity-list{
+              .celebrity {
+                float: left;
+                width: 128px;
+                margin-left: 20px;
+                margin-bottom: 20px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                .portrait{
+                  margin-bottom: 6px;
+                  width: 128px;
+                  height: 170px;
+                  overflow: hidden;
+
+                  img {
+                    width: 128px;
+                    height: 170px;
+                  }
+                }
+
+                .name {
+                  margin-top: 8px;
+                  line-height: 1.2;
+                  color: #333;
+                  display: inline-block;
+                  width: 128px;
+                  text-align: center;
+                  padding-bottom: 1px;
+                  margin-bottom: -1px;
+                  text-overflow: ellipsis;
+                  overflow: hidden;
+                  white-space: nowrap;
+                }
+              }
+
+              .celebrity:first-child {
+                margin-left: 0;
+              }
+            }
+
+
+          }
+
+          .celebrity-group:first-child {
+            margin-left: 0;
+          }
+
+
+
+        }
+      }
+
+      .celebrity-container {
+        margin-left: -30px;
+        margin-top: 10px;
+        font-size: 16px;
+        color: #333;
+
+        .celebrity-group{
+          float: left;
+          margin-left: 30px;
+
+          .celebrity-type {
+            margin-bottom: 16px;
+          }
+
+          .celebrity-list{
+            margin-left: -20px;
+            .celebrity {
+              float: left;
+              width: 128px;
+              margin-left: 20px;
+              margin-bottom: 20px;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+
+              .portrait{
+                margin-bottom: 6px;
+                width: 128px;
+                height: 170px;
+                overflow: hidden;
+
+                img {
+                  width: 128px;
+                  height: 170px;
+                }
+              }
+
+              .name {
+                margin-top: 8px;
+                line-height: 1.2;
+                color: #333;
+                display: inline-block;
+                width: 128px;
+                text-align: center;
+                padding-bottom: 1px;
+                margin-bottom: -1px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+              }
+
+              .info{
+                text-align: center;
+              }
+            }
+          }
+
+
+        }
+
+      }
+    }
+  }
+
+
+}
