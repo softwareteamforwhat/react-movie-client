@@ -9,9 +9,7 @@ export default class MovieCell extends Component{
             <div className="movie-item">
                 <Link to={{
                     pathname:"/movieinfo",
-                    state:{
-                        id:this.props.movie.movieId
-                    }
+                    id:this.props.movie.movieId
                 }}>
                     <div className="movie-poster">
                         <img className="poster-default" alt={this.props.movie.name} src={this.props.movie.picture}/>
