@@ -336,13 +336,22 @@ export default class Movies extends Component {
             selectedAreaIndex: 0,
             selectedYearIndex: 0,
             selectedSortTypeIndex: 0,
+            page:0
         };
         this.updateMovieList = this.updateMovieList.bind(this);
         this.changeMovieState = this.changeMovieState.bind(this);
     }
 
     updateMovieList() {
-        console.log(this.state)
+        console.log(this.state);
+        const searchMovieForm={
+            moviestate:this.state.moviestates.get(this.state.selectedMovieStateIndex),
+            movietype:this.state.movietypes.get(this.state.selectedMovieTypeIndex),
+            area:this.state.areas.get(this.state.selectedAreaIndex),
+            year:this.state.areas.get(this.state.selectedYearIndex),
+            sorttype:this.state.sorttypes.get(this.state.selectedSortTypeIndex),
+            page:this.state.page
+        };
     }
 
     changeMovieState(index, type) {
