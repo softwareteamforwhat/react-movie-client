@@ -23,7 +23,7 @@ const login_menu = (
             </a>
         </Menu.Item>
         <Menu.Item>
-            <a target="_blank" href="#" onClick={Logout}>
+            <a href="/" onClick={Logout}>
                 退出登录
             </a>
         </Menu.Item>

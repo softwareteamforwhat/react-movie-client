@@ -4,6 +4,7 @@ import logo from '../../assets/images/logo.png';
 import {Form, Input, Button, Checkbox, message} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import {loginInfoResponse} from "../../api/response/loginResponse";
+import {apiLogin} from "../../api";
 // import {apiLogin} from '../../api';
 
 /*
@@ -12,14 +13,7 @@ import {loginInfoResponse} from "../../api/response/loginResponse";
 
 const NormalLoginForm = () => {
     const onFinish = async (values: any) => {
-        const result: loginInfoResponse = {
-            "status": 0,
-            "data": {
-                "_id": "5c3b297dea95883f340178b0",
-                "token": "21232f297a57a5a743894a0e4a801fc3",
-                "avatar": "https://img.meituan.net/maoyanuser/c524afeb2e56c93093a1b7c26d5ac6b114424.png"
-            }
-        };
+        const result: loginInfoResponse = await apiLogin(values.username,values.password);
         if (values.remember) {
             localStorage.setItem('username', values.username);
             localStorage.setItem('password', values.password);
@@ -34,6 +28,8 @@ const NormalLoginForm = () => {
             localStorage.setItem("id",_id);
             localStorage.setItem("token", token);
             window.location.href = '/';
+        }else if(result.status===1){
+            message.error('用户名或密码错误！');
         }
     };
 

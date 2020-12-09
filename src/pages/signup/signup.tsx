@@ -7,10 +7,13 @@ import {
     Row,
     Col,
     Checkbox,
-    Button,
+    Button, message,
 } from 'antd';
 import {QuestionCircleOutlined} from '@ant-design/icons';
 import logo from "../../assets/images/logo.png";
+import {apiGetCode, apiRegister} from "../../api";
+import {loginInfoResponse} from "../../api/response/loginResponse";
+import {withRouter} from "react-router";
 
 
 const formItemLayout = {
@@ -38,11 +41,32 @@ const tailFormItemLayout = {
 
 const RegistrationForm = () => {
     const [form] = Form.useForm();
-
-    const onFinish = (values: any) => {
-        console.log('Received values of form: ', values);
+    const getCode = (email: string) => {
+        apiGetCode(email);
+    }
+    const onFinish = async (values: any) => {
+        const email = values.email;
+        const nickname = values.nickname;
+        const code = values.captcha;
+        const passowrd = values.password;
+        console.log(email,code,passowrd,nickname)
+        const result: loginInfoResponse = await apiRegister(email, code, passowrd, nickname);
+        console.log(result);
+        if (result.status === 0) {
+            message.success('登录成功！');
+            const avatar = result.data.avatar;
+            const token = result.data.token;
+            const _id = result.data._id;
+            localStorage.setItem("avatar", avatar);
+            localStorage.setItem("id", _id);
+            localStorage.setItem("token", token);
+            window.location.href = '/';
+        } else if (result.status === 1) {
+            message.error("邮箱验证码不正确！");
+        } else if (result.status === 2) {
+            message.error("邮箱已被使用！");
+        }
     };
-
     return (
         <Form
             {...formItemLayout}
@@ -144,7 +168,7 @@ const RegistrationForm = () => {
                         </Form.Item>
                     </Col>
                     <Col span={12}>
-                        <Button>获取验证码</Button>
+                        <Button onClick={()=>getCode(form.getFieldValue('email'))}>获取验证码</Button>
                     </Col>
                 </Row>
             </Form.Item>
@@ -172,12 +196,12 @@ const RegistrationForm = () => {
         </Form>
     );
 };
+
 /*
 注册的路由组件
  */
 
-export default class Signup extends Component {
-
+class Signup extends Component<any, any> {
 
     render() {
         document.title = '注册';
@@ -195,3 +219,5 @@ export default class Signup extends Component {
         );
     }
 }
+
+export default withRouter(Signup);

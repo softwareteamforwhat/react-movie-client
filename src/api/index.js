@@ -11,9 +11,9 @@ import ajax from './ajax'
 export const apiLogin = (username, password) => ajax('/login', {username, password}, 'POST')
 
 // 注册
-export const apiRegister = (email, username, password, nickname) => ajax('/register', {
+export const apiRegister = (email, code, password, nickname) => ajax('/register', {
     email,
-    username,
+    code,
     password,
     nickname
 }, 'POST')
@@ -22,7 +22,7 @@ export const apiRegister = (email, username, password, nickname) => ajax('/regis
 export const apiGetCode = (email) => ajax('/code', {email}, 'GET')
 
 //改变收藏状态
-export const apiChangeFollow = (id, token, followId) => ajax('/code', {
+export const apiChangeFollow = (id, token, followId) => ajax('/changeFollow', {
     id,
     followId
 }, 'POST', {headers: {"Authorization": token}})

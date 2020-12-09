@@ -17,7 +17,7 @@ const MyFollow = (props: { hasFollowed: boolean, id: string }) => {
     const followId: string = props.id;
     return (
         <div>
-            <Button style={{padding: 4,backgroundColor:"blueviolet",color:"white"}} onClick={() => {
+            <Button style={{padding: 4,backgroundColor:"blueviolet",color:"white",width:100}} onClick={() => {
                 setStar(!star);
                 let id = Number(localStorage.getItem('id'));
                 let token = localStorage.getItem('token') || "";
