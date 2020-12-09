@@ -8,10 +8,10 @@ export default class ExpenseCell extends React.Component<any,any>{
     render(){
         return (
             <div className='expense-cell'>
-                <span>{this.props.expense.time}</span>
-                <span>{this.props.expense.name}</span>
-                <span>{this.props.expense.price}</span>
-                <span>{this.props.expense.status}</span>
+                <span className='info-cell'>{this.props.expense.time}</span>
+                <span className='info-cell'>{this.props.expense.name}</span>
+                <span className='info-cell'>{this.props.expense.price}</span>
+                <span className='info-cell'>{this.props.expense.status}</span>
             </div>
         );
     }

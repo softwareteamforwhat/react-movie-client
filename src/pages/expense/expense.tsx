@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import ExpenseCell from '../../components/expense/expenseCell';
 import Header from '../../components/header';
-
+import './expense.css';
 
 /**
  * 注册的消费记录页面组件
@@ -55,8 +55,8 @@ export default class Expense extends Component{
                 />
         );
         return (
-            <div>
-                <div className='expense-cell'>
+            <div className='expense-panel'>
+                <div className='expense-cell expense-title'>
                     <span>消费时间</span>
                     <span>订单名称</span>
                     <span>订单状态</span>
