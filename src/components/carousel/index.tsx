@@ -1,22 +1,31 @@
 import React, {Component} from "react";
-import {Carousel} from "antd";
+import {Carousel,Button} from "antd";
 import {Link} from "react-router-dom";
 import {movieP} from "../../config/datastructures";
 import './index.less';
-
-
+import {LeftOutlined,RightOutlined} from '@ant-design/icons'
 export default class MyCarousel extends Component<{ moviePList: movieP[] }, any> {
-    constructor(props) {
+
+    private img: any;
+    constructor(props:any){
         super(props);
+        this.state={};
+        this.img = undefined
+    }
+    prev(){
+        this.img.prev();
+    }
+    next(){
+        this.img.next();
     }
 
     render() {
         const movie1 = this.props.moviePList[0].moviePhoto;
         const movie2 = this.props.moviePList[1].moviePhoto;
-
         return (
             <div className="my-picture">
-                <Carousel style={{width:"71vw"}} autoplay={true} pauseOnFocus={true} fade={true}>
+                <Button type="primary" ghost className="g-button" onClick={this.prev.bind(this)} ><LeftOutlined /></Button>
+                <Carousel ref={dom => { this.img = dom; }} style={{width:"71vw"}} autoplay={true} pauseOnFocus={true} fade={true}>
                     <div className="photo">
                         <Link to={{
                             pathname: "/movieinfo",
@@ -36,6 +45,7 @@ export default class MyCarousel extends Component<{ moviePList: movieP[] }, any>
                         </Link>
                     </div>
                 </Carousel>
+                <Button type="primary" ghost className="g-button" onClick={this.next.bind(this)} ><RightOutlined /></Button>
             </div>
         );
     }
