@@ -10,6 +10,8 @@ import Movies from './pages/movie/movies';
 import MovieInfo from './pages/movie/movieinfo';
 import Agreement from "./pages/signup/agreement";
 import Expense from './pages/expense/expense';
+import Cinemas from './pages/cinema/cinemas'
+import CinemaInfo from './pages/cinema/cinemainfo'
 
 /**
  * 应用的根组件
@@ -29,6 +31,8 @@ export default class App extends Component {
                     <Route path='/movies' component={Movies}/>
                     <Route path='/movieinfo' component={MovieInfo}/>
                     <Route path='/expense' component={Expense}/>
+                    <Route path='/cinemas' component={Cinemas}/>
+                    <Route path='/cinemainfo' component={CinemaInfo}/>
                     <Route exact path='/' component={Index}/>
                 </Switch>
             </BrowserRouter>

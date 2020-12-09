@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from "../../components/header";
-import './cinema.less';
+import {Link} from "react-router-dom";
+import './cinemas.less';
 
 
 class TagCell extends Component {
@@ -36,7 +37,7 @@ class SearchBar extends Component{
     render() {
         const brandList = this.props.brands.map(
             (brand, index) =>
-                <SelectCell
+                <TagCell
                     key={index}
                     selected={index === this.props.selectedBrandIndex}
                     value={brand}
@@ -47,7 +48,7 @@ class SearchBar extends Component{
         );
         const areaList = this.props.areas.map(
             (area, index) =>
-                <SelectCell
+                <TagCell
                     key={index}
                     selected={index === this.props.selectedAreaIndex}
                     value={area}
@@ -58,7 +59,7 @@ class SearchBar extends Component{
         );
         const tagList = this.props.tags.map(
             (tag, index) =>
-                <SelectCell
+                <TagCell
                     key={index}
                     selected={index === this.props.selectedTagIndex}
                     value={tag}
@@ -69,7 +70,7 @@ class SearchBar extends Component{
         );
         const sortTypeList = this.props.sortTypes.map(
             (sortType, index) =>
-                <SelectCell
+                <TagCell
                     key={index}
                     selected={index === this.props.selectedSortTypeIndex}
                     value={sortType}
@@ -79,7 +80,8 @@ class SearchBar extends Component{
                 />
         );
 
-        return <div className="tags-lines">
+        return <div className="search-bar">
+        <div className="tags-lines">
             <div className="tags-line">
                 <div className="tags-title">品牌 :</div>
                 <div className="tags">
@@ -105,10 +107,55 @@ class SearchBar extends Component{
                 </div>
             </div>
         </div>
+        </div>
     }
 }
 
 class CinemaPanel extends Component{
+
+    render() {
+        return <div className="cinemas-list">
+            <h2 className="cinemas-list-header">
+                <span>影院列表</span>
+            </h2>
+            {this.props.cinemas.map(
+                (cinema,index)=>
+                    <div className="cinemas-cell" key={index}>
+                        <div className="cinema-info">
+                            <Link to={{
+                                pathname:"/cinemainfo",
+                                id:cinema.id
+                            }}>
+                                <button className="cinema-name">{cinema.name}</button>
+                            </Link>
+                            <p className="cinema-address">{cinema.address}</p>
+                            <div className="cinema-tags">
+                                {cinema.service.map(
+                                    (service,index)=>
+                                        <span className="cinema-tag" key={index}>{service.name}</span>
+                                )}
+                            </div>
+                        </div>
+                        <div className="buy-btn">
+                            <Link to={{
+                                pathname:"/cinemainfo",
+                                id:cinema.id
+                            }}>
+                                <button>选座购票</button>
+                            </Link>
+
+                        </div>
+                        <div className="price">
+                            <span className="rmb red">￥</span>
+                            <span className="price-num red">{cinema.price}</span>
+                            <span>起</span>
+                            <span className="cinema-distance">{cinema.distance}</span>
+                        </div>
+                    </div>
+            )}
+
+        </div>
+    }
 
 }
 export default class Cinemas extends Component {
@@ -116,10 +163,13 @@ export default class Cinemas extends Component {
         super(props);
         var cinemas=[
             {
+                id:1,
                 picture: "https://p1.meituan.net/deal/201208/22/1_0822151022.jpg@292w_292h_1e_1c",
                 name: "中宁国际影城（京新广场店）",
                 address: "浦口区柳洲东路189号京新广场4楼",
                 phone: "电话：025-58860601",
+                price:30,
+                distance:"1km",
                 service: [
                     {
                         name:"退",
@@ -138,10 +188,13 @@ export default class Cinemas extends Component {
                         text:"商场免费停车"}
                 ]},
             {
+                id:2,
                 picture: "https://p1.meituan.net/deal/201208/22/1_0822151022.jpg@292w_292h_1e_1c",
                 name: "中宁国际影城（京新广场店）",
                 address: "浦口区柳洲东路189号京新广场4楼",
                 phone: "电话：025-58860601",
+                price:30,
+                distance:"1km",
                 service: [
                     {
                         name:"退",
@@ -160,10 +213,13 @@ export default class Cinemas extends Component {
                         text:"商场免费停车"}
                 ]},
             {
+                id:3,
                 picture: "https://p1.meituan.net/deal/201208/22/1_0822151022.jpg@292w_292h_1e_1c",
                 name: "中宁国际影城（京新广场店）",
                 address: "浦口区柳洲东路189号京新广场4楼",
                 phone: "电话：025-58860601",
+                price:30,
+                distance:"1km",
                 service: [
                     {
                         name:"退",
@@ -182,10 +238,13 @@ export default class Cinemas extends Component {
                         text:"商场免费停车"}
                 ]},
             {
+                id:4,
                 picture: "https://p1.meituan.net/deal/201208/22/1_0822151022.jpg@292w_292h_1e_1c",
                 name: "中宁国际影城（京新广场店）",
                 address: "浦口区柳洲东路189号京新广场4楼",
                 phone: "电话：025-58860601",
+                price:30,
+                distance:"1km",
                 service: [
                     {
                         name:"退",
@@ -204,10 +263,13 @@ export default class Cinemas extends Component {
                         text:"商场免费停车"}
                 ]},
             {
+                id:4,
                 picture: "https://p1.meituan.net/deal/201208/22/1_0822151022.jpg@292w_292h_1e_1c",
                 name: "中宁国际影城（京新广场店）",
                 address: "浦口区柳洲东路189号京新广场4楼",
                 phone: "电话：025-58860601",
+                price:30,
+                distance:"1km",
                 service: [
                     {
                         name:"退",
@@ -233,10 +295,13 @@ export default class Cinemas extends Component {
             "博纳国际影城", "星轶starx影城",
             "中影UL城市影院", "新华国际影城", "华纳国际影城", "幸福蓝海国际影城", "银河欢乐影城", "SFC上影影城", '横店影视' ,
             "星轶imax影城" ,"其他"];
-        let str="全部 地铁附近 江宁区 秦淮区 浦口区 雨花台区 六合区 栖霞区 鼓楼区 建邺区 玄武区 溧水区 高淳区";
-        var areas=str.split();
-        str="全部 可改签 可退票 IMAX厅 CGS中国巨幕厅 杜比全景声厅 Dolby Cinema厅 RealD厅 RealD 6FL厅 4DX厅 DTS:X 临境音厅 儿童厅 4K厅 4D厅 60帧厅 120帧/4K厅 巨幕厅 STARX厅 MX4D厅";
-        var tags=str.split();
+
+        var areas=['全部', '地铁附近', '江宁区', '秦淮区' ,'浦口区' ,'雨花台区', '六合区', '栖霞区',
+            '鼓楼区', '建邺区' ,'玄武区', '溧水区', '高淳区'];
+        var tags=[
+            '全部', '可改签' ,'可退票', 'IMAX厅', 'CGS中国巨幕厅', '杜比全景声厅', 'Dolby Cinema厅', 'RealD厅' ,'RealD 6FL厅 ',
+            '4DX厅', 'DTS:X 临境音厅', '儿童厅','4K厅', '4D厅', '60帧厅', '120帧/4K厅','巨幕厅', 'STARX厅', 'MX4D厅'
+        ];
         var sortTypes=["距离最近","价格最低"];
         this.state = {
             cinemas:cinemas,
@@ -287,8 +352,24 @@ export default class Cinemas extends Component {
 
     render() {
         return (
-            <div>
+            <div >
                 <Header index={1}/>
+                <div className="cinemas">
+                    <SearchBar
+                        brands={this.state.brands}
+                        selectedBrandIndex={this.state.selectedBrandIndex}
+                        areas={this.state.areas}
+                        selectedAreaIndex={this.state.selectedAreaIndex}
+                        tags={this.state.tags}
+                        selectedTagIndex={this.state.selectedTagIndex}
+                        sortTypes={this.state.sortTypes}
+                        selectedSortTypeIndex={this.state.selectedSortTypeIndex}
+                        changeCinemaState={this.changeCinemaState}
+                    />
+                    <CinemaPanel
+                        cinemas={this.state.cinemas}
+                    />
+                </div>
 
 
             </div>

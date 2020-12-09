@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import MovieCell from '../../components/movie/moviecell'
 import Header from "../../components/header";
 
-require('./movies.css');
+import './movies.less';
 
 
 class SelectCell extends Component {
@@ -122,7 +122,7 @@ class SearchBar extends Component {
                 />
         );
         return (
-            <div>
+            <div className='search-bar'>
                 <div className="subnav">
                     <ul className="navbar">
                         {movieStatesList}
@@ -343,15 +343,16 @@ export default class Movies extends Component {
     }
 
     updateMovieList() {
-        console.log(this.state);
+
         const searchMovieForm={
-            moviestate:this.state.moviestates.get(this.state.selectedMovieStateIndex),
-            movietype:this.state.movietypes.get(this.state.selectedMovieTypeIndex),
-            area:this.state.areas.get(this.state.selectedAreaIndex),
-            year:this.state.areas.get(this.state.selectedYearIndex),
-            sorttype:this.state.sorttypes.get(this.state.selectedSortTypeIndex),
+            moviestate:this.state.moviestates[this.state.selectedMovieStateIndex],
+            movietype:this.state.movietypes[this.state.selectedMovieTypeIndex],
+            area:this.state.areas[this.state.selectedAreaIndex],
+            year:this.state.years[this.state.selectedYearIndex],
+            sorttype:this.state.sorttypes[this.state.selectedSortTypeIndex],
             page:this.state.page
         };
+        console.log(searchMovieForm);
     }
 
     changeMovieState(index, type) {
@@ -388,7 +389,7 @@ export default class Movies extends Component {
 
     render() {
         return (
-            <div>
+            <div className='movies'>
                 <Header index={1}/>
                 <SearchBar
                     moviestates={this.state.moviestates}
