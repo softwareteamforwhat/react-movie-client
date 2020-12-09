@@ -30,6 +30,7 @@ export default class Index extends Component {
         return (<div>
             <Header index={0}/>
             <MyCarousel moviePList={moviePList} />
+
         </div>);
     }
 }
