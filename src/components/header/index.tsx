@@ -18,7 +18,7 @@ export default class Header extends Component<{ index: number }, { color: string
         const color = this.state.color;
         return (
             <Fragment>
-                <div style={{height: 80}}/>
+                <div style={{height: "80px"}}/>
                 <div className="header">
                     <div className="header-inner">
                         <img src={logo} className="logo" alt="logo"/>
