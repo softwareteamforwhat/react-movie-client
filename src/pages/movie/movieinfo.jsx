@@ -1,5 +1,6 @@
 import React from 'react';
 import './movieinfo.less'
+import Header from "../../components/header";
 
 export default class MovieInfo extends React.Component{
 
@@ -127,6 +128,7 @@ export default class MovieInfo extends React.Component{
 
     render(){
         return <div className="movie-info">
+            <Header index={1}/>
             <div className="banner">
                 <div className="wrapper">
                     <div className="celeinfo-left">
