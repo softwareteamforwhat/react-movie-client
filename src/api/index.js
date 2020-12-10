@@ -26,3 +26,6 @@ export const apiChangeFollow = (id, token, followId) => ajax('/changeFollow', {
     id,
     followId
 }, 'POST', {headers: {"Authorization": token}})
+
+//找回密码
+export const apiForget = (email) => ajax('/forget', {email})

@@ -4,16 +4,18 @@ import MyCarousel from "../../components/carousel";
 import {movieP} from '../../config/datastructures';
 import movieP1 from "../../assets/images/movieP1.jpg";
 import movieP2 from "../../assets/images/movieP2.jpg";
+import './index.less';
+import {Row, Col} from 'antd';
 
-const movie1:movieP={
+const movie1: movieP = {
     movieId: "0",
-    moviePhoto:movieP1
+    moviePhoto: movieP1
 }
-const movie2:movieP={
+const movie2: movieP = {
     movieId: "1",
-    moviePhoto:movieP2
+    moviePhoto: movieP2
 }
-const moviePList:movieP[]=[movie1,movie2]
+const moviePList: movieP[] = [movie1, movie2]
 /*
 主页的路由组件
  */
@@ -29,8 +31,15 @@ export default class Index extends Component {
         document.title = '主页';
         return (<div>
             <Header index={0}/>
-            <MyCarousel moviePList={moviePList} />
-
+            <MyCarousel moviePList={moviePList}/>
+            <div className="index-content">
+                <div className="movie-grid">
+                    电影
+                </div>
+                <div className="rank-grid">
+                    排名
+                </div>
+            </div>
         </div>);
     }
 }

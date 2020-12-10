@@ -4,7 +4,7 @@ import logo from '../../assets/images/logo.png';
 import {Form, Input, Button, Checkbox, message} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import {loginInfoResponse} from "../../api/response/loginResponse";
-import {apiLogin} from "../../api";
+import {apiForget, apiLogin} from "../../api";
 // import {apiLogin} from '../../api';
 
 /*
@@ -12,6 +12,7 @@ import {apiLogin} from "../../api";
  */
 
 const NormalLoginForm = () => {
+    const [form] = Form.useForm();
     const onFinish = async (values: any) => {
         const result: loginInfoResponse = await apiLogin(values.username,values.password);
         if (values.remember) {
@@ -51,6 +52,7 @@ const NormalLoginForm = () => {
         <Form
             name="normal_login"
             className="login-form"
+            form={form}
             initialValues={{
                 remember: remember,
                 username: username,
@@ -91,7 +93,10 @@ const NormalLoginForm = () => {
                     }}>记住密码</Checkbox>
                 </Form.Item>
 
-                <a className="login-form-forgot" href="/forget">
+                <a className="login-form-forgot" onClick={()=>{
+                    message.success("已经将新密码发至您的邮箱，请及时更改密码");
+                    apiForget(form.getFieldValue('email'));
+                }}>
                     找回密码
                 </a>
             </Form.Item>
