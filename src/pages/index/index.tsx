@@ -5,7 +5,8 @@ import {movieP} from '../../config/datastructures';
 import movieP1 from "../../assets/images/movieP1.jpg";
 import movieP2 from "../../assets/images/movieP2.jpg";
 import './index.less';
-import {Row, Col} from 'antd';
+import IndexMovie from "./movie";
+import IndexRank from "./rank";
 
 const movie1: movieP = {
     movieId: "0",
@@ -34,10 +35,10 @@ export default class Index extends Component {
             <MyCarousel moviePList={moviePList}/>
             <div className="index-content">
                 <div className="movie-grid">
-                    电影
+                    <IndexMovie/>
                 </div>
                 <div className="rank-grid">
-                    排名
+                    <IndexRank/>
                 </div>
             </div>
         </div>);
