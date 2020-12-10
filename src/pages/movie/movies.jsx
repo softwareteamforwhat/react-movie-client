@@ -391,22 +391,25 @@ export default class Movies extends Component {
         return (
             <div className='movies'>
                 <Header index={1}/>
-                <SearchBar
-                    moviestates={this.state.moviestates}
-                    selectedMovieStateIndex={this.state.selectedMovieStateIndex}
-                    movietypes={this.state.movietypes}
-                    selectedMovieTypeIndex={this.state.selectedMovieTypeIndex}
-                    areas={this.state.areas}
-                    selectedAreaIndex={this.state.selectedAreaIndex}
-                    years={this.state.years}
-                    selectedYearIndex={this.state.selectedYearIndex}
-                    sorttypes={this.state.sorttypes}
-                    selectedSortTypeIndex={this.state.selectedSortTypeIndex}
-                    changeMovieState={this.changeMovieState}
-                />
-                <MoviePanel
-                    movielist={this.state.movielist}
-                />
+                <div className='movies-container'>
+                    <SearchBar
+                        moviestates={this.state.moviestates}
+                        selectedMovieStateIndex={this.state.selectedMovieStateIndex}
+                        movietypes={this.state.movietypes}
+                        selectedMovieTypeIndex={this.state.selectedMovieTypeIndex}
+                        areas={this.state.areas}
+                        selectedAreaIndex={this.state.selectedAreaIndex}
+                        years={this.state.years}
+                        selectedYearIndex={this.state.selectedYearIndex}
+                        sorttypes={this.state.sorttypes}
+                        selectedSortTypeIndex={this.state.selectedSortTypeIndex}
+                        changeMovieState={this.changeMovieState}
+                    />
+                    <MoviePanel
+                        movielist={this.state.movielist}
+                    />
+                </div>
+
             </div>
 
         );

@@ -353,7 +353,7 @@ export default class Cinemas extends Component {
     render() {
         return (
             <div >
-                <Header index={1}/>
+                <Header index={2}/>
                 <div className="cinemas">
                     <SearchBar
                         brands={this.state.brands}
