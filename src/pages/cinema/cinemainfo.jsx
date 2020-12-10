@@ -600,7 +600,7 @@ export default class CinemaInfo extends React.Component {
                 </tr>
         );
 
-        return <div>
+        return <div className="cinema-info">
             <Header index={-1}/>
             <div className="banner">
                 <div className="wrapper">

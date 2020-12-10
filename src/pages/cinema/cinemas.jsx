@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Header from "../../components/header";
 import {Link} from "react-router-dom";
 import './cinemas.less';
+import MovieBanner from '../../components/movie/moviebanner'
 
 
 class TagCell extends Component {
@@ -158,6 +159,7 @@ class CinemaPanel extends Component{
     }
 
 }
+
 export default class Cinemas extends Component {
     constructor(props) {
         super(props);
@@ -303,6 +305,26 @@ export default class Cinemas extends Component {
             '4DX厅', 'DTS:X 临境音厅', '儿童厅','4K厅', '4D厅', '60帧厅', '120帧/4K厅','巨幕厅', 'STARX厅', 'MX4D厅'
         ];
         var sortTypes=["距离最近","价格最低"];
+        var movieId=this.props.location.id;//如果从电影详情处点击购票进入此页面，则会有这个id存在
+        var info={};
+        var type=[];
+        var moviestate="";
+        if(movieId===undefined){
+        }
+        else {
+            info = {
+                id:movieId,
+                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
+                name: "除暴",
+                name2: "Caught in Time",
+                place: "中国香港,中国大陆",
+                length: "95分钟",
+                time: "2020-11-20中国大陆上映",
+                description: "上世纪90年代，刑警钟诚受命追捕悍匪集团“老鹰帮”。这群悍匪犯下惊天连环劫案，训练有素且纪律严明，首领张隼更屡次恶意挑衅，矛头直指钟诚。为将“老鹰帮”捉拿归案，钟诚带领刑警小队咬死不放，誓与恶势力斗争到底。数年间，警匪上演了一次次紧张刺激的较量，悍匪愈加猖獗，警方步步逼近，双方展开殊死对决……"
+            };
+            type = [" 犯罪 ", " 剧情 ", " 动作 "];
+            moviestate="正在热映";
+        }
         this.state = {
             cinemas:cinemas,
             brands:brands,
@@ -314,6 +336,10 @@ export default class Cinemas extends Component {
             selectedAreaIndex: 0,
             selectedTagIndex: 0,
             selectedSortTypeIndex: 0,
+            movieId:movieId,
+            info:info,
+            type:type,
+            moviestate:moviestate
         };
         this.updateCinemaList = this.updateCinemaList.bind(this);
         this.changeCinemaState = this.changeCinemaState.bind(this);
@@ -354,6 +380,13 @@ export default class Cinemas extends Component {
         return (
             <div >
                 <Header index={2}/>
+                {this.state.movieId===undefined?<div/>:
+                    <MovieBanner
+                        info={this.state.info}
+                        type={this.state.type}
+                        moviestate={this.state.moviestate}
+                        linktype={2}
+                    />}
                 <div className="cinemas">
                     <SearchBar
                         brands={this.state.brands}

@@ -1,0 +1,143 @@
+.banner{
+  width: 100%;
+  min-width: 1200px;
+  background: #392f59  no-repeat 50%;
+  margin: 0;
+
+  height: 326px;
+  position: relative;
+
+  .wrapper{
+    width: 80%;
+    height: 330px;
+    position: relative;
+    top: 29px;
+    left: 20%;
+    .celeinfo-left{
+      width: 300px;
+      float: left;
+      position: relative;
+      top: 0;
+      overflow: hidden;
+      z-index: 9;
+
+      .avatar-shadow {
+        position: relative;
+        width: 240px;
+        height: 330px;
+
+        .avatar {
+          border: 4px solid #fff;
+          height: 322px;
+          width: 232px;
+        }
+
+      }
+
+
+
+    }
+
+    .celeinfo-right{
+      position: relative;
+      margin-right: 30px;
+      margin-left: 300px;
+
+      .movie-brief-container{
+        position: absolute;
+        color: #fff;
+        font-size: 14px;
+        z-index: 1;
+        margin-top: 10px;
+
+        .name {
+          width: 900px;
+          margin-top: 0;
+          font-size: 26px;
+          line-height: 32px;
+          font-weight: 700;
+          margin-bottom: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          max-height: 64px;
+          text-align: left;
+          color: white;
+        }
+
+        .subname {
+          width: 340px;
+          font-size: 18px;
+          line-height: 1.3;
+          margin-bottom: 14px;
+        }
+
+        ul {
+          width: 250px;
+          list-style: none;
+          padding-left: 0;
+          margin-bottom: 20px;
+
+          li {
+            margin: 12px 0;
+            line-height: 100%;
+
+            .movietypes{
+              display: flex;
+              flex-direction: row;
+
+            }
+          }
+        }
+      }
+
+      .action-button{
+        position: absolute;
+        margin-top: 180px;
+
+        button {
+          cursor: pointer;
+          float: left;
+          width: 120px;
+          height: 25px;
+          background-color: #756189;
+          text-align: center;
+          font-size: 16px;
+          color: #fff;
+          border: none;
+          margin-right: 10px;
+
+        }
+      }
+
+      .movie-status-container{
+        position: absolute;
+        margin-top: 210px;
+
+        width: 250px;
+        height: 40px;
+
+        .buy-button{
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
+          background-color: #cd0200;
+          border: none;
+          color: white;
+          font-size: 18px;
+        }
+
+        .no-text{
+          width: 100%;
+          height: 100%;
+          background-color:gray;
+          border: none;
+          color: white;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+}

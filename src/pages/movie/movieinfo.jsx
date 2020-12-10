@@ -1,12 +1,14 @@
 import React from 'react';
 import './movieinfo.less'
 import Header from "../../components/header";
+import MovieBanner from '../../components/movie/moviebanner'
 
 export default class MovieInfo extends React.Component{
 
     constructor(props){
         super(props);
         const info = {
+            id:this.props.location.id,
             picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
             name: "除暴",
             name2: "Caught in Time",
@@ -129,51 +131,12 @@ export default class MovieInfo extends React.Component{
     render(){
         return <div className="movie-info">
             <Header index={-1}/>
-            <div className="banner">
-                <div className="wrapper">
-                    <div className="celeinfo-left">
-                        <div className="avatar-shadow">
-                            <img className="avatar" src="https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c" alt={this.state.info.name}/>
-                        </div>
-                    </div>
-                    <div className="celeinfo-right">
-                        <div className="movie-brief-container">
-                            <h1 className="name">{this.state.info.name}</h1>
-                            <div className="subname">{this.state.info.name2}</div>
-                            <ul>
-                                <li className="movietypes">
-                                    {this.state.type}
-                                </li>
-                                <li>
-                                    {this.state.info.place+" "+this.state.info.length}
-                                </li>
-                                <li>
-                                    {this.state.info.time}
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div className="action-button">
-                            <button className="wish">
-                                    想看
-                            </button>
-                            <button className="score">
-                                   评分
-                            </button>
-                        </div>
-                        <div className="movie-status-container">
-                            {
-                                this.state.moviestate==="正在热映"?
-                                    (<button className="buy-button">立即购票</button>
-                                    ):(
-                                    <button className="no-text">敬请期待</button>
-                                    )
-                            }
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            <MovieBanner
+                info={this.state.info}
+                type={this.state.type}
+                moviestate={this.state.moviestate}
+                linktype={1}
+            />
             <div className="container">
                 {
                     this.state.selectedContainerContentType===0?
