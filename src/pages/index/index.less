@@ -1,17 +1,26 @@
 .index-content{
   width: 100vw;
   display: flex;
-  justify-content: center;
   align-items: center;
-  .movie-grid{
-    display: inline;
-    float: right;
-    margin-right: 5px;
-    width: 66%
-  }
-  .rank-grid{
-    display: inline;
-    margin-left: 5px;
-    width: 34%
+  justify-content: center;
+  .my-content{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    width: 100vw;
+    max-width: 1200px;
+    .movie-grid{
+      display: inline;
+      float: right;
+      margin-right: 40px;
+      width: 66%;
+      max-width: 1200px;
+    }
+    .rank-grid{
+      display: inline;
+      margin-left: 40px;
+      width: 34%;
+      max-width: 600px;
+    }
   }
 }

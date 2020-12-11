@@ -34,11 +34,13 @@ export default class Index extends Component {
             <Header index={0}/>
             <MyCarousel moviePList={moviePList}/>
             <div className="index-content">
-                <div className="movie-grid">
-                    <IndexMovie/>
-                </div>
-                <div className="rank-grid">
-                    <IndexRank/>
+                <div className="my-content">
+                    <div className="movie-grid">
+                        <IndexMovie/>
+                    </div>
+                    <div className="rank-grid">
+                        <IndexRank/>
+                    </div>
                 </div>
             </div>
         </div>);

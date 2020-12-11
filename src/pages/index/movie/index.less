@@ -1,3 +1,80 @@
-.movie-content{
+.movie-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: auto;
 
+  .movie-item {
+    height: 250px;
+    width: 160px;
+
+    .movie-poster {
+      width: 160px;
+      height: 220px;
+      display: flex;
+      align-items: flex-end;
+
+      .movie-info {
+        background-color: rgba(1, 0, 0, 0.5);
+
+        .movie-title {
+          text-align: center;
+          color: white;
+          width: 140px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          -o-text-overflow: ellipsis;
+        }
+        .movie-title2 {
+          text-align: center;
+          color: white;
+          width: 160px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          -o-text-overflow: ellipsis;
+        }
+        .movie-score {
+          width: 20px;
+          text-align: right;
+          color: white;
+        }
+
+        display: flex;
+        align-items: flex-end;
+      }
+    }
+
+    .poster-btn {
+      background-color: white;
+      border-color: white;
+      color: #FF0000;
+      width: 160px;
+      height: 30px;
+    }
+    .poster-btn:hover {
+      background-color: #FF0000;
+      border-color: #FF0000;
+      color: white;
+    }
+    .movie-wish{
+      color: #FFB400;
+      text-align: center;
+    }
+    .poster-btn2{
+      background-color: white;
+      border-color: white;
+      width: 160px;
+      height: 30px;
+      color: #2D98F3;
+    }
+    .poster-btn2:hover{
+      background-color: #2D98F3;
+      border-color: #2D98F3;
+      color: white;
+    }
+  }
 }
