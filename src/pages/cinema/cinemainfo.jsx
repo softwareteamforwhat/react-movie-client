@@ -590,8 +590,7 @@ export default class CinemaInfo extends React.Component {
                     <td>
                         <div className="buy-btn">
                             <Link to={{
-                                pathname:"/cinemainfo",
-                                id:0
+                                pathname:"/seatbuy",
                             }}>
                                 <button>选座购票</button>
                             </Link>

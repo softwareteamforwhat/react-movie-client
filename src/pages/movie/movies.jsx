@@ -343,7 +343,6 @@ export default class Movies extends Component {
     }
 
     updateMovieList() {
-
         const searchMovieForm={
             moviestate:this.state.moviestates[this.state.selectedMovieStateIndex],
             movietype:this.state.movietypes[this.state.selectedMovieTypeIndex],
