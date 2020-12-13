@@ -191,7 +191,7 @@ export default class IndexRank extends Component<any, any> {
                 <div className="will-rank">
                     <Divider orientation="left" style={{color: "#FFB400"}}>最受期待
                         <Divider type="vertical"/>
-                        <a href="/rank/will" className="linkBtn">
+                        <a href="/rank/follow" className="linkBtn">
                             <span>查看完整榜单</span>
                         </a>
                     </Divider>

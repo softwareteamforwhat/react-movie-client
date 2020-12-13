@@ -29,3 +29,9 @@ export const apiChangeFollow = (id, token, followId) => ajax('/changeFollow', {
 
 //找回密码
 export const apiForget = (email) => ajax('/forget', {email})
+
+//获取收藏榜单
+export const apiGetFollowRank = (page) => ajax('/getFollowRank', {page})
+
+//获取评分榜单
+export const apiGetTopRank = (page) => ajax('/getTopRank', {page})

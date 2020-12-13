@@ -28,7 +28,7 @@ export default class Header extends Component<{ index: number }, { color: string
                                 <li><a style={{color: color[0]}} href="/">首页</a></li>
                                 <li><a style={{color: color[1]}} href="/movies">电影</a></li>
                                 <li><a style={{color: color[2]}} href="/cinemas">影院</a></li>
-                                <li><a style={{color: color[3]}} href="/board">榜单</a></li>
+                                <li><a style={{color: color[3]}} href="/rank/follow">榜单</a></li>
                             </ul>
                         </div>
                         <div className="user">
