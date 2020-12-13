@@ -11,7 +11,7 @@ export default class Header extends Component<{ index: number }, { color: string
         this.state = {
             color: ["white", "white", "white", "white"]
         }
-        this.state.color[this.props.index] = "red";
+        if (this.props.index < 4) this.state.color[this.props.index] = "red";
     }
 
     render() {
