@@ -32,7 +32,7 @@ export default class App extends Component {
                     <Route path='/movies' component={Movies}/>
                     <Route path='/movieinfo' component={MovieInfo}/>
                     <Route path='/expense' component={Expense}/>
-                    <Route path='/expense' component={SeatBuy}/>
+                    <Route path='/seatbuy' component={SeatBuy}/>
                     <Route path='/cinemas' component={Cinemas}/>
                     <Route path='/cinemainfo' component={CinemaInfo}/>
                     <Route path='/rank/follow' component={RankFollow}/>
