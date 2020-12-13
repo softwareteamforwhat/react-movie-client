@@ -10,7 +10,8 @@ class MySearch extends Component<any, any> {
     onSearch = (value) => {
         // console.log(value)
         // this.props.history.push({pathname: "/search", query: {text: value}});
-        window.location.href = "/search/" + value;
+        const text: string = value || "nothing";
+        window.location.href = "/search/" + text;
     }
 
     render() {
