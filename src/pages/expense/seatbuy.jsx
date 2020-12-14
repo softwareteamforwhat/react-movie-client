@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import Header from "../../components/header";
 import './seatbuy.less';
+import Pay1 from '../../assets/images/pay1.png';
+import Pay2 from '../../assets/images/pay2.png';
 
 class Cell extends Component{
     constructor(props){
@@ -56,6 +58,7 @@ export default class SeatBuy extends Component{
     constructor(props){
         super(props);
         const movieinfo={
+            id:1240838,
             picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
             name: "除暴",
             type: [" 犯罪 ", " 剧情 ", " 动作 "],
@@ -81,44 +84,76 @@ export default class SeatBuy extends Component{
             movieinfo:movieinfo,
             paipian:paipian,
             seats:seats,
-            progressIndex:1
+            progressIndex:1,
+            ticketIndexs:[],
+            payType:0
         };
         this.update=this.update.bind(this);
         this.select=this.select.bind(this);
-
+        this.goPay=this.goPay.bind(this);
+        this.choosePayMethod=this.choosePayMethod.bind(this);
     }
 
     update(){
-        //console.log(this.state.seats)
+        const orderInfo={
+            movieId:this.state.movieinfo.id,
+            cinema:"中宁国际影城（京新广场店）",
+            date:"12月9日",
+            starttime:"21:00",
+            endtime:"23:00",
+            lang:"国语",
+            hall:"5号激光厅",
+            price:30,
+            ticketIndexs:this.state.ticketIndexs
+        };
+        console.log(this.state.progressIndex);
+        console.log(orderInfo)
     }
 
     select(rowIndex,index,state){
         var seats=this.state.seats;
         //console.log(rowIndex,index)
         seats[rowIndex][index]=state;
-        this.setState(
-            {
-                seats:seats
-            },
-            ()=>this.update()
-        )
-    }
-    render(){
         var ticketIndexs=[];
-        var seats=this.state.seats;
-        //console.log(seats.length,seats[0].length)
         for(var i=0;i<seats.length;i++){
             for(var j=0;j<seats[i].length;j++){
                 //console.log(seats[i][j])
                 if(seats[i][j]===2){
                     ticketIndexs.push(
                         {x:i,
-                        y:j}
+                            y:j}
                     )
                 }
             }
         }
-        //console.log(ticketIndexs)
+
+        this.setState(
+            {
+                seats:seats,
+                ticketIndexs:ticketIndexs
+            },
+            ()=>this.update()
+        )
+    }
+
+    choosePayMethod(index){
+        this.setState(
+            {
+                payType:index
+            },
+            ()=>this.update()
+        )
+    }
+    goPay(){
+        this.setState(
+            {
+                progressIndex:2
+            },
+            ()=>this.update()
+        )
+    }
+    render(){
+        var ticketIndexs=this.state.ticketIndexs;
         const tickets=ticketIndexs.map(
             (ticketIndex,index)=>
                 <span className="ticket" onClick={()=>this.select(ticketIndex.x,ticketIndex.y,0)} key={index}>
@@ -141,15 +176,10 @@ export default class SeatBuy extends Component{
                         <div className={"bar"}/>
                         <span className={"step-text"}>选择座位</span>
                     </div>
-                    <div className={this.state.progressIndex===2?"step done":"step"}>
+                    <div className={this.state.progressIndex===2?"step done last":"step last"}>
                         <span className={'step-num'}>3</span>
                         <div className={"bar"}/>
                         <span className={"step-text"}>14分钟内付款</span>
-                    </div>
-                    <div className={"step last"}>
-                        <span className={'step-num'}>4</span>
-                        <div className={"bar"}/>
-                        <span className={"step-text"}>影院取票</span>
                     </div>
                 </div>
                 <div className="main">
@@ -246,10 +276,63 @@ export default class SeatBuy extends Component{
                                         <span className="price">{this.state.paipian.price*tickets.length}</span>
                                     </div>
                                 </div>
-                                <div className="confirm-order"/>
+                                <div className="confirm-order">
+                                    <button className={"confirm-btn"} onClick={()=>this.goPay()}>
+                                        立即付款
+                                    </button>
+                                </div>
                             </div>
                         </div>: <div className="ticket-buy">
-                            完成支付
+                            <p className={"warning"}>
+                                请仔细核对场次信息，出票后将
+                                <span className={"attention"}>无法退票和改签</span>
+                            </p>
+                            <table className={"order-table"}>
+                                <thead>
+                                <tr>
+                                    <th>影片</th>
+                                    <th>时间</th>
+                                    <th>影院</th>
+                                    <th>影厅</th>
+                                    <th>座位</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {this.state.ticketIndexs.map(
+                                    (ticket,index)=>
+                                        <tr key={index}>
+                                            <td className={"movie-name"}>{this.state.movieinfo.name}</td>
+                                            <td className={"showtime"}>{this.state.paipian.date+" "+this.state.paipian.starttime}</td>
+                                            <td className={"cinema-name"}>{this.state.paipian.cinema}</td>
+                                            <td className={"hall"}>{this.state.paipian.hall}</td>
+                                            <td className={"seats"}>
+                                                {ticket.x+1}排{ticket.y+1}座
+                                            </td>
+                                        </tr>
+                                )}
+                                </tbody>
+                            </table>
+                            <div className="buy">
+                                <div className={"payMethod"}>
+
+                                    <div className={"img"}>
+                                        <img src={this.state.payType===0?Pay1:Pay2} alt={"请扫码"}/>
+                                    </div>
+                                    <div className={"payButton"}>
+                                        <div className="total-price">
+                                            <span>总价：</span>
+                                            <span className="price">{this.state.paipian.price*tickets.length}</span>
+                                        </div>
+                                        <div className={"choose"}>
+                                            <button className={this.state.payType===0?"selected":""} onClick={()=>this.choosePayMethod(0)}>支付宝支付</button>
+                                            <button className={this.state.payType===1?"selected":""} onClick={()=>this.choosePayMethod(1)}>微信支付</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
                         </div>}
                 </div>
             </div>

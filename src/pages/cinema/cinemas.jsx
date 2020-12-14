@@ -339,14 +339,23 @@ export default class Cinemas extends Component {
             movieId:movieId,
             info:info,
             type:type,
-            moviestate:moviestate
+            moviestate:moviestate,
+            pageNum:0
         };
         this.updateCinemaList = this.updateCinemaList.bind(this);
         this.changeCinemaState = this.changeCinemaState.bind(this);
     }
 
     updateCinemaList() {
-        console.log(this.state)
+        const searchForm={
+            brand:this.state.brands[this.state.selectedBrandIndex],
+            area:this.state.areas[this.state.selectedAreaIndex],
+            tag:this.state.tags[this.state.selectedTagIndex],
+            sortType:this.state.sortTypes[this.state.selectedSortTypeIndex],
+            movieId: this.state.movieId,
+            page:this.state.pageNum
+        };
+        console.log(searchForm)
     }
 
     changeCinemaState(index, type) {
