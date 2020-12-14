@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import MovieCell from '../../components/movie/moviecell'
 import Header from "../../components/header";
+import {Pagination} from "antd";
 
 import './movies.less';
 
@@ -336,11 +337,17 @@ export default class Movies extends Component {
             selectedAreaIndex: 0,
             selectedYearIndex: 0,
             selectedSortTypeIndex: 0,
-            page:0
+            total:100
         };
         this.updateMovieList = this.updateMovieList.bind(this);
         this.changeMovieState = this.changeMovieState.bind(this);
     }
+    onChange = (page, pageSize=10) => {
+        // apiGetFollowRank().then((res) => {
+        //     this.setState({movieList: res});
+        // })
+       console.log(page,pageSize)
+    };
 
     updateMovieList() {
         const searchMovieForm={
@@ -407,6 +414,9 @@ export default class Movies extends Component {
                     <MoviePanel
                         movielist={this.state.movielist}
                     />
+                    <div className={"page-bar"}>
+                        <Pagination  defaultCurrent={1} total={this.state.total} onChange={this.onChange} showSizeChanger={false}/>
+                    </div>
                 </div>
 
             </div>
