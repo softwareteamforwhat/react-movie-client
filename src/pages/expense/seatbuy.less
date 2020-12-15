@@ -12,12 +12,12 @@
 
       .step {
         float: left;
-        width: 25%;
+        width: 33%;
         .bar {
           width: 0;
           height: 4px;
-          border-left: 150px solid #ffd8d7;
-          border-right: 150px solid #ffd8d7;
+          border-left: 200px solid #ffd8d7;
+          border-right: 200px solid #ffd8d7;
         }
         .step-num {
           color: #fff;
@@ -59,6 +59,12 @@
 
         .step-text {
           color: #f03d37;
+        }
+      }
+
+      .last{
+        .bar {
+          border-right-color: transparent!important;
         }
       }
 
@@ -305,7 +311,146 @@
           .confirm-order {
             padding: 20px 0;
             text-align: center;
+
+            .confirm-btn {
+              cursor: pointer;
+              width: 260px;
+              height: 42px;
+              line-height: 42px;
+              text-align: center;
+              font-size: 16px;
+              color: #fff;
+              border-radius: 21px;
+              position: relative;
+              left: 10%;
+              margin: 38px 0 0 -130px;
+              background-color: #f03d37;
+              -webkit-box-shadow: 0 2px 10px -2px #f03d37;
+              box-shadow: 0 2px 10px -2px #f03d37;
+            }
           }
+
+        }
+      }
+
+      .ticket-buy{
+        .warning {
+          font-size: 12px;
+          color: #666;
+          padding-left: 18px;
+          background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR…5gXgFp+z0kp3W8f93OJb+OnbmOnbo6t4T/eIYPRW2ce5X/C3wonn0uNoJvAAAAAElFTkSuQmCC) no-repeat;
+          background-size: 12px;
+          background-position-y: 2px;
+          margin-bottom: 8px;
+        }
+
+        .order-table {
+          width: 100%;
+          border: 1px solid #e5e5e5;
+          border-spacing: 0;
+          margin-bottom: 60px;
+
+          thead {
+            background-color: #f7f7f7;
+
+            th {
+              font-size: 16px;
+              color: #333;
+              width: 20%;
+              padding: 14px 0;
+              text-align: center;
+            }
+          }
+
+          td {
+            text-align: center;
+            padding: 20px 0;
+            color: #333;
+
+          }
+
+          .movie-name {
+            font-size: 16px;
+          }
+
+          .showtime {
+            font-size: 14px;
+            color: #f03d37;
+          }
+
+          .cinema-name {
+            font-size: 14px;
+          }
+
+          .hall{
+            font-size: 14px;
+          }
+
+          .seats {
+            font-size: 14px;
+
+          }
+
+
+
+
+
+        }
+
+        .buy{
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+
+          .payMethod{
+            width: 50%;
+            height: 320px;
+            display: flex;
+            flex-direction: row;
+            margin-left: 50%;
+
+
+            img{
+              margin-left: 30%;
+              width: 300px;
+              height: 300px;
+            }
+
+            .payButton{
+
+              padding-left: 20%;
+              margin-top: 10%;
+              .choose{
+                width: 100px;
+                button{
+                  cursor: pointer;
+                  font-size: 14px;
+                  border: none;
+                  border-radius: 14px;
+                  text-align: center;
+                  line-height: 40px;
+                  background-color: white;
+                  padding-top: 3px;
+                }
+
+                .selected{
+                  background-color:green;
+                }
+              }
+
+              .total-price {
+                font-size: 14px;
+                color: #333;
+                .price {
+                  color: #f03d37;
+                  font-size: 24px;
+                }
+              }
+            }
+          }
+
+
+
 
         }
       }

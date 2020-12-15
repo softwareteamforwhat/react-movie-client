@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/header';
-import MovieCell from '../../components/movie/moviecell';
+import {Link} from 'react-router-dom'
+import {Component} from 'react';
 
 require('./favorite.css');
 
@@ -15,6 +16,7 @@ export default class Favorite extends React.Component{
         return (
             <div>
                 <Header index={1}/>
+                <h1>已收藏电影</h1>
                 <FavoritePanel />
             </div>
         );
@@ -187,5 +189,23 @@ class FavoritePanel extends React.Component{
                   {movieListItem}
               </div>
           );  
+    }
+}
+
+class MovieCell extends Component{
+    render() {
+        return <div className="movie-cell">
+            <div className="movie-item">
+                <Link to={{
+                    pathname:"/movieinfo",
+                    id:this.props.movie.movieId
+                }}>
+                    <div className="movie-poster">
+                        <img className="poster-default" alt={this.props.movie.name} src={this.props.movie.picture}/>
+                    </div>
+                </Link>
+            </div>
+            <div className="movie-title">{this.props.movie.name}</div>
+        </div>
     }
 }

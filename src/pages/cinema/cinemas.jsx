@@ -3,6 +3,7 @@ import Header from "../../components/header";
 import {Link} from "react-router-dom";
 import './cinemas.less';
 import MovieBanner from '../../components/movie/moviebanner'
+import {Pagination} from "antd";
 
 
 class TagCell extends Component {
@@ -339,14 +340,30 @@ export default class Cinemas extends Component {
             movieId:movieId,
             info:info,
             type:type,
-            moviestate:moviestate
+            moviestate:moviestate,
+            total:100
         };
         this.updateCinemaList = this.updateCinemaList.bind(this);
         this.changeCinemaState = this.changeCinemaState.bind(this);
     }
 
+
+    onChange = (page, pageSize=10) => {
+        // apiGetFollowRank().then((res) => {
+        //     this.setState({movieList: res});
+        // })
+        console.log(page,pageSize)
+    };
     updateCinemaList() {
-        console.log(this.state)
+        const searchForm={
+            brand:this.state.brands[this.state.selectedBrandIndex],
+            area:this.state.areas[this.state.selectedAreaIndex],
+            tag:this.state.tags[this.state.selectedTagIndex],
+            sortType:this.state.sortTypes[this.state.selectedSortTypeIndex],
+            movieId: this.state.movieId,
+            page:this.state.pageNum
+        };
+        console.log(searchForm)
     }
 
     changeCinemaState(index, type) {
@@ -402,6 +419,9 @@ export default class Cinemas extends Component {
                     <CinemaPanel
                         cinemas={this.state.cinemas}
                     />
+                    <div className={"page-bar"}>
+                        <Pagination  defaultCurrent={1} total={this.state.total} onChange={this.onChange} showSizeChanger={false}/>
+                    </div>
                 </div>
 
 
