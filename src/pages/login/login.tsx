@@ -14,9 +14,10 @@ import {apiForget, apiLogin} from "../../api";
 const NormalLoginForm = () => {
     const [form] = Form.useForm();
     const onFinish = async (values: any) => {
-        const result: loginInfoResponse = await apiLogin(values.username,values.password);
+        // console.log(values.email,values.password);
+        const result: loginInfoResponse = await apiLogin(values.email,values.password);
         if (values.remember) {
-            localStorage.setItem('username', values.username);
+            localStorage.setItem('email', values.email);
             localStorage.setItem('password', values.password);
             localStorage.setItem('remember', String(Number(values.remember)));
         }
@@ -30,17 +31,18 @@ const NormalLoginForm = () => {
             localStorage.setItem("token", token);
             window.location.href = '/';
         }else if(result.status===1){
+            console.log(result)
             message.error('用户名或密码错误！');
         }
     };
 
     let remember: Number = Number(localStorage.getItem('remember') || 0);
-    const username: string = localStorage.getItem('username') || "";
+    const email: string = localStorage.getItem('email') || "";
     const password: string = localStorage.getItem('password') || "";
     const onChange = () => {
         if (remember) {
             remember = 0;
-            localStorage.removeItem('username');
+            localStorage.removeItem('email');
             localStorage.removeItem('password');
             localStorage.setItem('remember', "0");
         } else {
@@ -55,21 +57,21 @@ const NormalLoginForm = () => {
             form={form}
             initialValues={{
                 remember: remember,
-                username: username,
+                email: email,
                 password: password
             }}
             onFinish={onFinish}
         >
             <Form.Item
-                name="username"
+                name="email"
                 rules={[
                     {
                         required: true,
-                        message: '请输入昵称或邮箱!',
+                        message: '请输入注册用邮箱!',
                     },
                 ]}
             >
-                <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="用户名"/>
+                <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="邮箱"/>
             </Form.Item>
             <Form.Item
                 name="password"

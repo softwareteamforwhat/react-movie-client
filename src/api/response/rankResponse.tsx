@@ -1,7 +1,7 @@
 export interface RankTopResponse {
     index: number,
     id: number,
-    url: string,
+    picture: string,
     name: string,
     actors: string,
     time: string,
@@ -11,7 +11,7 @@ export interface RankTopResponse {
 export interface RankFollowResponse {
     index: number,
     id: number,
-    url: string,
+    picture: string,
     name: string,
     actors: string,
     time: string,

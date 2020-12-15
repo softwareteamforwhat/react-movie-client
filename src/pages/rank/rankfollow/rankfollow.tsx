@@ -6,32 +6,30 @@ import {apiGetFollowRank} from "../../../api";
 import {RankFollowResponse} from "../../../api/response/rankResponse";
 import {Link} from "react-router-dom";
 
-const mockMovie: RankFollowResponse = {
-    index: 1,
-    id: 1,
-    url: "https://p0.meituan.net/movie/c7b0e1254807467dbc761f46e7f19d5d2976982.jpg@160w_220h_1e_1c",
-    name: "沐浴之王",
-    time: "2020-02-03",
-    actors: "1,2,3",
-    follow: 1231412
-}
-const mockList = new Array(10).fill(mockMovie);
+// const mockMovie: RankFollowResponse = {
+//     index: 1,
+//     id: 1,
+//     picture: "https://p0.meituan.net/movie/c7b0e1254807467dbc761f46e7f19d5d2976982.jpg@160w_220h_1e_1c",
+//     name: "沐浴之王",
+//     time: "2020-02-03",
+//     actors: "1,2,3",
+//     follow: 1231412
+// }
+// const mockList = new Array(10).fill(mockMovie);
 
 export default class RankFollow extends Component<any, { movieList: RankFollowResponse[] }> {
-    //TODO 换真方法
     constructor(props) {
         super(props);
-        // apiGetFollowRank().then((res) => {
-        //     this.state = {movieList: res};
-        // })
-        this.state = {movieList: mockList}
+        this.state = {movieList: []};
+        apiGetFollowRank(1).then((res) => {
+            this.setState({movieList: res.data});
+        })
     }
 
     onChange = (page: number, pageSize: number = 10) => {
-        // apiGetFollowRank().then((res) => {
-        //     this.setState({movieList: res});
-        // })
-        this.setState({movieList: mockList});
+        apiGetFollowRank(page).then((res) => {
+            this.setState({movieList: res.data});
+        })
     }
     movieListRender = () => {
         const list: RankFollowResponse[] = this.state.movieList;
@@ -70,7 +68,7 @@ export default class RankFollow extends Component<any, { movieList: RankFollowRe
                                         height: "250px"
                                     }}>
                                         <img style={{width: "160px", height: "220px"}} alt={movie.name + "海报"}
-                                             src={movie.url}/>
+                                             src={movie.picture}/>
                                     </Col>
                                     <Col span={8} style={{
                                         display: "flex",

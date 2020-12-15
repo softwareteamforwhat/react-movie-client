@@ -4,7 +4,7 @@ import './index.less';
 import {Menu, Dropdown, Button} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
 
-const Logout=()=>{
+const Logout = () => {
     localStorage.removeItem("id");
     localStorage.removeItem("token");
     localStorage.removeItem("avatar");
@@ -40,22 +40,26 @@ const logout_menu = (
 );
 export default class User extends Component {
     render() {
-        const avatar: string = localStorage.getItem("avatar")||userDefault;
+        const avatar: string = localStorage.getItem("avatar") || userDefault;
         const token = localStorage.getItem("token");
-        const user_avator = <img src={avatar} alt="头像" />;
-        if(token){
+        const user_avator = <img src={avatar} alt="头像"/>;
+        if (token) {
             return (
-                <div>
-                    <Dropdown overlay={login_menu} placement="bottomCenter" arrow >
-                        <Button className="user-btn" shape="circle" icon={user_avator} />
+                <div onClick={() => {
+                    window.location.href = "/user/info"
+                }}>
+                    <Dropdown overlay={login_menu} placement="bottomCenter" arrow>
+                        <Button className="user-btn" shape="circle" icon={user_avator}/>
                     </Dropdown>
                 </div>
             );
-        }else {
+        } else {
             return (
-                <div>
-                    <Dropdown overlay={logout_menu} placement="bottomCenter" arrow >
-                        <Button className="user-btn" shape="circle" icon={<UserOutlined/>} />
+                <div onClick={() => {
+                    window.location.href = "/login"
+                }}>
+                    <Dropdown overlay={logout_menu} placement="bottomCenter" arrow>
+                        <Button className="user-btn" shape="circle" icon={<UserOutlined/>}/>
                     </Dropdown>
                 </div>
             );
