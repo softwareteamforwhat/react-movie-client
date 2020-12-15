@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import MovieCell from '../../components/movie/moviecell'
 import Header from "../../components/header";
 import {Pagination} from "antd";
+import {apiGetMovies} from "../../api"
 
 import './movies.less';
 
@@ -185,138 +186,7 @@ class MoviePanel extends Component {
 export default class Movies extends Component {
     constructor(props) {
         super(props);
-        var movielist = [
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-            }
-        ];
+
         var moviestates = ["正在热映", "即将上映", "经典影片"];
         var movietypes = ["全部", "爱情", "喜剧", "动画", "剧情", "恐怖", "惊悚", "科幻", "动作", "悬疑", "犯罪", "冒险", "战争",
             "奇幻", "运动", "家庭", "古装", "武侠", "西部", "历史", "传记", "歌舞", "短片", "纪录片", "黑色电影"];
@@ -325,8 +195,16 @@ export default class Movies extends Component {
         var years = ["全部", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011",
             "2000-2010", "90年代", "80年代", "70年代", "更早"];
         var sorttypes = ["热门", "时间", "评分"];
+        const searchMovieForm={
+            "movieState":0,
+            "movieType":"" ,
+            "area":"",
+            "year":"全部",
+            "sortType":"时间",
+            "page":0
+        };
         this.state = {
-            movielist: movielist,
+            movielist:[],
             moviestates: moviestates,
             movietypes: movietypes,
             areas: areas,
@@ -337,28 +215,75 @@ export default class Movies extends Component {
             selectedAreaIndex: 0,
             selectedYearIndex: 0,
             selectedSortTypeIndex: 0,
-            total:100
+            total:0
         };
+        apiGetMovies(searchMovieForm).then((res)=>{
+            console.log(res);
+            var movielist = res.data.movieBasics;
+            this.setState({
+                movielist:movielist,
+                total:res.data.sum
+            })
+        });
+
         this.updateMovieList = this.updateMovieList.bind(this);
         this.changeMovieState = this.changeMovieState.bind(this);
     }
-    onChange = (page, pageSize=10) => {
+    onChange = (page, pageSize=18) => {
         // apiGetFollowRank().then((res) => {
         //     this.setState({movieList: res});
         // })
-       console.log(page,pageSize)
+        const searchMovieForm={
+            movieType:this.state.movietypes[this.state.selectedMovieTypeIndex],
+            area:this.state.areas[this.state.selectedAreaIndex],
+            year:this.state.years[this.state.selectedYearIndex],
+            sortType:this.state.sorttypes[this.state.selectedSortTypeIndex],
+            page:page
+        };
+        if(searchMovieForm.movieType==="全部")searchMovieForm.movieType="";
+        if(searchMovieForm.area==="全部")searchMovieForm.area="";
+        switch (this.state.moviestates[this.state.selectedMovieStateIndex]) {
+            case "正在热映":searchMovieForm.movieState=0;break;
+            case "即将上映":searchMovieForm.movieState=1;break;
+            case "经典影片":searchMovieForm.movieState=2;break;
+            default:break
+        }
+        apiGetMovies(searchMovieForm).then((res)=>{
+            console.log(res)
+            this.setState({
+                movielist:res.data.movieBasics,
+            }, this.goTop()
+            )
+        })
     };
+
+    goTop(){
+        document.body.scrollTop = document.documentElement.scrollTop = 500
+    }
 
     updateMovieList() {
         const searchMovieForm={
-            moviestate:this.state.moviestates[this.state.selectedMovieStateIndex],
-            movietype:this.state.movietypes[this.state.selectedMovieTypeIndex],
+            movieType:this.state.movietypes[this.state.selectedMovieTypeIndex],
             area:this.state.areas[this.state.selectedAreaIndex],
             year:this.state.years[this.state.selectedYearIndex],
-            sorttype:this.state.sorttypes[this.state.selectedSortTypeIndex],
-            page:this.state.page
+            sortType:this.state.sorttypes[this.state.selectedSortTypeIndex],
+            page:0
         };
-        console.log(searchMovieForm);
+        if(searchMovieForm.movieType==="全部")searchMovieForm.movieType="";
+        if(searchMovieForm.area==="全部")searchMovieForm.area="";
+        switch (this.state.moviestates[this.state.selectedMovieStateIndex]) {
+            case "正在热映":searchMovieForm.movieState=0;break;
+            case "即将上映":searchMovieForm.movieState=1;break;
+            case "经典影片":searchMovieForm.movieState=2;break;
+            default:break
+        }
+        apiGetMovies(searchMovieForm).then((res)=>{
+            console.log(res)
+            this.setState({
+                movielist:res.data.movieBasics,
+                total:res.data.sum
+            })
+        })
     }
 
     changeMovieState(index, type) {
@@ -415,7 +340,7 @@ export default class Movies extends Component {
                         movielist={this.state.movielist}
                     />
                     <div className={"page-bar"}>
-                        <Pagination  defaultCurrent={1} total={this.state.total} onChange={this.onChange} showSizeChanger={false}/>
+                        <Pagination  defaultCurrent={1} total={this.state.total} pageSize={18} onChange={this.onChange} showSizeChanger={false}/>
                     </div>
                 </div>
 

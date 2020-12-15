@@ -12,11 +12,11 @@ export default class MovieCell extends Component{
                     id:this.props.movie.movieId
                 }}>
                     <div className="movie-poster">
-                        <img className="poster-default" alt={this.props.movie.name} src={this.props.movie.picture}/>
+                        <img className="poster-default" alt={this.props.movie.c_name} src={this.props.movie.picture}/>
                     </div>
                 </Link>
             </div>
-            <div className="movie-title">{this.props.movie.name}</div>
+            <div className="movie-title">{this.props.movie.c_name}</div>
         </div>
     }
 }
