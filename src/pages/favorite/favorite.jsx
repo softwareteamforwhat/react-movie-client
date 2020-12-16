@@ -225,7 +225,11 @@ export default class Favorite extends React.Component {
                                     }}>
                                         <h2 style={{color: "black", textAlign: "left"}}>{movie.name}</h2>
                                         <span style={{color: "black", textAlign: "left"}}>{"类型：" + movie.type}</span>
+                                        <span style={{color: "black", textAlign: "left"}}>{"时长：" + movie.type}</span>
+                                        <span style={{color: "black", textAlign: "left"}}>{"主演：" + movie.type}</span>
+                                        <span style={{color: "black", textAlign: "left"}}>{"地区：" + movie.type}</span>
                                         <span style={{color: "gray", textAlign: "left"}}>{"上映时间：" + movie.time}</span>
+                                        
                                     </Col>
                                     <Col span={4} style={{
                                         display: "flex",
@@ -237,7 +241,7 @@ export default class Favorite extends React.Component {
                                             textAlign: "center",
                                             lineHeight: "100%",
                                             color: "#FFB400"
-                                        }}>{1 + "分"}</span> </Col>
+                                        }}>{parseInt(Math.random()*100)}人想看</span> </Col>
                                     <Col span={2}/>
                                 </Row>
                             </Link>
