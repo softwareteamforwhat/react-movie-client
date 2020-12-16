@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/header';
 import {Form, Input, Button,message,Popover} from 'antd';
-import {UserOutlined} from '@ant-design/icons';
+import {UserOutlined,LockOutlined} from '@ant-design/icons';
 import './user.less';
 import { title } from 'process';
 export default class UserPage extends React.Component{
@@ -88,7 +88,36 @@ const ModifyForm =()=>{
                 />
                 
             </Form.Item>
-            
+            <Form.Item
+                name="password"
+                rules={[
+                    {
+                        required: true,
+                        message: '请输入密码!',
+                    },
+                ]}
+            >
+                <Input
+                    prefix={<LockOutlined className="site-form-item-icon"/>}
+                    type="password"
+                    placeholder="密码"
+                />
+            </Form.Item>
+            <Form.Item
+                name="confirm_password"
+                rules={[
+                    {
+                        required: true,
+                        message: '请输入密码!',
+                    },
+                ]}
+            >
+                <Input
+                    prefix={<LockOutlined className="site-form-item-icon"/>}
+                    type="password"
+                    placeholder="确认密码"
+                />
+            </Form.Item>        
 
             <Form.Item>
                 <Button type="primary" htmlType="submit" className="login-form-button">
