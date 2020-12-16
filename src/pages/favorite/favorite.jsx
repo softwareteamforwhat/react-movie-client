@@ -256,7 +256,7 @@ export default class Favorite extends React.Component {
         return (
             <div>
                 <Header index={3}/>
-                
+                <h1>收藏电影</h1>
                 <div className="rank-top-content" style={{textAlign: "center"}}>
                     <this.movieListRender/>
                     <Pagination showSizeChanger={false} defaultCurrent={1} total={13} onChange={this.onChange}/>
