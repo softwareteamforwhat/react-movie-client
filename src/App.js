@@ -15,6 +15,7 @@ import CinemaInfo from './pages/cinema/cinemainfo'
 import RankFollow from "./pages/rank/rankfollow/rankfollow";
 import RankTop from "./pages/rank/ranktop/ranktop";
 import Search from "./pages/search/search";
+import UserPage from './pages/user/user';
 
 /**
  * 应用的根组件
@@ -38,6 +39,7 @@ export default class App extends Component {
                     <Route path='/cinemainfo' component={CinemaInfo}/>
                     <Route path='/rank/follow' component={RankFollow}/>
                     <Route path='/rank/top' component={RankTop}/>
+                    <Route path='/user' component={UserPage} />
                     <Route path='/search/:text' component={Search}/>
                     <Route exact path='/' component={Index}/>
                 </Switch>

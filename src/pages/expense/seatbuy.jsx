@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
 import Header from "../../components/header";
 import './seatbuy.less';
-import Pay1 from '../../assets/images/pay1.png';
-import Pay2 from '../../assets/images/pay2.png';
+//import Pay1 from '../../assets/images/pay1.png';
+//import Pay2 from '../../assets/images/pay2.png';
 
 class Cell extends Component{
     constructor(props){
@@ -317,7 +317,7 @@ export default class SeatBuy extends Component{
                                 <div className={"payMethod"}>
 
                                     <div className={"img"}>
-                                        <img src={this.state.payType===0?Pay1:Pay2} alt={"请扫码"}/>
+                                        <img /*src={this.state.payType===0?Pay1:Pay2}*/ alt={"请扫码"}/>
                                     </div>
                                     <div className={"payButton"}>
                                         <div className="total-price">

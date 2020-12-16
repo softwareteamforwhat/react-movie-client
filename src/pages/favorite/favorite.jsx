@@ -1,36 +1,41 @@
 import React from 'react';
 import Header from '../../components/header';
-import {Link} from 'react-router-dom'
-import {Component} from 'react';
+import {Link} from 'react-router-dom';
+import {Col,Pagination,Row} from 'antd';
 
 require('./favorite.css');
 
-/**
- * 注册的收藏夹页面组件
- */
-export default class Favorite extends React.Component{
 
-    
-    render(){
+export default class Favorite extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {movieList: []};
+        //this.setState({movieList:this.getFakeMovieList(1)})
         
-        return (
-            <div>
-                <Header index={1}/>
-                <h1>已收藏电影</h1>
-                <FavoritePanel />
-            </div>
-        );
     }
-}
-/**
- * 收藏夹组件
- */
-class FavoritePanel extends React.Component{
-    
+
+    onChange = (page , pageSize = 10) => {
+        /*
+        apiGetTopRank(page).then((res) => {
+            console.log(res);
+            this.setState({movieList: res.data});
+        })
+        */
+       this.setState({
+           movieList:this.getFakeMovieList(page),
+       })
+    }
+    componentDidMount(){
+        this.setState({
+            movieList:this.getFakeMovieList(1),
+        });
+        //TODO:用实际API取代
+    }
+
     /**
      * 获取假的电影列表
      */
-    getFakeMovieList(){
+    getFakeMovieList(page){
         const movielist = [
             {
                 movieId: "1240838",
@@ -164,48 +169,95 @@ class FavoritePanel extends React.Component{
             }
         ];
         console.log('FakeData:'+this);
-        return movielist;
+        if(page===1){
+            return movielist.slice(0,10);
+        }else{
+            return movielist.slice(10,13);
+        }
+        
     }
 
-    /**
-     * 在组件挂载完成后调用
-     */
-    componentDidMount(){
-        // TODO:向后段获取收藏电影列表
+    movieListRender = () => {
+        const list= this.state.movieList;
+        return (
+
+            <Row>
+                {list.map((movie, index) => {
+                        const size = index+1 <= 2 ? "800%" : "400%";
+                        const color = index+1 <= 2 ? "#FFB400" : "black";
+                        return (<Col span={24} key={index}>
+                            <Link to={{
+                                pathname: "/movieinfo",
+                                state: {
+                                    id: movie.id
+                                }
+                            }}>
+
+                                <Row gutter={[8, 8]}>
+                                    <Col span={2}/>
+                                    <Col span={2} style={{
+                                        display: "flex",
+                                        alignItems: "center"
+                                    }}> <span style={{
+
+                                        fontWeight: "bold",
+                                        color: color,
+                                        fontStyle: "italic",
+                                        fontSize: size,
+
+                                    }}>{index+1}</span></Col>
+                                    <Col span={6} style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        textAlign: "center",
+                                        height: "250px"
+                                    }}>
+                                        <img style={{width: "160px", height: "220px"}} alt={movie.name + "海报"}
+                                             src={movie.picture}/>
+                                    </Col>
+                                    <Col span={8} style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "center",
+                                        textAlign: "center"
+                                    }}>
+                                        <h2 style={{color: "black", textAlign: "left"}}>{movie.name}</h2>
+                                        <span style={{color: "black", textAlign: "left"}}>{"类型：" + movie.type}</span>
+                                        <span style={{color: "gray", textAlign: "left"}}>{"上映时间：" + movie.time}</span>
+                                    </Col>
+                                    <Col span={4} style={{
+                                        display: "flex",
+                                        justifyContent: "flex-end",
+                                        alignItems: "center",
+                                        textAlign: "center"
+                                    }}>
+                                        <span style={{
+                                            textAlign: "center",
+                                            lineHeight: "100%",
+                                            color: "#FFB400"
+                                        }}>{1 + "分"}</span> </Col>
+                                    <Col span={2}/>
+                                </Row>
+                            </Link>
+                        </Col>)
+                    }
+                )}
+            </Row>
+        );
     }
 
-    render(){
-        const movieList=this.getFakeMovieList();
-        const movieListItem=movieList.map(
-                (movie,index)=>
-                    <MovieCell className='movie-cell'
-                        key={index}
-                        movie={movie}
-                    />
-                
-            )
-          return (
-              <div className="movie-list">
-                  {movieListItem}
-              </div>
-          );  
-    }
-}
-
-class MovieCell extends Component{
     render() {
-        return <div className="movie-cell">
-            <div className="movie-item">
-                <Link to={{
-                    pathname:"/movieinfo",
-                    id:this.props.movie.movieId
-                }}>
-                    <div className="movie-poster">
-                        <img className="poster-default" alt={this.props.movie.name} src={this.props.movie.picture}/>
-                    </div>
-                </Link>
-            </div>
-            <div className="movie-title">{this.props.movie.name}</div>
-        </div>
+        return (
+            <>
+                <Header index={3}/>
+                
+                <div className="rank-top-content" style={{textAlign: "center"}}>
+                    <this.movieListRender/>
+                    <Pagination showSizeChanger={false} defaultCurrent={1} total={100} onChange={this.onChange}/>
+                </div>
+            </>
+        );
     }
 }
+
