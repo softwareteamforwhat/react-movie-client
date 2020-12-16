@@ -40,13 +40,16 @@ const ModifyForm =()=>{
         //TODO: 向后端发送修改请求
     }
     const onReset=()=>{
+        console.log('onReset');
         form.setFieldsValue({
             email:getFakeUserInfo().email,
             nickname:getFakeUserInfo().nickname,
         })
+        message.config({
+            top:100,
+        })
         message.success({
             content:'已重置基本信息',
-            duration:1,
         });
     }
     return (

@@ -41,132 +41,184 @@ export default class Favorite extends React.Component {
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_ame: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             },
             {
                 movieId: "1240838",
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
+                c_name: "除暴",
+                e_name: "Caught in Time",
                 type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
+                area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
+                actors:[
+                    '王千源',
+                    '春夏'
+                ],
             }
         ];
         console.log('FakeData:'+this);
@@ -190,7 +242,7 @@ export default class Favorite extends React.Component {
                             <Link to={{
                                 pathname: "/movieinfo",
                                 state: {
-                                    id: movie.id
+                                    id: movie.movieId
                                 }
                             }}>
 
@@ -225,9 +277,15 @@ export default class Favorite extends React.Component {
                                     }}>
                                         <h2 style={{color: "black", textAlign: "left"}}>{movie.name}</h2>
                                         <span style={{color: "black", textAlign: "left"}}>{"类型：" + movie.type}</span>
-                                        <span style={{color: "black", textAlign: "left"}}>{"时长：" + movie.type}</span>
-                                        <span style={{color: "black", textAlign: "left"}}>{"主演：" + movie.type}</span>
-                                        <span style={{color: "black", textAlign: "left"}}>{"地区：" + movie.type}</span>
+                                        <span style={{color: "black", textAlign: "left"}}>{"时长：" + movie.length}</span>
+                                        <span style={{color: "black", textAlign: "left"}}>{"主演：" + movie.actors.map((actor,index)=>{
+                                            if((index+1)===movie.actors.length){
+                                                return actor;
+                                            }else{
+                                                return actor;
+                                            }
+                                        })}</span>
+                                        <span style={{color: "black", textAlign: "left"}}>{"地区：" + movie.place}</span>
                                         <span style={{color: "gray", textAlign: "left"}}>{"上映时间：" + movie.time}</span>
                                         
                                     </Col>

@@ -38,10 +38,10 @@ export default class Expense extends Component{
                 "movie":{
                     movieId: "1240838",
                     picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                    name: "除暴",
-                    name2: "Caught in Time",
+                    c_name: "除暴",
+                    e_name: "Caught in Time",
                     type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                    place: "中国香港,中国大陆",
+                    area: "中国香港,中国大陆",
                     length: "95分钟",
                     time: "2020-11-20中国大陆上映",
                 },
@@ -53,7 +53,7 @@ export default class Expense extends Component{
                 "vision":"国语2D",
                 "session":"12月8日 13:00",
                 "amount":2,
-                "seat":[
+                "seats":[
                     "1排4座",
                     "1排5座",
                 ],
@@ -77,7 +77,7 @@ export default class Expense extends Component{
                 "vision":"国语2D",
                 "session":"12月8日 13:00",
                 "amount":1,
-                "seat":[
+                "seats":[
                     "2排3座"
                 ],
             },
@@ -136,6 +136,9 @@ export default class Expense extends Component{
                                         <span style={{color: "black", textAlign: "left"}}>{"影厅：" + order.hall}</span>
                                         <span style={{color: "black", textAlign: "left"}}>{"版本：" + order.vision}</span>
                                         <span style={{color: "gray", textAlign: "left"}}>{"场次：" + order.session}</span>
+                                        <span style={{color: "black", textAlign: "left"}}>{"座位："}{order.seats.map((seat)=>{
+                                            return <div>{seat}</div>;
+                                        })}</span>
                                         <span style={{color: "red", textAlign: "left"}}>{"票单价：¥"}<strong style={{fontSize:20}}>{order.unitPrice}</strong></span>
                                         <span style={{color: "black", textAlign: "left"}}>{"数量：" + order.amount}</span>
                                         
