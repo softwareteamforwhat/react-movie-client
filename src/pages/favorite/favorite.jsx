@@ -29,6 +29,7 @@ export default class Favorite extends React.Component {
         this.setState({
             movieList:this.getFakeMovieList(1),
         });
+        
         //TODO:用实际API取代
     }
 
@@ -205,7 +206,7 @@ export default class Favorite extends React.Component {
                                         fontStyle: "italic",
                                         fontSize: size,
 
-                                    }}>{index+1}</span></Col>
+                                    }}></span></Col>
                                     <Col span={6} style={{
                                         display: "flex",
                                         justifyContent: "center",
@@ -249,14 +250,14 @@ export default class Favorite extends React.Component {
 
     render() {
         return (
-            <>
+            <div>
                 <Header index={3}/>
                 
                 <div className="rank-top-content" style={{textAlign: "center"}}>
                     <this.movieListRender/>
-                    <Pagination showSizeChanger={false} defaultCurrent={1} total={100} onChange={this.onChange}/>
+                    <Pagination showSizeChanger={false} defaultCurrent={1} total={13} onChange={this.onChange}/>
                 </div>
-            </>
+            </div>
         );
     }
 }
