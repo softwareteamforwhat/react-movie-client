@@ -8,7 +8,7 @@ export default class UserPage extends React.Component {
 
     render() {
         return (
-            <div className='whole-page'>
+            <div className='user-whole-page'>
                 <Header index={1} />
                 <section className="modify-content">
                     <ModifyForm />
