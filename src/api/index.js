@@ -41,3 +41,21 @@ export const apiSearch = (text) => ajax('/getSearch', {text})
 
 //获取电影列表
 export const apiGetMovies=(searchForm)=>ajax('/getMovieList',{...searchForm},'POST')
+
+//获取用户订单列表
+export const apiGetUserOrder=(id,token)=>ajax('/getUserOrder',{id},'GET',{headers:{"Authorization":token}})
+
+//退票
+export const apiReturnUserTicket=(id,orderId,token)=>ajax('/returnUserTicket','POST',{headers:{"Authorization":token})
+
+//获取用户收藏列表
+export const apiGetUserFavorite=(id,token)=>ajax('/getUserFavorite',{id},'GET',{headers:{"Authorization":token}})
+
+//获取用户基本信息
+export const apiGetUserInfo=(id,token)=>ajax('/getUserInfo',{id},'GET',{headers:{"Authorization":token}})
+
+//修改用户基本信息
+export const apiModifyUserInfo=(id,nickname,avatar,token)=>ajax('/modifyUserInfo',{id,nickname,avatar},'POST',{headers:{"Authorization":token}})
+
+//修改用户密码
+export const apiModifyPassword=(id,password,token)=>ajax('/modifyPassword',{id,password},'POST',{headers:{"Authorization":token}})
