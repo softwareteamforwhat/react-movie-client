@@ -25,7 +25,7 @@ export default class Favorite extends React.Component {
     }
     componentDidMount() {
         this.setState({
-            movieList: this.getFakeMovieList(1),
+            movieList: this.getFakeMovieList(10),
         });
 
         //TODO:添加获取用户收藏信息api
@@ -34,197 +34,24 @@ export default class Favorite extends React.Component {
     /**
      * 获取假的电影列表
      */
-    getFakeMovieList(page) {
-        const movielist = [
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_ame: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                c_name: "除暴",
-                e_name: "Caught in Time",
-                type: ["犯罪", "剧情", "动作"],
-                area: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                actors: [
-                    '王千源',
-                    '春夏'
-                ],
-            }
-        ];
-        console.log('FakeData:' + this);
-        if (page === 1) {
-            return movielist.slice(0, 10);
-        } else {
-            return movielist.slice(10, 13);
+    getFakeMovieList(amount) {
+        const obj={
+            movieId: "1240838",
+            picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
+            c_name: "除暴",
+            e_name: "Caught in Time",
+            type: ["犯罪", "剧情", "动作"],
+            area: "中国香港,中国大陆",
+            length: "95分钟",
+            time: "2020-11-20中国大陆上映",
+            actors: [
+                '王千源',
+                '春夏'
+            ],
         }
+        const movielist =Array.from({length:amount},()=>obj);
+        console.log(movielist);
+        return movielist;
 
     }
 
