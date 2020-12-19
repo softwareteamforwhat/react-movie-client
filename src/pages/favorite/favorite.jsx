@@ -278,7 +278,7 @@ export default class Favorite extends React.Component {
                                     justifyContent: "center",
                                     textAlign: "center"
                                 }}>
-                                    <h2 style={{ color: "black", textAlign: "left" }}>{movie.name}</h2>
+                                    <h2 style={{ color: "black", textAlign: "left" }}>{movie.c_name}</h2>
                                     <span style={{ color: "black", textAlign: "left" }}>
                                         <span className='item-title'>{"类型："}</span>
                                         <span className='item-value'>

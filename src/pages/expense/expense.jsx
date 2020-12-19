@@ -4,7 +4,6 @@ import Header from '../../components/header';
 import './expense.css';
 import {Col,Pagination,Row} from 'antd';
 import {Link} from 'react-router-dom';
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 /**
  * 注册的消费记录页面组件
@@ -41,7 +40,7 @@ export default class Expense extends Component{
                     picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                     c_name: "除暴",
                     e_name: "Caught in Time",
-                    type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                    type: ["犯罪", "剧情", "动作"],
                     area: "中国香港,中国大陆",
                     length: "95分钟",
                     time: "2020-11-20中国大陆上映",
@@ -63,10 +62,10 @@ export default class Expense extends Component{
                 "movie":{
                     movieId: "1240838",
                     picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                    name: "除暴",
-                    name2: "Caught in Time",
-                    type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                    place: "中国香港,中国大陆",
+                    c_name: "除暴",
+                    e_name: "Caught in Time",
+                    type: ["犯罪", "剧情", "动作"],
+                    area: "中国香港,中国大陆",
                     length: "95分钟",
                     time: "2020-11-20中国大陆上映",
                 },
@@ -131,21 +130,40 @@ export default class Expense extends Component{
                                         justifyContent: "center",
                                         textAlign: "center"
                                     }}>
-                                        <h2 style={{color: "black", textAlign: "left"}}>{order.movie.name}</h2>
-                                        <span style={{color: "black", textAlign: "left"}}>{"类型：" + order.movie.type}</span>
-                                        <span style={{color: "black", textAlign: "left"}}>{"影院：" + order.theater}</span>
-                                        <span style={{color: "black", textAlign: "left"}}>{"影厅：" + order.hall}</span>
-                                        <span style={{color: "black", textAlign: "left"}}>{"版本：" + order.vision}</span>
-                                        <span style={{color: "gray", textAlign: "left"}}>{"场次：" + order.session}</span>
-                                        <span style={{color: "black", textAlign: "left"}}>{"座位："}{order.seats.map((seat,index)=>{
-                                            if(index!==order.seats.length-1){
-                                                return seat+'、'
-                                            }else{
-                                                return seat
-                                            }
-                                        })}</span>
-                                        <span style={{color: "red", textAlign: "left"}}>{"票单价：¥"}<strong style={{fontSize:20}}>{order.unitPrice}</strong></span>
-                                        <span style={{color: "black", textAlign: "left"}}>{"数量：" + order.amount}</span>
+                                        <h2 style={{color: "black", textAlign: "left"}}>{order.movie.c_name}</h2>
+                                        <span style={{color: "black", textAlign: "left"}}>
+                                            <span className="item-title">{"类型："}</span>
+                                            <span className="item-value">{order.movie.type.join('、')}</span>
+                                        </span>
+                                        <span style={{color: "black", textAlign: "left"}}>
+                                            <span className="item-title">{"影院："}</span>
+                                            <span className="item-value">{order.theater}</span>
+                                        </span>
+                                        <span style={{color: "black", textAlign: "left"}}>
+                                            <span className="item-title">{"影厅："}</span>
+                                            <span className="item-value">{order.hall}</span>
+                                        </span>
+                                        <span style={{color: "black", textAlign: "left"}}>
+                                            <span className="item-title">{"版本："}</span>
+                                            <span className="item-value">{order.vision}</span>
+                                        </span>
+                                        <span style={{color: "gray", textAlign: "left"}}>
+                                            <span className="item-title">{"场次："}</span>
+                                            <span className="item-value">{order.session}</span>
+                                        </span>
+                                        <span style={{color: "black", textAlign: "left"}}>
+                                            <span className="item-title">{"座位："}</span>
+                                            <span className="item-value">{order.seats.join('、')}</span>
+                                        </span>
+                                        <span style={{color: "red", textAlign: "left"}}>
+                                            <span className="item-title">{"票单价："}</span>
+                                            {'¥'}
+                                            <span className="item-value"><strong style={{fontSize:20}}>{order.unitPrice}</strong></span>
+                                        </span>
+                                        <span style={{color: "black", textAlign: "left"}}>
+                                            <span className="item-title">{"数量："}</span>
+                                            <span className="item-value">{order.amount}</span>
+                                        </span>
                                         
                                         
                                     </Col>
