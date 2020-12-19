@@ -35,6 +35,7 @@ export default class Expense extends Component{
     getFakeOrderList(){
         const expenseList=[
             {
+                "orderId":1234,
                 "movie":{
                     movieId: "1240838",
                     picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
@@ -59,6 +60,7 @@ export default class Expense extends Component{
                 ],
             },
             {
+                "orderId":4321,
                 "movie":{
                     movieId: "1240838",
                     picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
