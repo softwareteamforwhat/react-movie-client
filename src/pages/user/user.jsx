@@ -1,9 +1,10 @@
 import React from 'react';
 import Header from '../../components/header';
-import { Form, Input, Button, message, Tabs } from 'antd';
+import { Form, Input, Button, message, Tabs, Select, } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './user.less';
-
+import {avatar_list} from '../../components/avatar/avatar'
+//import avatar0 from '../../assets/images/avatar/avatar0.png'
 export default class UserPage extends React.Component {
 
     render() {
@@ -97,7 +98,14 @@ const ModifyForm = () => {
                                 required:true,
                                 message:'请输入头像',
                             }]}>
-                            
+                            <Select optionLabelProp='title'>
+                                {avatar_list.map((avatar,index)=>{
+                                    
+                                    return <Select.Option value={avatar.image} key={index} title={avatar.name}>
+                                        <img src={avatar.image} alt={avatar.name}/>
+                                    </Select.Option>
+                                })}
+                            </Select>
                         </Form.Item>
                         <Form.Item>
                             <Button type="primary" htmlType="submit" className="login-form-button">
