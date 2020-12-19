@@ -130,7 +130,10 @@ const ModifyForm = () => {
                 ]}
                 hasFeedback
             >
-                <Input.Password/>
+                <Input.Password
+                    prefix={<LockOutlined className="site-form-item-icon"/>}
+                    placeholder='密码'
+                />
             </Form.Item>
 
             <Form.Item
@@ -153,7 +156,10 @@ const ModifyForm = () => {
                     }),
                 ]}
             >
-                <Input.Password/>
+                <Input.Password
+                    prefix={<LockOutlined className="site-form-item-icon"/>}
+                    placeholder='确认密码'
+                />
             </Form.Item>
             <Form.Item>
                 <Button type="primary" htmlType="submit">修改</Button>
