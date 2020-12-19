@@ -4,7 +4,7 @@ import { Form, Input, Button, message, Tabs, Select, } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './user.less';
 import {avatar_list} from '../../components/avatar/avatar'
-//import avatar0 from '../../assets/images/avatar/avatar0.png'
+import {apiGetUserInfo, apiModifyUserInfo, apiModifyPassword}from '../../api'
 export default class UserPage extends React.Component {
 
     render() {
@@ -35,9 +35,38 @@ const getFakeUserInfo = () => {
 const ModifyForm = () => {
     const [form] = Form.useForm();
 
-    const onFinish = () => {
-        message.success('已发送修改请求');
-        //TODO: 向后端发送修改请求
+    
+    const onModifyUserInfo=(userInfo)=>{
+        message.config({
+            top:100, 
+        });
+        message.success('开始发起修改基本信息请求');
+        apiModifyUserInfo(userInfo).then((res)=>{
+            console.log(res)
+            //TODO:检查后端传过来的是否成功信息
+        }).catch((err)=>{
+            console.log(err);
+            message.error(err);
+        });
+        
+
+    }
+    
+    const onModifyPassword=(password)=>{
+        message.config({
+            top:100, 
+        });
+        message.success('开始发起修改密码请求');
+        //删除确认密码字段
+        delete password.confirm;
+        apiModifyPassword(password).then((res)=>{
+            console.log(res);
+            //TODO:检查后端传过来的是否成功信息
+        }).catch((err)=>{
+            console.log(err);
+            message.error(err);
+        });
+        
     }
     const onReset = () => {
         console.log('onReset');
@@ -66,7 +95,7 @@ const ModifyForm = () => {
                             email: getFakeUserInfo().email,
                             nickname: getFakeUserInfo().nickname,
                         }}
-                        onFinish={onFinish}
+                        onFinish={onModifyUserInfo}
                     >
                         <Form.Item
                             name="email"
@@ -117,7 +146,7 @@ const ModifyForm = () => {
                     </Form>
                 </Tabs.TabPane>
                 <Tabs.TabPane tab="修改密码" key="1">
-                    <Form name="password_form">
+                    <Form name="password_form" onFinish={onModifyPassword}>
                     <Form.Item
                 name="password"
                 label="密码"
@@ -149,6 +178,7 @@ const ModifyForm = () => {
                 label="确认"
                 dependencies={['password']}
                 hasFeedback
+                
                 rules={[
                     {
                         required: true,
