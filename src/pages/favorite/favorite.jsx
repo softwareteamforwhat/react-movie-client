@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../../components/header';
 import { Link } from 'react-router-dom';
-import { Col, Pagination, Row, Button,message } from 'antd';
-import './favorite.css'
+import { Col, Pagination, Row, Button, message } from 'antd';
+import './favorite.less'
 
 
 export default class Favorite extends React.Component {
@@ -42,7 +42,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -56,7 +56,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -70,7 +70,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -84,7 +84,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -98,7 +98,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -112,7 +112,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -126,7 +126,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -140,7 +140,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -154,7 +154,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -168,7 +168,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -182,7 +182,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_ame: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -196,7 +196,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -210,7 +210,7 @@ export default class Favorite extends React.Component {
                 picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
                 c_name: "除暴",
                 e_name: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                type: ["犯罪", "剧情", "动作"],
                 area: "中国香港,中国大陆",
                 length: "95分钟",
                 time: "2020-11-20中国大陆上映",
@@ -231,7 +231,7 @@ export default class Favorite extends React.Component {
 
     movieListRender = () => {
         const list = this.state.movieList;
-        const cancelFavorite=()=>{
+        const cancelFavorite = () => {
             message.success('取消收藏电影成功');
             //TODO:添加取消收藏api
         }
@@ -279,17 +279,28 @@ export default class Favorite extends React.Component {
                                     textAlign: "center"
                                 }}>
                                     <h2 style={{ color: "black", textAlign: "left" }}>{movie.name}</h2>
-                                    <span style={{ color: "black", textAlign: "left" }}>{"类型：" + movie.type}</span>
-                                    <span style={{ color: "black", textAlign: "left" }}>{"时长：" + movie.length}</span>
-                                    <span style={{ color: "black", textAlign: "left" }}>{"主演：" + movie.actors.map((actor, index) => {
-                                        if ((index + 1) === movie.actors.length) {
-                                            return actor;
-                                        } else {
-                                            return actor;
-                                        }
-                                    })}</span>
-                                    <span style={{ color: "black", textAlign: "left" }}>{"地区：" + movie.area}</span>
-                                    <span style={{ color: "gray", textAlign: "left" }}>{"上映时间：" + movie.time}</span>
+                                    <span style={{ color: "black", textAlign: "left" }}>
+                                        <span className='item-title'>{"类型："}</span>
+                                        <span className='item-value'>
+                                            {movie.type.join('、')}
+                                        </span>
+                                    </span>
+                                    <span style={{ color: "black", textAlign: "left" }}>
+                                        <span className='item-title'>{"时长："}</span>
+                                        <span className='item-value'>{movie.length}</span>
+                                    </span>
+                                    <span style={{ color: "black", textAlign: "left" }}>
+                                        <span className='item-title'>{"主演："}</span>
+                                        <span className='item-value'>{movie.actors.join('、')}</span>
+                                    </span>
+                                    <span style={{ color: "black", textAlign: "left" }}>
+                                        <span className="item-title">{"地区："}</span>
+                                        <span className="item-value">{movie.area}</span>
+                                    </span>
+                                    <span style={{ color: "gray", textAlign: "left" }}>
+                                        <span className="item-title">{"上映时间："}</span>
+                                        <span className="item-value">{movie.time}</span>
+                                    </span>
 
                                 </Col>
                                 <Col span={4} style={{
