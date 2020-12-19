@@ -19,7 +19,7 @@ export default class Expense extends Component{
 
     render(){
         return (
-            <div>
+            <div className='expense-whole-page'>
                 <Header index={1} />
                 <h1>我的订单</h1>
                 <this.orderListRender/>
