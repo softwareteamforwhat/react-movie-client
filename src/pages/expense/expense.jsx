@@ -119,9 +119,9 @@ export default class Expense extends Component{
                                         justifyContent: "center",
                                         alignItems: "center",
                                         textAlign: "center",
-                                        height: "250px"
+                                        height: "300px"
                                     }}>
-                                        <img style={{width: "160px", height: "220px"}} alt={order.movie.name + "海报"}
+                                        <img style={{width: "180px", height: "250px"}} alt={order.movie.name + "海报"}
                                             src={order.movie.picture}/>
                                     </Col>
                                     <Col span={8} style={{
