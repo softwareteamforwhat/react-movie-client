@@ -242,7 +242,8 @@ export default class Favorite extends React.Component {
                 {list.map((movie, index) => {
                     const size = index + 1 <= 2 ? "800%" : "400%";
                     const color = index + 1 <= 2 ? "#FFB400" : "black";
-                    return (<Col span={24} key={index} className='favorite-item'>
+                    const background=(index%2===0)?'background-white':'background-blue';
+                    return (<Col span={24} key={index} className={'favorite-item '+background}>
                         <Link to={{
                             pathname: "/movieinfo",
                             state: {
