@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Col, Pagination, Row, Button, message } from 'antd';
 import './favorite.less'
 
-
 export default class Favorite extends React.Component {
     constructor(props) {
         super(props);
@@ -235,6 +234,8 @@ export default class Favorite extends React.Component {
             message.success('取消收藏电影成功');
             //TODO:添加取消收藏api
         }
+
+        
         return (
 
             <Row>
@@ -326,7 +327,7 @@ export default class Favorite extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='favorite-whole-page'>
                 <Header index={3} />
                 <h1>收藏电影</h1>
                 <div className="rank-top-content" style={{ textAlign: "center" }}>

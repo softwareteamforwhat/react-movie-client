@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 
 import Header from '../../components/header';
-import './expense.css';
+import './expense.less';
 import {Col,Pagination,Row} from 'antd';
 import {Link} from 'react-router-dom';
 
