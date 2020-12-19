@@ -3,13 +3,13 @@ import Header from '../../components/header';
 import { Form, Input, Button, message, Tabs } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './user.less';
-import { title } from 'process';
+
 export default class UserPage extends React.Component {
 
     render() {
         return (
             <div className='user-whole-page'>
-                <Header index={1} />
+                <Header index={-1} />
                 <section className="modify-content">
                     <ModifyForm />
                 </section>

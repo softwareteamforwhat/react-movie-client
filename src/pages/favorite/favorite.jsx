@@ -328,7 +328,7 @@ export default class Favorite extends React.Component {
     render() {
         return (
             <div className='favorite-whole-page'>
-                <Header index={3} />
+                <Header index={-1} />
                 <h1>收藏电影</h1>
                 <div className="rank-top-content" style={{ textAlign: "center" }}>
                     <this.movieListRender />
