@@ -4,6 +4,7 @@ import Header from '../../components/header';
 import './expense.css';
 import {Col,Pagination,Row} from 'antd';
 import {Link} from 'react-router-dom';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 /**
  * 注册的消费记录页面组件
@@ -136,8 +137,12 @@ export default class Expense extends Component{
                                         <span style={{color: "black", textAlign: "left"}}>{"影厅：" + order.hall}</span>
                                         <span style={{color: "black", textAlign: "left"}}>{"版本：" + order.vision}</span>
                                         <span style={{color: "gray", textAlign: "left"}}>{"场次：" + order.session}</span>
-                                        <span style={{color: "black", textAlign: "left"}}>{"座位："}{order.seats.map((seat)=>{
-                                            return <div>{seat}</div>;
+                                        <span style={{color: "black", textAlign: "left"}}>{"座位："}{order.seats.map((seat,index)=>{
+                                            if(index!==order.seats.length-1){
+                                                return seat+'、'
+                                            }else{
+                                                return seat
+                                            }
                                         })}</span>
                                         <span style={{color: "red", textAlign: "left"}}>{"票单价：¥"}<strong style={{fontSize:20}}>{order.unitPrice}</strong></span>
                                         <span style={{color: "black", textAlign: "left"}}>{"数量：" + order.amount}</span>
