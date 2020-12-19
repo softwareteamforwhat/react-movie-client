@@ -103,7 +103,8 @@ const ModifyForm = () => {
                             <Button type="primary" htmlType="submit" className="login-form-button">
                                 修改
                 </Button>
-                或者 <Button htmlType="button" onClick={onReset}>重置</Button>
+                    或者
+                <Button htmlType="button" onClick={onReset}>重置</Button>
                         </Form.Item>
                     </Form>
                 </Tabs.TabPane>
@@ -134,7 +135,7 @@ const ModifyForm = () => {
 
             <Form.Item
                 name="confirm"
-                label="确认密码"
+                label="确认"
                 dependencies={['password']}
                 hasFeedback
                 rules={[
