@@ -46,7 +46,7 @@ export const apiGetMovies=(searchForm)=>ajax('/getMovieList',{...searchForm},'PO
 export const apiGetUserOrder=(id,token)=>ajax('/getUserOrder',{id},'GET',{headers:{"Authorization":token}})
 
 //退票
-export const apiReturnUserTicket=(id,orderId,token)=>ajax('/returnUserTicket','POST',{headers:{"Authorization":token})
+export const apiReturnUserTicket=(id,orderId,token)=>ajax('/returnUserTicket',{id,orderId},'POST',{headers:{"Authorization":token}})
 
 //获取用户收藏列表
 export const apiGetUserFavorite=(id,token)=>ajax('/getUserFavorite',{id},'GET',{headers:{"Authorization":token}})
