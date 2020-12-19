@@ -3,13 +3,24 @@ import Header from '../../components/header';
 import { Link } from 'react-router-dom';
 import { Col, Pagination, Row, Button, message } from 'antd';
 import './favorite.less'
+import { apiGetUserFavorite } from '../../api';
 
 export default class Favorite extends React.Component {
     constructor(props) {
         super(props);
         this.state = { movieList: [] };
-        //this.setState({movieList:this.getFakeMovieList(1)})
-
+        apiGetUserFavorite(localStorage.getItem('id'),localStorage.getItem('token')).then((res)=>{
+            console.log(res);
+            //TODO:获取用户收藏列表
+        }).catch((err)=>{
+            console.log(err);
+            message.config({
+                top:100,
+            })
+            message.error(err);
+        });
+        
+        
     }
 
     onChange = (page, pageSize = 10) => {
@@ -19,16 +30,14 @@ export default class Favorite extends React.Component {
             this.setState({movieList: res.data});
         })
         */
-        this.setState({
-            movieList: this.getFakeMovieList(page),
-        })
+        
     }
     componentDidMount() {
-        this.setState({
-            movieList: this.getFakeMovieList(10),
-        });
 
         //TODO:添加获取用户收藏信息api
+        this.setState({
+            movieList:this.getFakeMovieList(30),
+        })
     }
 
     /**
@@ -50,7 +59,7 @@ export default class Favorite extends React.Component {
             ],
         }
         const movielist =Array.from({length:amount},()=>obj);
-        console.log(movielist);
+        //console.log(movielist);
         return movielist;
 
     }
@@ -160,7 +169,7 @@ export default class Favorite extends React.Component {
                 <h1>收藏电影</h1>
                 <div className="rank-top-content" style={{ textAlign: "center" }}>
                     <this.movieListRender />
-                    <Pagination showSizeChanger={false} defaultCurrent={1} total={13} onChange={this.onChange} />
+                    <Pagination showSizeChanger={false} defaultCurrent={1} total={this.state.movieList.length} onChange={this.onChange} />
                 </div>
             </div>
         );
