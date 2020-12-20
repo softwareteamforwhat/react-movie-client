@@ -47,7 +47,7 @@ export default class IndexMovie extends Component<any, any> {
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 1240838
+                                        id: 33384
                                     }
                                 }}>
                                     <div className="movie-poster"
@@ -69,14 +69,14 @@ export default class IndexMovie extends Component<any, any> {
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 247294
+                                        id: 1240838
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p1.meituan.net/moviemachine/6fb1855f663f9856bfc47b7d013e0474651230.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p1.meituan.net/moviemachine/dfc4bf8c71ae339874fdd3ffeb3763af10793417.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title"
-                                                 title="疯狂原始人2">疯狂原始人2
+                                                 title="疯狂原始人">疯狂原始人
                                             </div>
                                             <div className="movie-score"><i className="integer">9.</i><i
                                                 className="fraction">1</i></div>
@@ -91,17 +91,17 @@ export default class IndexMovie extends Component<any, any> {
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 345809
+                                        id: 1299955
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p1.meituan.net/moviemachine/7c4ba9633635503044a8f8fb6426aa8d416264.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p0.meituan.net/moviemachine/f7d2ad70eb79d6d9b8a197713db9b8c41711752.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title"
-                                                 title="隐形人">隐形人
+                                                 title="复仇者联盟4：终局之战">复仇者联盟4：终局之战
                                             </div>
-                                            <div className="movie-score"><i className="integer">4.</i><i
-                                                className="fraction">0</i></div>
+                                            <div className="movie-score"><i className="integer">9.</i><i
+                                                className="fraction">8</i></div>
                                         </div>
                                     </div>
                                     <Button className="poster-btn">购票</Button>
@@ -113,17 +113,17 @@ export default class IndexMovie extends Component<any, any> {
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 1277751
+                                        id: 1303287
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/303c2e671cc4df875c151d688ecbd8962085989.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p0.meituan.net/moviemachine/58ee13be6dc60bf5e636cf915bbbaaa55787785.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title"
-                                                 title="赤狐书生">赤狐书生
+                                                 title="冰雪奇缘2">冰雪奇缘2
                                             </div>
-                                            <div className="movie-score"><i className="integer">6.</i><i
-                                                className="fraction">0</i></div>
+                                            <div className="movie-score"><i className="integer">7.</i><i
+                                                className="fraction">3</i></div>
 
                                         </div>
                                     </div>
@@ -136,17 +136,17 @@ export default class IndexMovie extends Component<any, any> {
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 1228788
+                                        id: 1242130
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p1.meituan.net/movie/13cb85d810b0530b951625430c2f35044951112.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/8834e6905cba927646661ed25e9c95d1136086.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title"
-                                                 title="一秒钟">一秒钟
+                                                 title="猫鼠游戏">猫鼠游戏
                                             </div>
-                                            <div className="movie-score"><i className="integer">6.</i><i
-                                                className="fraction">0</i></div>
+                                            <div className="movie-score"><i className="integer">9.</i><i
+                                                className="fraction">1</i></div>
 
                                         </div>
                                     </div>

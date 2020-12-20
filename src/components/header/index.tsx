@@ -24,7 +24,6 @@ export default class Header extends Component<{ index: number }, { color: string
                         <img src={logo} className="logo" alt="logo"/>
                         <div className="nav">
                             <ul className="navbar">
-
                                 <li><a style={{color: color[0]}} href="/">首页</a></li>
                                 <li><a style={{color: color[1]}} href="/movies">电影</a></li>
                                 <li><a style={{color: color[2]}} href="/cinemas">影院</a></li>

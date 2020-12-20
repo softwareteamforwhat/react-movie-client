@@ -16,7 +16,7 @@ import {Link} from "react-router-dom";
 //     rank: 9.2
 // }
 // const mockList = new Array(10).fill(mockMovie);
-export default class RankTop extends Component<any, any> {
+export default class RankTop extends Component<any, { movieList: RankTopResponse[] }> {
     constructor(props) {
         super(props);
         this.state = {movieList: []};
