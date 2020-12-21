@@ -49,7 +49,7 @@ export const apiGetUserOrder=(uid,token)=>ajax('/getUserOrder',{uid},'GET',{head
 export const apiReturnUserTicket=(uid,orderId,token)=>ajax('/returnUserTicket',{uid,orderId},'POST',{headers:{"token":token}})
 
 //获取用户收藏列表
-export const apiGetUserFavorite=(uid,token)=>ajax('/getUserFavorite',{uid},'GET',{headers:{"token":token}})
+export const apiGetUserFavorite=(uid,token,error_handle,final)=>ajax('/getUserFavorite',{uid},'GET',{headers:{"token":token}},error_handle,final)
 
 //获取用户基本信息
 export const apiGetUserInfo=(uid,token,error_handle,final)=>ajax('/getUserInfo',{uid},'GET',{headers:{"token":token}},error_handle,final)

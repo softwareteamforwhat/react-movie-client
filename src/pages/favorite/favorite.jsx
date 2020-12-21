@@ -1,14 +1,17 @@
 import React from 'react';
 import Header from '../../components/header';
 import { Link } from 'react-router-dom';
-import { Col, Pagination, Row, Button, message } from 'antd';
+import { Col, Pagination, Row, Button, message, Empty, Spin } from 'antd';
 import './favorite.less'
 import { apiGetUserFavorite } from '../../api';
 
 export default class Favorite extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { movieList: [] };
+        this.state = { 
+            movieList: [],
+            loading:true, 
+        };
         apiGetUserFavorite(localStorage.getItem('id'),localStorage.getItem('token')).then((res)=>{
             console.log(res);
             //TODO:获取用户收藏列表
@@ -33,11 +36,27 @@ export default class Favorite extends React.Component {
         
     }
     componentDidMount() {
+        apiGetUserFavorite(localStorage.getItem('id'),localStorage.getItem('token'),(error)=>{
+            
+        },()=>{
+            this.setState({
+                loading:false
+            })
+        }).then((res)=>{
+           console.log(res);
+           if(res.status===0){
+               this.setState({movieList:res.data})
 
+           } else if(res.status===1){
+               message.config({
+                   top:100,
+               })
+               message.error(res.msg);
+           }else{
+               alert('status不为01');
+           }
+        });
         //TODO:添加获取用户收藏信息api
-        this.setState({
-            movieList:this.getFakeMovieList(30),
-        })
     }
 
     /**
@@ -71,95 +90,102 @@ export default class Favorite extends React.Component {
             //TODO:添加取消收藏api
         }
 
-        
-        return (
-
-            <Row>
-                {list.map((movie, index) => {
-                    const size = index + 1 <= 2 ? "800%" : "400%";
-                    const color = index + 1 <= 2 ? "#FFB400" : "black";
-                    const background=(index%2===0)?'background-white':'background-blue';
-                    return (<Col span={24} key={index} className={'favorite-item '+background}>
-                        <Link to={{
-                            pathname: "/movieinfo",
-                            state: {
-                                id: movie.movieId
-                            }
-                        }}>
-
-                            <Row gutter={[8, 8]}>
-                                <Col span={2} />
-                                <Col span={2} style={{
-                                    display: "flex",
-                                    alignItems: "center"
-                                }}> <span style={{
-
-                                    fontWeight: "bold",
-                                    color: color,
-                                    fontStyle: "italic",
-                                    fontSize: size,
-
-                                }}></span></Col>
-                                <Col span={6} style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    textAlign: "center",
-                                    height: "250px"
-                                }}>
-                                    <img style={{ width: "160px", height: "220px" }} alt={movie.name + "海报"}
-                                        src={movie.picture} />
-                                </Col>
-                                <Col span={8} style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "center",
-                                    textAlign: "center"
-                                }}>
-                                    <h2 style={{ color: "black", textAlign: "left" }}>{movie.c_name}</h2>
-                                    <span style={{ color: "black", textAlign: "left" }}>
-                                        <span className='item-title'>{"类型："}</span>
-                                        <span className='item-value'>
-                                            {movie.type.join('、')}
+        if(list.length===0){
+            return <Empty description={
+                <span>没有收藏任何电影，<a href='/'>去看看</a></span>
+            }>
+            </Empty>
+        }
+        else{
+            return (
+                <Row>
+                    {list.map((movie, index) => {
+                        const size = index + 1 <= 2 ? "800%" : "400%";
+                        const color = index + 1 <= 2 ? "#FFB400" : "black";
+                        const background=(index%2===0)?'background-white':'background-blue';
+                        return (<Col span={24} key={index} className={'favorite-item '+background}>
+                            <Link to={{
+                                pathname: "/movieinfo",
+                                state: {
+                                    id: movie.movieId
+                                }
+                            }}>
+    
+                                <Row gutter={[8, 8]}>
+                                    <Col span={2} />
+                                    <Col span={2} style={{
+                                        display: "flex",
+                                        alignItems: "center"
+                                    }}> <span style={{
+    
+                                        fontWeight: "bold",
+                                        color: color,
+                                        fontStyle: "italic",
+                                        fontSize: size,
+    
+                                    }}></span></Col>
+                                    <Col span={6} style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        textAlign: "center",
+                                        height: "250px"
+                                    }}>
+                                        <img style={{ width: "160px", height: "220px" }} alt={movie.name + "海报"}
+                                            src={movie.picture} />
+                                    </Col>
+                                    <Col span={8} style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "center",
+                                        textAlign: "center"
+                                    }}>
+                                        <h2 style={{ color: "black", textAlign: "left" }}>{movie.c_name}</h2>
+                                        <span style={{ color: "black", textAlign: "left" }}>
+                                            <span className='item-title'>{"类型："}</span>
+                                            <span className='item-value'>
+                                                {movie.type.join('、')}
+                                            </span>
                                         </span>
-                                    </span>
-                                    <span style={{ color: "black", textAlign: "left" }}>
-                                        <span className='item-title'>{"时长："}</span>
-                                        <span className='item-value'>{movie.length}</span>
-                                    </span>
-                                    <span style={{ color: "black", textAlign: "left" }}>
-                                        <span className='item-title'>{"主演："}</span>
-                                        <span className='item-value'>{movie.actors.join('、')}</span>
-                                    </span>
-                                    <span style={{ color: "black", textAlign: "left" }}>
-                                        <span className="item-title">{"地区："}</span>
-                                        <span className="item-value">{movie.area}</span>
-                                    </span>
-                                    <span style={{ color: "gray", textAlign: "left" }}>
-                                        <span className="item-title">{"上映时间："}</span>
-                                        <span className="item-value">{movie.time}</span>
-                                    </span>
-
-                                </Col>
-                                <Col span={4} style={{
-                                    display: "flex",
-                                    justifyContent: "flex-end",
-                                    alignItems: "center",
-                                    textAlign: "center"
-                                }}>
-                                    {/*FIXME: Button按钮会被电影跳转链接覆盖到*/}
-                                    <Button htmlType="buttton" onClick={cancelFavorite}>
-                                        取消收藏
-                                    </Button>
-                                </Col>
-                                <Col span={2} />
-                            </Row>
-                        </Link>
-                    </Col>)
-                }
-                )}
-            </Row>
-        );
+                                        <span style={{ color: "black", textAlign: "left" }}>
+                                            <span className='item-title'>{"时长："}</span>
+                                            <span className='item-value'>{movie.length}</span>
+                                        </span>
+                                        <span style={{ color: "black", textAlign: "left" }}>
+                                            <span className='item-title'>{"主演："}</span>
+                                            <span className='item-value'>{movie.actors.join('、')}</span>
+                                        </span>
+                                        <span style={{ color: "black", textAlign: "left" }}>
+                                            <span className="item-title">{"地区："}</span>
+                                            <span className="item-value">{movie.area}</span>
+                                        </span>
+                                        <span style={{ color: "gray", textAlign: "left" }}>
+                                            <span className="item-title">{"上映时间："}</span>
+                                            <span className="item-value">{movie.time}</span>
+                                        </span>
+    
+                                    </Col>
+                                    <Col span={4} style={{
+                                        display: "flex",
+                                        justifyContent: "flex-end",
+                                        alignItems: "center",
+                                        textAlign: "center"
+                                    }}>
+                                        {/*FIXME: Button按钮会被电影跳转链接覆盖到*/}
+                                        <Button htmlType="buttton" onClick={cancelFavorite}>
+                                            取消收藏
+                                        </Button>
+                                    </Col>
+                                    <Col span={2} />
+                                </Row>
+                            </Link>
+                        </Col>)
+                    }
+                    )}
+                </Row>
+            );
+        }
+        
     }
 
     render() {
@@ -168,8 +194,10 @@ export default class Favorite extends React.Component {
                 <Header index={-1} />
                 <h1>收藏电影</h1>
                 <div className="rank-top-content" style={{ textAlign: "center" }}>
-                    <this.movieListRender />
-                    <Pagination showSizeChanger={false} defaultCurrent={1} total={this.state.movieList.length} onChange={this.onChange} />
+                    <Spin spinning={this.state.loading}>
+                        <this.movieListRender />
+                        <Pagination showSizeChanger={false} defaultCurrent={1} total={this.state.movieList.length} onChange={this.onChange} />
+                    </Spin>
                 </div>
             </div>
         );

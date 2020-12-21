@@ -16,6 +16,7 @@ import RankFollow from "./pages/rank/rankfollow/rankfollow";
 import RankTop from "./pages/rank/ranktop/ranktop";
 import Search from "./pages/search/search";
 import UserPage from './pages/user/user';
+import Expense from './pages/expense/expense';
 
 /**
  * 应用的根组件
@@ -38,7 +39,7 @@ export default class App extends Component {
                     <Route path='/cinemainfo' component={CinemaInfo}/>
                     <Route path='/rank/follow' component={RankFollow}/>
                     <Route path='/rank/top' component={RankTop}/>
-                    <Route path='/user/orders' component={UserPage}/>
+                    <Route path='/user/orders' component={Expense}/>
                     <Route path='/user' component={UserPage} />
                     <Route path='/search/:text' component={Search}/>
                     <Route exact path='/' component={Index}/>
