@@ -56,7 +56,7 @@ const RegistrationForm = () => {
             message.success('登录成功！');
             const avatar = result.data.avatar;
             const token = result.data.token;
-            const _id = result.data._id;
+            const _id = result.data.id;
             localStorage.setItem("avatar", avatar);
             localStorage.setItem("id", _id);
             localStorage.setItem("token", token);
