@@ -43,7 +43,7 @@ export const apiSearch = (keyword) => ajax('/getSearch', {keyword})
 export const apiGetMovies=(searchForm)=>ajax('/getMovieList',{...searchForm},'POST')
 
 //获取用户订单列表
-export const apiGetUserOrder=(uid,token)=>ajax('/getUserOrder',{uid},'GET',{headers:{"token":token}})
+export const apiGetUserOrder=(uid,token,error_handle,final)=>ajax('/getUserOrder',{uid},'GET',{headers:{"token":token}},error_handle,final)
 
 //退票
 export const apiReturnUserTicket=(uid,orderId,token)=>ajax('/returnUserTicket',{uid,orderId},'POST',{headers:{"token":token}})

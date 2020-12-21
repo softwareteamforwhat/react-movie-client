@@ -2,8 +2,9 @@ import React,{Component} from 'react';
 
 import Header from '../../components/header';
 import './expense.less';
-import {Col,Pagination,Row} from 'antd';
+import {Col,Pagination,Row, Spin, Empty, message} from 'antd';
 import {Link} from 'react-router-dom';
+import { apiGetUserOrder } from '../../api';
 
 /**
  * 注册的消费记录页面组件
@@ -14,6 +15,7 @@ export default class Expense extends Component{
         super(props);
         this.state={
             orderList:[],
+            loading:true,
         };
     }
 
@@ -22,14 +24,36 @@ export default class Expense extends Component{
             <div className='expense-whole-page'>
                 <Header index={-1} />
                 <h1>我的订单</h1>
-                <this.orderListRender/>
+                <Spin spinning={this.state.loading}>
+                    <this.orderListRender/>
+                </Spin>
             </div>
         );
     }
     componentDidMount(){
-        this.setState({
-            orderList:this.getFakeOrderList()
-        })
+        
+        apiGetUserOrder(localStorage.getItem('id'),localStorage.getItem('token'),(error)=>{
+            
+        },()=>{
+            this.setState({
+                loading:false,
+            })
+        }).then((res)=>{
+            console.log(res);
+            if(res.status===0){
+                this.setState({
+                    orderList:res.data,
+                })
+            } else if(res.status===1){
+                message.config({
+                    top:100,
+                })
+                message.error(res.msg);
+            }else{
+                alert('status不为01');
+            }
+        });
+        
     }
 
     getFakeOrderList(){
@@ -89,6 +113,12 @@ export default class Expense extends Component{
 
     orderListRender = () => {
         const list= this.state.orderList;
+
+        if(list.length===0){
+            return <Empty description={
+                <span>目前没有订单记录</span>
+            }></Empty>
+        }
         return (
 
             <Row>
@@ -99,7 +129,7 @@ export default class Expense extends Component{
                             <Link to={{
                                 pathname: "/movieinfo",
                                 state: {
-                                    id: order.movie.movieId,
+                                    id: order.movieBasic.movieId,
                                 }
                             }}>
 
@@ -123,8 +153,8 @@ export default class Expense extends Component{
                                         textAlign: "center",
                                         height: "300px"
                                     }}>
-                                        <img style={{width: "180px", height: "250px"}} alt={order.movie.name + "海报"}
-                                            src={order.movie.picture}/>
+                                        <img style={{width: "180px", height: "250px"}} alt={order.movieBasic.name + "海报"}
+                                            src={order.movieBasic.picture}/>
                                     </Col>
                                     <Col span={8} style={{
                                         display: "flex",
@@ -132,14 +162,14 @@ export default class Expense extends Component{
                                         justifyContent: "center",
                                         textAlign: "center"
                                     }}>
-                                        <h2 style={{color: "black", textAlign: "left"}}>{order.movie.c_name}</h2>
+                                        <h2 style={{color: "black", textAlign: "left"}}>{order.movieBasic.c_name}</h2>
                                         <span style={{color: "black", textAlign: "left"}}>
                                             <span className="item-title">{"类型："}</span>
-                                            <span className="item-value">{order.movie.type.join('、')}</span>
+                                            <span className="item-value">{order.movieBasic.type.join('、')}</span>
                                         </span>
                                         <span style={{color: "black", textAlign: "left"}}>
                                             <span className="item-title">{"影院："}</span>
-                                            <span className="item-value">{order.theater}</span>
+                                            <span className="item-value">{order.cinema}</span>
                                         </span>
                                         <span style={{color: "black", textAlign: "left"}}>
                                             <span className="item-title">{"影厅："}</span>
@@ -147,7 +177,7 @@ export default class Expense extends Component{
                                         </span>
                                         <span style={{color: "black", textAlign: "left"}}>
                                             <span className="item-title">{"版本："}</span>
-                                            <span className="item-value">{order.vision}</span>
+                                            <span className="item-value">{order.lang}</span>
                                         </span>
                                         <span style={{color: "gray", textAlign: "left"}}>
                                             <span className="item-title">{"场次："}</span>
@@ -160,7 +190,7 @@ export default class Expense extends Component{
                                         <span style={{color: "red", textAlign: "left"}}>
                                             <span className="item-title">{"票单价："}</span>
                                             {'¥'}
-                                            <span className="item-value"><strong style={{fontSize:20}}>{order.unitPrice}</strong></span>
+                                            <span className="item-value"><strong style={{fontSize:20}}>{order.price}</strong></span>
                                         </span>
                                         <span style={{color: "black", textAlign: "left"}}>
                                             <span className="item-title">{"数量："}</span>
@@ -179,7 +209,7 @@ export default class Expense extends Component{
                                             textAlign: "center",
                                             lineHeight: "100%",
                                             color: "red"
-                                        }}>总价：¥<strong style={{fontSize:30}}>{order.unitPrice*order.amount}</strong></span> </Col>
+                                        }}>总价：¥<strong style={{fontSize:30}}>{order.price*order.amount}</strong></span> </Col>
                                     <Col span={2}/>
                                 </Row>
                             </Link>
