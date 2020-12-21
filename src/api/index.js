@@ -43,19 +43,19 @@ export const apiSearch = (keyword) => ajax('/getSearch', {keyword})
 export const apiGetMovies=(searchForm)=>ajax('/getMovieList',{...searchForm},'POST')
 
 //获取用户订单列表
-export const apiGetUserOrder=(id,token)=>ajax('/getUserOrder',{id},'GET',{headers:{"Authorization":token}})
+export const apiGetUserOrder=(uid,token)=>ajax('/getUserOrder',{uid},'GET',{headers:{"token":token}})
 
 //退票
-export const apiReturnUserTicket=(id,orderId,token)=>ajax('/returnUserTicket',{id,orderId},'POST',{headers:{"Authorization":token}})
+export const apiReturnUserTicket=(uid,orderId,token)=>ajax('/returnUserTicket',{uid,orderId},'POST',{headers:{"token":token}})
 
 //获取用户收藏列表
-export const apiGetUserFavorite=(id,token)=>ajax('/getUserFavorite',{id},'GET',{headers:{"Authorization":token}})
+export const apiGetUserFavorite=(uid,token)=>ajax('/getUserFavorite',{uid},'GET',{headers:{"token":token}})
 
 //获取用户基本信息
-export const apiGetUserInfo=(id,token)=>ajax('/getUserInfo',{id},'GET',{headers:{"Authorization":token}})
+export const apiGetUserInfo=(uid,token,error_handle,final)=>ajax('/getUserInfo',{uid},'GET',{headers:{"token":token}},error_handle,final)
 
 //修改用户基本信息
-export const apiModifyUserInfo=(id,nickname,avatar,token)=>ajax('/modifyUserInfo',{id,nickname,avatar},'POST',{headers:{"Authorization":token}})
+export const apiModifyUserInfo=(uid,nickname,avatar,token,error_handle,final)=>ajax('/modifyUserInfo',{},'POST',{headers:{"token":token},params:{uid,nickname,avatar}},error_handle,final)
 
 //修改用户密码
-export const apiModifyPassword=(id,password,token)=>ajax('/modifyPassword',{id,password},'POST',{headers:{"Authorization":token}})
+export const apiModifyPassword=(uid,pwd,token)=>ajax('/modifyPassword',{},'POST',{headers:{"token":token},params:{uid,pwd}})
