@@ -6,7 +6,15 @@ import './user.less';
 import {avatar_list} from '../../components/avatar/avatar'
 import {apiGetUserInfo, apiModifyUserInfo, apiModifyPassword}from '../../api'
 export default class UserPage extends React.Component {
-
+    componentDidMount(){
+        apiGetUserInfo(localStorage.getItem('id'),localStorage.getItem('token')).then((res)=>{
+            console.log(res);
+            
+        }).catch((err)=>{
+            console.log(err);
+            message.error(err);
+        });
+    }
     render() {
         return (
             <div className='user-whole-page'>

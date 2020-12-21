@@ -1,7 +1,7 @@
 export interface loginInfoResponse {
     status: number,
     data: {
-        _id: string,
+        id: string,
         token: string,
         avatar: string
     }
