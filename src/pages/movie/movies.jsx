@@ -44,10 +44,10 @@ class TagCell extends Component {
 
     render() {
         if (this.props.selected) {
-            return <button className="tag selected">{this.props.value}</button>
+            return <a className="tag selected">{this.props.value}</a>
         } else {
-            return <button className="tag"
-                           onClick={() => this.changeMovieState(this.props.index)}>{this.props.value}</button>
+            return <a className="tag"
+                           onClick={() => this.changeMovieState(this.props.index)}>{this.props.value}</a>
         }
     }
 }
@@ -201,7 +201,7 @@ export default class Movies extends Component {
             "area":"",
             "year":"全部",
             "sortType":"时间",
-            "page":0
+            "page":1
         };
         this.state = {
             movielist:[],
@@ -215,7 +215,8 @@ export default class Movies extends Component {
             selectedAreaIndex: 0,
             selectedYearIndex: 0,
             selectedSortTypeIndex: 0,
-            total:0
+            total:0,
+            current:1
         };
         apiGetMovies(searchMovieForm).then((res)=>{
             console.log(res);
@@ -229,45 +230,24 @@ export default class Movies extends Component {
         this.updateMovieList = this.updateMovieList.bind(this);
         this.changeMovieState = this.changeMovieState.bind(this);
     }
-    onChange = (page, pageSize=18) => {
-        // apiGetFollowRank().then((res) => {
-        //     this.setState({movieList: res});
-        // })
-        const searchMovieForm={
-            movieType:this.state.movietypes[this.state.selectedMovieTypeIndex],
-            area:this.state.areas[this.state.selectedAreaIndex],
-            year:this.state.years[this.state.selectedYearIndex],
-            sortType:this.state.sorttypes[this.state.selectedSortTypeIndex],
-            page:page
-        };
-        if(searchMovieForm.movieType==="全部")searchMovieForm.movieType="";
-        if(searchMovieForm.area==="全部")searchMovieForm.area="";
-        switch (this.state.moviestates[this.state.selectedMovieStateIndex]) {
-            case "正在热映":searchMovieForm.movieState=0;break;
-            case "即将上映":searchMovieForm.movieState=1;break;
-            case "经典影片":searchMovieForm.movieState=2;break;
-            default:break
-        }
-        apiGetMovies(searchMovieForm).then((res)=>{
-            console.log(res)
-            this.setState({
-                movielist:res.data.movieBasics,
-            }, this.goTop()
-            )
-        })
+    onChange = (page, pageSize=15) => {
+        this.setState({
+                current: page,
+            },
+            ()=>this.updateMovieList(page) )
     };
 
     goTop(){
         document.body.scrollTop = document.documentElement.scrollTop = 500
     }
 
-    updateMovieList() {
+    updateMovieList(page=1) {
         const searchMovieForm={
             movieType:this.state.movietypes[this.state.selectedMovieTypeIndex],
             area:this.state.areas[this.state.selectedAreaIndex],
             year:this.state.years[this.state.selectedYearIndex],
             sortType:this.state.sorttypes[this.state.selectedSortTypeIndex],
-            page:0
+            page:1
         };
         if(searchMovieForm.movieType==="全部")searchMovieForm.movieType="";
         if(searchMovieForm.area==="全部")searchMovieForm.area="";
@@ -278,10 +258,11 @@ export default class Movies extends Component {
             default:break
         }
         apiGetMovies(searchMovieForm).then((res)=>{
-            console.log(res)
+            console.log(res);
             this.setState({
                 movielist:res.data.movieBasics,
-                total:res.data.sum
+                total:res.data.sum,
+                current:page
             })
         })
     }
@@ -340,7 +321,7 @@ export default class Movies extends Component {
                         movielist={this.state.movielist}
                     />
                     <div className={"page-bar"}>
-                        <Pagination  defaultCurrent={1} total={this.state.total} pageSize={18} onChange={this.onChange} showSizeChanger={false}/>
+                        <Pagination  defaultCurrent={1}current={this.state.current} total={this.state.total} pageSize={18} onChange={this.onChange} showSizeChanger={false}/>
                     </div>
                 </div>
 

@@ -2,8 +2,20 @@ import {Component} from "react";
 import {Link} from "react-router-dom";
 import React from "react";
 import './moviebanner.less'
+import { Rate } from 'antd';
+import MyFollow from '../../components/follow/index'
 
 export default class MovieBanner extends Component {
+
+    constructor(props){
+        super(props);
+        this.changeFollowState=this.changeFollowState.bind(this);
+    }
+
+    changeFollowState(){
+        this.props.changeFollowState();
+    }
+
 
     render() {
         return <div className="banner">
@@ -27,17 +39,38 @@ export default class MovieBanner extends Component {
                             <li>
                                 {this.props.info.time}
                             </li>
+                            {this.props.linktype === 1 ?
+                                <Rate className={"rate"} disabled={true} allowHalf defaultValue={this.props.info.rank}/>:<div/>
+                            }
 
                         </ul>
                     </div>
-                    <div className="action-button">
-                        <button className="wish">
-                            想看
-                        </button>
-                        <button className="score">
-                            评分
-                        </button>
-                    </div>
+
+                    {this.props.linktype===1?
+                        this.props.iflogged?
+                            <div className="action-button">
+                                <div>
+                                    {this.props.ifFollowed?
+                                        <button className="star" onClick={()=>this.props.changeFollowState()}>
+                                            已收藏
+                                        </button>:
+                                        <button className="star" onClick={()=>this.props.changeFollowState()}>
+                                            加入收藏
+                                        </button>
+                                    }
+                                </div>
+                                {/*<MyFollow hasFollowed={this.props.ifFollowed} id={this.props.id} />*/}
+                                <div>
+                                    <button className="score">
+                                        评分
+                                    </button>
+                                </div>
+
+                            </div>:<div className={"action-text"}>
+                            登录后可进行收藏和评分操作
+                        </div>:<div/>
+                    }
+
                     <div className="movie-status-container">
                         {
                             this.props.linktype===1?
@@ -46,7 +79,9 @@ export default class MovieBanner extends Component {
                                     <Link to={
                                         {
                                             pathname:"/cinemas",
-                                            id:this.props.info.id
+                                            state:{
+                                                id:this.props.info.id
+                                            }
                                         }
                                     }>
                                         <button className="buy-button" >立即购票</button>
@@ -57,7 +92,9 @@ export default class MovieBanner extends Component {
                                 <Link to={
                                     {
                                         pathname:"/movieinfo",
-                                        id:this.props.info.id
+                                        state:{
+                                            id:this.props.info.id
+                                        }
                                     }
                                 }>
                                     <button className="buy-button">查看电影详情</button>

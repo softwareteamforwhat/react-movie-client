@@ -22,10 +22,10 @@ export const apiRegister = (email, code, password, nickname) => ajax('/register'
 export const apiGetCode = (email) => ajax('/code', {email}, 'GET')
 
 //改变收藏状态
-export const apiChangeFollow = (id, token, followId) => ajax('/changeFollow', {
-    id,
-    followId
-}, 'POST', {headers: {"Authorization": token}})
+export const apiChangeFollow = (uid, movieId,token) => ajax('/changeFollow', {}, 'POST', {params:{
+        uid,
+        movieId
+    },headers: {"token": token}})
 
 //找回密码
 export const apiForget = (email) => ajax('/forget', {email})
@@ -59,3 +59,21 @@ export const apiModifyUserInfo=(uid,nickname,avatar,token,error_handle,final)=>a
 
 //修改用户密码
 export const apiModifyPassword=(uid,pwd,token)=>ajax('/modifyPassword',{},'POST',{headers:{"token":token},params:{uid,pwd}})
+
+
+//获取电影详情
+export const apiGetMovieInfo = (id) => ajax('/movieInfo', {id}, 'GET')
+
+//获取影院列表
+export const apiGetCinemas=(searchForm)=>ajax('/getCinemas',{...searchForm},'POST')
+
+//获取影院信息
+export const apiGetCinemaInfo = (id) => ajax('/getCinemaInfo', {id}, 'GET')
+
+//获取排片信息
+export const apiGetSchedule = (cinemaId) => ajax('/getSchedule', {cinemaId}, 'GET')
+
+//存储订单
+export const apiSaveOrder=(token, orderInfo)=>ajax('/saveOrder',{...orderInfo},'POST',{headers: {"token": token}})
+
+export const apiIfCollected=(uid,movieId,token)=>ajax('/isCollect',{uid,movieId},'GET',{headers: {"token": token}})

@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import './cinemas.less';
 import MovieBanner from '../../components/movie/moviebanner'
 import {Pagination} from "antd";
+import {apiGetMovieInfo,apiGetCinemas} from "../../api";
 
 
 class TagCell extends Component {
@@ -18,10 +19,10 @@ class TagCell extends Component {
 
     render() {
         if (this.props.selected) {
-            return <button className="tag selected">{this.props.value}</button>
+            return <a className="tag selected">{this.props.value}</a>
         } else {
-            return <button className="tag"
-                           onClick={() => this.changeCinemaState(this.props.index)}>{this.props.value}</button>
+            return <a className="tag"
+                           onClick={() => this.changeCinemaState(this.props.index)}>{this.props.value}</a>
         }
     }
 }
@@ -121,27 +122,32 @@ class CinemaPanel extends Component{
                 <span>影院列表</span>
             </h2>
             {this.props.cinemas.map(
-                (cinema,index)=>
-                    <div className="cinemas-cell" key={index}>
+                (cinema,index)=> {
+                    return <div className="cinemas-cell" key={index}>
                         <div className="cinema-info">
                             <Link to={{
-                                pathname:"/cinemainfo",
-                                id:cinema.id
+                                pathname: "/cinemainfo",
+                                state:{
+                                    id: cinema.cinemaId
+                                }
                             }}>
                                 <button className="cinema-name">{cinema.name}</button>
                             </Link>
                             <p className="cinema-address">{cinema.address}</p>
                             <div className="cinema-tags">
-                                {cinema.service.map(
-                                    (service,index)=>
-                                        <span className="cinema-tag" key={index}>{service.name}</span>
-                                )}
+                                {
+                                    cinema.services.map(
+                                        (service, index) =>
+                                            <span className="cinema-tag" key={index}>{service.name}</span>
+                                    )}
                             </div>
                         </div>
                         <div className="buy-btn">
                             <Link to={{
-                                pathname:"/cinemainfo",
-                                id:cinema.id
+                                pathname: "/cinemainfo",
+                                state:{
+                                    id: cinema.cinemaId
+                                }
                             }}>
                                 <button>选座购票</button>
                             </Link>
@@ -151,11 +157,10 @@ class CinemaPanel extends Component{
                             <span className="rmb red">￥</span>
                             <span className="price-num red">{cinema.price}</span>
                             <span>起</span>
-                            <span className="cinema-distance">{cinema.distance}</span>
+                            <span className="cinema-distance">{cinema.distance}米</span>
                         </div>
                     </div>
-            )}
-
+                })}
         </div>
     }
 
@@ -173,7 +178,7 @@ export default class Cinemas extends Component {
                 phone: "电话：025-58860601",
                 price:30,
                 distance:"1km",
-                service: [
+                services: [
                     {
                         name:"退",
                         text:"未取票用户放映前60分钟可退票"
@@ -198,7 +203,7 @@ export default class Cinemas extends Component {
                 phone: "电话：025-58860601",
                 price:30,
                 distance:"1km",
-                service: [
+                services: [
                     {
                         name:"退",
                         text:"未取票用户放映前60分钟可退票"
@@ -223,7 +228,7 @@ export default class Cinemas extends Component {
                 phone: "电话：025-58860601",
                 price:30,
                 distance:"1km",
-                service: [
+                services: [
                     {
                         name:"退",
                         text:"未取票用户放映前60分钟可退票"
@@ -248,7 +253,7 @@ export default class Cinemas extends Component {
                 phone: "电话：025-58860601",
                 price:30,
                 distance:"1km",
-                service: [
+                services: [
                     {
                         name:"退",
                         text:"未取票用户放映前60分钟可退票"
@@ -273,7 +278,7 @@ export default class Cinemas extends Component {
                 phone: "电话：025-58860601",
                 price:30,
                 distance:"1km",
-                service: [
+                services: [
                     {
                         name:"退",
                         text:"未取票用户放映前60分钟可退票"
@@ -298,34 +303,29 @@ export default class Cinemas extends Component {
             "博纳国际影城", "星轶starx影城",
             "中影UL城市影院", "新华国际影城", "华纳国际影城", "幸福蓝海国际影城", "银河欢乐影城", "SFC上影影城", '横店影视' ,
             "星轶imax影城" ,"其他"];
-
-        var areas=['全部', '地铁附近', '江宁区', '秦淮区' ,'浦口区' ,'雨花台区', '六合区', '栖霞区',
+        var areas=['全部', '江宁区', '秦淮区' ,'浦口区' ,'雨花台区', '六合区', '栖霞区',
             '鼓楼区', '建邺区' ,'玄武区', '溧水区', '高淳区'];
         var tags=[
             '全部', '可改签' ,'可退票', 'IMAX厅', 'CGS中国巨幕厅', '杜比全景声厅', 'Dolby Cinema厅', 'RealD厅' ,'RealD 6FL厅 ',
             '4DX厅', 'DTS:X 临境音厅', '儿童厅','4K厅', '4D厅', '60帧厅', '120帧/4K厅','巨幕厅', 'STARX厅', 'MX4D厅'
         ];
         var sortTypes=["距离最近","价格最低"];
-        var movieId=this.props.location.id;//如果从电影详情处点击购票进入此页面，则会有这个id存在
+        var movieId;//如果从电影详情处点击购票进入此页面，则会有这个id存在
+        if(this.props.location.state){
+            movieId=this.props.location.state.id;
+        }
         var info={};
         var type=[];
         var moviestate="";
-        if(movieId===undefined){
-        }
-        else {
-            info = {
-                id:movieId,
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                description: "上世纪90年代，刑警钟诚受命追捕悍匪集团“老鹰帮”。这群悍匪犯下惊天连环劫案，训练有素且纪律严明，首领张隼更屡次恶意挑衅，矛头直指钟诚。为将“老鹰帮”捉拿归案，钟诚带领刑警小队咬死不放，誓与恶势力斗争到底。数年间，警匪上演了一次次紧张刺激的较量，悍匪愈加猖獗，警方步步逼近，双方展开殊死对决……"
-            };
-            type = [" 犯罪 ", " 剧情 ", " 动作 "];
-            moviestate="正在热映";
-        }
+        const searchCinemaForm={
+            "brand":"" ,
+            "address":"",
+            "tag":"全部",
+            "sortType":"distance",
+            "page":0,
+            "movieId":movieId
+        };
+
         this.state = {
             cinemas:cinemas,
             brands:brands,
@@ -341,29 +341,99 @@ export default class Cinemas extends Component {
             info:info,
             type:type,
             moviestate:moviestate,
-            total:100
+            total:100,
+            current:1
         };
+
+
+        //如果电影ID存在则获取电影信息
+        if(movieId===undefined){
+        }
+        else {
+            apiGetMovieInfo(this.props.location.state.id).then((res)=>{
+                console.log(res);
+                const data=res.data;
+                const info={
+                    id:this.props.location.state.id,
+                    picture: data.picture,
+                    name: data.c_name,
+                    name2:data.e_name,
+                    place: data.area,
+                    length: data.length+"分钟",
+                    time: data.date+"上映",
+                    description:data.description
+                };
+                let movieState="正在热映";
+                if(data.state===1)movieState="即将上映";
+                if(data.state===2)movieState="经典影片";
+                this.setState({
+                    moviestate:movieState,
+                    info:info,
+                    type:data.type
+                })
+
+            });
+        }
+
+        //获取影院列表
+        apiGetCinemas(searchCinemaForm).then(
+            (res)=>{
+
+                var cinemalist = res.data.cinemaBasics;
+                //console.log(cinemalist)
+                this.setState({
+                    cinemas:cinemalist,
+                    total:res.data.sum
+                })
+            }
+        );
+
+        this.goTop=this.goTop.bind(this);
         this.updateCinemaList = this.updateCinemaList.bind(this);
         this.changeCinemaState = this.changeCinemaState.bind(this);
     }
 
 
     onChange = (page, pageSize=10) => {
-        // apiGetFollowRank().then((res) => {
-        //     this.setState({movieList: res});
-        // })
-        console.log(page,pageSize)
+        this.setState({
+            current: page,
+        },
+            ()=>this.updateCinemaList(page) )
+
     };
-    updateCinemaList() {
+    updateCinemaList(page=1) {
         const searchForm={
             brand:this.state.brands[this.state.selectedBrandIndex],
-            area:this.state.areas[this.state.selectedAreaIndex],
+            address:this.state.areas[this.state.selectedAreaIndex],
             tag:this.state.tags[this.state.selectedTagIndex],
             sortType:this.state.sortTypes[this.state.selectedSortTypeIndex],
-            movieId: this.state.movieId,
-            page:this.state.pageNum
+            page:page
         };
-        console.log(searchForm)
+        if(searchForm.brand==="全部")searchForm.brand="";
+        if(searchForm.address==="全部")searchForm.address="";
+        if(searchForm.sortType==="距离最近")searchForm.sortType="distance";
+        if(searchForm.sortType==="价格最低")searchForm.sortType="price";
+        apiGetCinemas(searchForm).then(
+            (res)=>{
+                var cinemalist = res.data.cinemaBasics;
+                this.setState({
+                    cinemas:cinemalist,
+                    total:res.data.sum,
+                    current:page
+                },
+                    ()=>this.goTop())
+            }
+        );
+    }
+
+    goTop(){
+        if(this.state.movieId===undefined){
+            document.body.scrollTop = document.documentElement.scrollTop = 480
+
+        }
+        else{
+            document.body.scrollTop = document.documentElement.scrollTop = 800
+        }
     }
 
     changeCinemaState(index, type) {
@@ -420,7 +490,7 @@ export default class Cinemas extends Component {
                         cinemas={this.state.cinemas}
                     />
                     <div className={"page-bar"}>
-                        <Pagination  defaultCurrent={1} total={this.state.total} onChange={this.onChange} showSizeChanger={false}/>
+                        <Pagination  defaultCurrent={1} current={this.state.current} total={this.state.total} onChange={this.onChange} showSizeChanger={false}/>
                     </div>
                 </div>
 
