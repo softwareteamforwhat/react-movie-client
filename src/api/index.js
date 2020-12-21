@@ -37,7 +37,7 @@ export const apiGetFollowRank = (page) => ajax('/getFollowRank', {page})
 export const apiGetTopRank = (page) => ajax('/getTopRank', {page})
 
 //获取搜索结果列表
-export const apiSearch = (text) => ajax('/getSearch', {text})
+export const apiSearch = (keyword) => ajax('/getSearch', {keyword})
 
 //获取电影列表
 export const apiGetMovies=(searchForm)=>ajax('/getMovieList',{...searchForm},'POST')

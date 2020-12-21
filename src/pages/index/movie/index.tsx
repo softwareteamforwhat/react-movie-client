@@ -20,7 +20,7 @@ export default class IndexMovie extends Component<any, any> {
                         </a>
                     </Divider>
                     <Row gutter={[16, 24]}>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
@@ -42,7 +42,7 @@ export default class IndexMovie extends Component<any, any> {
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
@@ -64,7 +64,7 @@ export default class IndexMovie extends Component<any, any> {
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
@@ -86,7 +86,7 @@ export default class IndexMovie extends Component<any, any> {
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
@@ -108,7 +108,7 @@ export default class IndexMovie extends Component<any, any> {
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
@@ -131,7 +131,7 @@ export default class IndexMovie extends Component<any, any> {
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
@@ -154,44 +154,45 @@ export default class IndexMovie extends Component<any, any> {
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 1325487
+                                        id: 1228788
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/c7b0e1254807467dbc761f46e7f19d5d2976982.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p1.meituan.net/moviemachine/36bf499d2e2821a5cae7c4bdfc280c3e2143283.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title"
-                                                 title="沐浴之王">沐浴之王
+                                                 title="守望相思树">守望相思树
                                             </div>
-                                            <div className="movie-score"><i className="integer"/><i
-                                                className="fraction"/></div>
+                                            <div className="movie-score"><i className="integer"/>7.<i
+                                                className="fraction"/>3
+                                            </div>
                                         </div>
                                     </div>
                                     <Button className="poster-btn">购票</Button>
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 1298050
+                                        id: 1212263
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p1.meituan.net/movie/7335afbfd567ca5261d28a11d5bab706106991.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p1.meituan.net/movie/f99deeeeb74108ab009b79bb59233d5e304355.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title"
-                                                 title="哆啦A梦：大雄的新恐龙">哆啦A梦：大雄的新恐龙
+                                                 title="命运之夜——天之杯3：春之歌">命运之夜——天之杯3：春之歌
                                             </div>
-                                            <div className="movie-score"><i className="integer">9.</i><i
-                                                className="fraction">1</i></div>
+                                            <div className="movie-score"><i className="integer">7.</i><i
+                                                className="fraction">2</i></div>
 
                                         </div>
                                     </div>
@@ -209,185 +210,185 @@ export default class IndexMovie extends Component<any, any> {
                         </a>
                     </Divider>
                     <Row gutter={[16, 40]}>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 1367649
+                                        id: 1339160
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/7cc1bdf342496b1fb3e80b419052100d1795568.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p0.meituan.net/moviemachine/a8827aeaa6455c20714b232fef09bf38662388.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title2"
-                                                 title="踮起脚尖去爱你">踮起脚尖去爱你
+                                                 title="海绵宝宝：营救大冒险">海绵宝宝：营救大冒险
                                             </div>
                                         </div>
                                     </div>
                                     <div className="movie-detail movie-wish"><span
-                                        className="stonefont">4711</span>人想看
+                                        className="stonefont">92505</span>人想看
                                     </div>
                                     <Button className="poster-btn2">预售</Button>
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 1285849
+                                        id: 489894
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/e12e6e06611909d4ca032846af9257974671666.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/2bc0317e150f59e79d023889f4439124119731.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title2"
-                                                 title="南拳之英雄崛起">南拳之英雄崛起
+                                                 title="哆啦A梦：伴我同行2">哆啦A梦：伴我同行2
                                             </div>
                                         </div>
                                     </div>
                                     <div className="movie-detail movie-wish"><span
-                                        className="stonefont">660</span>人想看
+                                        className="stonefont">79115</span>人想看
                                     </div>
                                     <Button className="poster-btn2">预售</Button>
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 1372081
+                                        id: 1280000
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/30f321cb0cc71f60e4e86c3730497a32437305.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/cc11343903299a6b91628a2d6bcb406b869658.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title2"
-                                                 title="岁月江城">岁月江城
+                                                 title="鹭世界">鹭世界
                                             </div>
                                         </div>
                                     </div>
                                     <div className="movie-detail movie-wish"><span
-                                        className="stonefont">313</span>人想看
+                                        className="stonefont">97328</span>人想看
                                     </div>
                                     <Button className="poster-btn2">预售</Button>
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 343371
+                                        id: 342325
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://obj.pipi.cn/adAdmin/976e302f51bdddb535030cd96afd74d3de457.jpeg?imageView2/1/w/160/h/220)"}}>
+                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/700df54f1efed73aa7bc8e89ed39cc39377541.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title2"
-                                                 title="枪上膛">枪上膛
+                                                 title="海贼王剧场版10：强者天下">海贼王剧场版10：强者天下
                                             </div>
                                         </div>
                                     </div>
                                     <div className="movie-detail movie-wish"><span
-                                        className="stonefont">42</span>人想看
+                                        className="stonefont">75480</span>人想看
                                     </div>
                                     <Button className="poster-btn2">预售</Button>
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 461076
+                                        id: 1230121
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p0.meituan.net/moviemachine/2a2ddfec756916185e06bb760e5851212887659.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/24273341763f3010aea46285eddd9fea5460447.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title2"
-                                                 title="紧急救援">紧急救援
+                                                 title="猩球崛起">猩球崛起
                                             </div>
                                         </div>
                                     </div>
                                     <div className="movie-detail movie-wish"><span
-                                        className="stonefont">627144</span>人想看
+                                        className="stonefont">73101</span>人想看
                                     </div>
                                     <Button className="poster-btn2">预售</Button>
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 1207337
+                                        id: 1298859
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p1.meituan.net/movie/f9f90625d902e3bfb75688037a2476f83410480.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/bd158fd18d8fe3e61eff61169aaa1bc5666562.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title2"
-                                                 title="神奇女侠1984">神奇女侠1984
+                                                 title="两小无猜">两小无猜
                                             </div>
                                         </div>
                                     </div>
                                     <div className="movie-detail movie-wish"><span
-                                        className="stonefont">93406</span>人想看
+                                        className="stonefont">86693</span>人想看
                                     </div>
                                     <Button className="poster-btn2">预售</Button>
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 637244
+                                        id: 1212
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p1.meituan.net/movie/a37f77d2b7c4403cfd8ad6983be3b8bf809681.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/9a53417f80172c9051e044ca367aaaaa812555.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title2"
-                                                 title="钱在囧途">钱在囧途
+                                                 title="小门神">小门神
                                             </div>
                                         </div>
                                     </div>
                                     <div className="movie-detail movie-wish"><span
-                                        className="stonefont">3804</span>人想看
+                                        className="stonefont">81951</span>人想看
                                     </div>
                                     <Button className="poster-btn2">预售</Button>
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row2" span={6}>
                             <div className="movie-item">
                                 <Link to={{
                                     pathname: "/movieinfo",
                                     state: {
-                                        id: 1258140
+                                        id: 1286060
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/46500f358800a58df971d7f86199bfcf385552.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p1.meituan.net/movie/4f294d593f888bd5b4c6d13c0ada03583157850.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title2"
-                                                 title="村里来了新闻官">村里来了新闻官
+                                                 title="霍比特人2：史矛革之战">霍比特人2：史矛革之战
                                             </div>
                                         </div>
                                     </div>
                                     <div className="movie-detail movie-wish"><span
-                                        className="stonefont">169</span>人想看
+                                        className="stonefont">65355</span>人想看
                                     </div>
                                     <Button className="poster-btn2">预售</Button>
                                 </Link>

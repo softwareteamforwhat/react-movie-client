@@ -1,10 +1,10 @@
 export interface SearchResponse {
     id: number,
-    url: string,
-    name: string,
-    name2: string,
+    picture: string,
+    c_name: string,
+    e_name: string,
     type: string,
     actors: string,
-    time: string,
+    date: string,
     rank: number
 }

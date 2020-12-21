@@ -256,7 +256,7 @@ export default class IndexRank extends Component<any, { movieList: RankTopRespon
                                         <span style={{
                                             textAlign: "center",
                                             lineHeight: "100%",
-                                            color: "#FF0000"
+                                            color: "#FFB400"
                                         }}>{movie.follow + "人想看"}</span> </Col>
                                             </Row>
                                         </Link>
@@ -318,7 +318,7 @@ export default class IndexRank extends Component<any, { movieList: RankTopRespon
                                         <span style={{
                                             textAlign: "center",
                                             lineHeight: "100%",
-                                            color: "#FF0000"
+                                            color: "#FFB400"
                                         }}>{movie.rank + "分"}</span> </Col>
                                             </Row>
                                         </Link>

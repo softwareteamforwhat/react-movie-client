@@ -9,14 +9,14 @@ import IndexMovie from "./movie";
 import IndexRank from "./rank";
 
 const movie1: movieP = {
-    movieId: "0",
+    movieId: "1282401",
     moviePhoto: movieP1
 }
-const movie2: movieP = {
-    movieId: "1",
-    moviePhoto: movieP2
-}
-const moviePList: movieP[] = [movie1, movie2]
+// const movie2: movieP = {
+//     movieId: "1",
+//     moviePhoto: movieP2
+// }
+const moviePList: movieP[] = [movie1, movie1]
 /*
 主页的路由组件
  */
