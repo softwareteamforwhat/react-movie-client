@@ -1,8 +1,9 @@
 import React,{Component} from 'react';
 import Header from "../../components/header";
 import './seatbuy.less';
-//import Pay1 from '../../assets/images/pay1.png';
-//import Pay2 from '../../assets/images/pay2.png';
+import Pay1 from '../../assets/images/pay1.png';
+import Pay2 from '../../assets/images/pay2.png';
+import {apiSaveOrder} from "../../api";
 
 class Cell extends Component{
     constructor(props){
@@ -57,18 +58,20 @@ class Row extends Component{
 export default class SeatBuy extends Component{
     constructor(props){
         super(props);
-        const movieinfo={
+        const {location}=this.props;
+
+
+        let movieinfo={
             id:1240838,
             picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
             name: "除暴",
             type: [" 犯罪 ", " 剧情 ", " 动作 "],
             length: "95分钟"
         };
-        const paipian={
+        let paipian={
             cinema:"中宁国际影城（京新广场店）",
             date:"12月9日",
-            starttime:"21:00",
-            endtime:"23:00",
+            session:"10:00-12:00",
             lang:"国语",
             hall:"5号激光厅",
             price:30
@@ -79,8 +82,29 @@ export default class SeatBuy extends Component{
             [0,0,0,0,0,1],
             [1,1,1,1,0,0]
         ];
+        let uid,token;
+
+
+        if(location.state&&location.state.movieinfo){//判断当前有参数
+            movieinfo=location.state.movieinfo;
+            paipian=location.state.paipian;
+            uid=location.state.uid;
+            token=location.state.token;
+            sessionStorage.setItem('movieinfo',movieinfo);// 存入到sessionStorage中
+            sessionStorage.setItem('paipian',paipian);
+            sessionStorage.setItem('uid',uid);
+            sessionStorage.setItem('token',token);
+        }else{
+            movieinfo=sessionStorage.getItem('movieinfo');// 当state没有参数时，取sessionStorage中的参数
+            paipian=sessionStorage.getItem('paipian');
+            uid=sessionStorage.getItem('uid');
+            token=sessionStorage.getItem('token');
+        }
+
 
         this.state={
+            uid:uid,
+            token:token,
             movieinfo:movieinfo,
             paipian:paipian,
             seats:seats,
@@ -88,6 +112,7 @@ export default class SeatBuy extends Component{
             ticketIndexs:[],
             payType:0
         };
+
         this.update=this.update.bind(this);
         this.select=this.select.bind(this);
         this.goPay=this.goPay.bind(this);
@@ -95,19 +120,7 @@ export default class SeatBuy extends Component{
     }
 
     update(){
-        const orderInfo={
-            movieId:this.state.movieinfo.id,
-            cinema:"中宁国际影城（京新广场店）",
-            date:"12月9日",
-            starttime:"21:00",
-            endtime:"23:00",
-            lang:"国语",
-            hall:"5号激光厅",
-            price:30,
-            ticketIndexs:this.state.ticketIndexs
-        };
         console.log(this.state.progressIndex);
-        console.log(orderInfo)
     }
 
     select(rowIndex,index,state){
@@ -150,7 +163,32 @@ export default class SeatBuy extends Component{
                 progressIndex:2
             },
             ()=>this.update()
+        );
+        var myDate = new Date();
+        var mytime=myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDate()+" "+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds();
+        const orderInfo={
+            uid:this.state.uid,
+            movieId:this.state.movieinfo.movieId,
+            cinema:this.state.paipian.cinema,
+            purchaseTime:mytime,
+            session:this.state.paipian.date+" "+this.state.paipian.session,
+            lang:this.state.paipian.lang,
+            hall:this.state.paipian.hall,
+            unitPrice:this.state.paipian.price,
+            seats:{}//选择的座位位置
+        };
+        var tickets={};
+        for(var i=0;i<this.state.ticketIndexs.length;i++){
+            tickets[this.state.ticketIndexs[i].x]=this.state.ticketIndexs[i].y;
+        }
+        orderInfo.seats=tickets;
+        console.log(this.state.token,orderInfo)
+        apiSaveOrder(this.state.token,orderInfo).then(
+            (res)=>{
+               console.log("?",res)
+            }
         )
+
     }
     render(){
         var ticketIndexs=this.state.ticketIndexs;
@@ -222,17 +260,17 @@ export default class SeatBuy extends Component{
                             <div className="side">
                                 <div className="movie-info">
                                     <div className="poster">
-                                        <img src={this.state.movieinfo.picture} alt={this.state.movieinfo.name}/>
+                                        <img src={this.state.movieinfo.picture} alt={this.state.movieinfo.c_name}/>
                                     </div>
                                     <div className="content">
-                                        <p className={"name text-ellipsis"}>{this.state.movieinfo.name}</p>
+                                        <p className={"name text-ellipsis"}>{this.state.movieinfo.c_name}</p>
                                         <div className={"info-item"}>
                                             <span>类型：</span>
                                             <span className={"value"}>{this.state.movieinfo.type}</span>
                                         </div>
                                         <div className={"info-item"}>
                                             <span>时长：</span>
-                                            <span className={"value"}>{this.state.movieinfo.length}</span>
+                                            <span className={"value"}>{this.state.movieinfo.length}分钟</span>
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +290,7 @@ export default class SeatBuy extends Component{
                                     <div className="info-item">
                                         <span>场次：</span>
                                         <span className="value text-ellipsis">
-                                        {this.state.paipian.date+" "+this.state.paipian.starttime}
+                                        {this.state.paipian.date+" "+this.state.paipian.session}
                                     </span>
                                     </div>
                                     <div className="info-item">
@@ -273,7 +311,7 @@ export default class SeatBuy extends Component{
                                         </div>}
                                     <div className="total-price">
                                         <span>总价：</span>
-                                        <span className="price">{this.state.paipian.price*tickets.length}</span>
+                                        <span className="price">{this.state.paipian.price*tickets.length}元</span>
                                     </div>
                                 </div>
                                 <div className="confirm-order">
@@ -302,8 +340,8 @@ export default class SeatBuy extends Component{
                                 {this.state.ticketIndexs.map(
                                     (ticket,index)=>
                                         <tr key={index}>
-                                            <td className={"movie-name"}>{this.state.movieinfo.name}</td>
-                                            <td className={"showtime"}>{this.state.paipian.date+" "+this.state.paipian.starttime}</td>
+                                            <td className={"movie-name"}>{this.state.movieinfo.c_name}</td>
+                                            <td className={"showtime"}>{this.state.paipian.date+" "+this.state.paipian.session}</td>
                                             <td className={"cinema-name"}>{this.state.paipian.cinema}</td>
                                             <td className={"hall"}>{this.state.paipian.hall}</td>
                                             <td className={"seats"}>
@@ -317,7 +355,7 @@ export default class SeatBuy extends Component{
                                 <div className={"payMethod"}>
 
                                     <div className={"img"}>
-                                        <img /*src={this.state.payType===0?Pay1:Pay2}*/ alt={"请扫码"}/>
+                                        <img src={this.state.payType===0?Pay1:Pay2} alt={"请扫码"}/>
                                     </div>
                                     <div className={"payButton"}>
                                         <div className="total-price">

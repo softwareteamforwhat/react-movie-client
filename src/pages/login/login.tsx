@@ -23,6 +23,7 @@ const NormalLoginForm = () => {
         }
         if (result.status === 0) {
             message.success('登录成功！');
+            // console.log(result);
             const avatar = result.data.avatar;
             const token = result.data.token;
             const _id = result.data.id;

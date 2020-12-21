@@ -2,12 +2,32 @@ import React from 'react';
 import './cinemainfo.less'
 import Header from "../../components/header";
 import {Link} from "react-router-dom";
-
+import {apiGetCinemaInfo, apiGetSchedule} from "../../api"
 
 
 export default class CinemaInfo extends React.Component {
     constructor(props) {
         super(props);
+
+        const {location}=this.props;
+
+        let cinemaId,iflogged,uid,token;
+        if(localStorage.getItem("id")){
+            uid=localStorage.getItem("id");
+            token=localStorage.getItem("token");
+            iflogged=true;
+        }
+        else{
+            iflogged=false;
+        }
+
+        if(location.state&&location.state.id){//判断当前有参数
+            cinemaId=location.state.id;
+            sessionStorage.setItem('cinemaId',cinemaId);// 存入到sessionStorage中
+        }else{
+            cinemaId=sessionStorage.getItem('cinemaId');// 当state没有参数时，取sessionStorage中的参数
+        }
+        //console.log(cinemaId)
         var info= {
             id:1,
             picture: "https://p1.meituan.net/deal/201208/22/1_0822151022.jpg@292w_292h_1e_1c",
@@ -16,103 +36,24 @@ export default class CinemaInfo extends React.Component {
             phone: "电话：025-58860601",
             price:30,
             distance:"1km",
-            service: [
-            {
-                name:"退",
-                text:"未取票用户放映前60分钟可退票"
-            },
-            {
-                name:"改签",
-                text:"未取票用户放映前60分钟可改签"
-            },
-            {
-                name:"3D眼镜",
-                text:"免押金"
-            },
-            {
-                name:"可停车",
-                text:"商场免费停车"}
+            services: [
         ]};
         var movies=[
             {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                paipian:[
+                movieBasic:{
+                    movieId: "1240838",
+                    picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
+                    name: "除暴",
+                    name2: "Caught in Time",
+                    type: [" 犯罪 ", " 剧情 ", " 动作 "],
+                    place: "中国香港,中国大陆",
+                    length: "95分钟",
+                    time: "2020-11-20中国大陆上映",
+                },
+                schedules:[
                     {
-                        date:"12月9日",
+                        date:0,
                         plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    },
-                    {
-                        date:"12月10日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    },
-                    {
-                        date:"12月11日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
                             {
                                 starttime:"21:00",
                                 endtime:"23:00",
@@ -124,398 +65,32 @@ export default class CinemaInfo extends React.Component {
                     }
                 ]
             },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                paipian:[
-                    {
-                        date:"12月9日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    },
-                    {
-                        date:"12月10日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    },
-                    {
-                        date:"12月11日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                paipian:[
-                    {
-                        date:"12月9日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    },
-                    {
-                        date:"12月10日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                paipian:[
-                    {
-                        date:"12月9日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    },
-                    {
-                        date:"12月11日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                paipian:[
-                    {
-                        date:"12月9日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    },
-                    {
-                        date:"12月10日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    },
-                    {
-                        date:"12月11日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                movieId: "1240838",
-                picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                name: "除暴",
-                name2: "Caught in Time",
-                type: [" 犯罪 ", " 剧情 ", " 动作 "],
-                place: "中国香港,中国大陆",
-                length: "95分钟",
-                time: "2020-11-20中国大陆上映",
-                paipian:[
-                    {
-                        date:"12月9日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    },
-                    {
-                        date:"12月10日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    },
-                    {
-                        date:"12月11日",
-                        plist:[
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            },
-                            {
-                                starttime:"21:00",
-                                endtime:"23:00",
-                                lang:"国语",
-                                hall:"5号激光厅",
-                                price:30
-                            }
-                        ]
-                    }
-                ]
-            }
         ];
         this.state={
-            id:this.props.location.id,
+            iflogged:iflogged,
+            uid:uid,
+            token:token,
+            id:cinemaId,
             info:info,
             movies:movies,
             selectedMovieIndex:0,
             selectedDateIndex:0
         };
+        apiGetCinemaInfo(cinemaId).then((res)=>{
+            //console.log(res);
+            this.setState({
+                info:res.data
+            })
+        });
+
+
+        apiGetSchedule(cinemaId).then((res)=>{
+            console.log(res);
+            this.setState({
+                movies:res.data,
+            })
+        });
+
         this.selectMovie=this.selectMovie.bind(this);
         this.selectPrevMovie=this.selectPrevMovie.bind(this);
         this.selectNextMovie=this.selectNextMovie.bind(this);
@@ -523,7 +98,7 @@ export default class CinemaInfo extends React.Component {
     }
 
     update(){
-        console.log(this.state.selectedMovieIndex)
+        //console.log(this.state.selectedMovieIndex)
     }
     selectMovie(index){
         this.setState(
@@ -563,41 +138,109 @@ export default class CinemaInfo extends React.Component {
     }
 
     render() {
-        const selectedMovie=this.state.movies[this.state.selectedMovieIndex];
-        const dateList=[];
-        for(var i=0;i<selectedMovie.paipian.length;i++){
-            dateList.push(selectedMovie.paipian[i].date)
+        //var dateNum=Math.ceil(Math.random()*6)+1;
+        //var paipianNum=Math.ceil(Math.random()*2)+1;
+        var dateNum=3;
+
+        let selectedMovie=this.state.movies[this.state.selectedMovieIndex].movieBasic;
+        let schedules=this.state.movies[this.state.selectedMovieIndex].schedules;
+
+        let dateList=[];
+        let dateJudges=[];
+        if(schedules.length>0) {
+            for(var k=0;k<3;k++) {
+                let judge=false;
+                for (var i = 0; i < schedules.length; i++) {
+                    if (schedules[i].date === k) {
+                        judge=true;
+                        break;
+                    }
+                }
+                dateJudges.push(judge)
+
+            }
         }
-        const selectedPlist=selectedMovie.paipian[this.state.selectedDateIndex].plist.map(
-            (p,index)=>
-                <tr key={index} className={
-                    index%2===0?"pline ":"pline even"
-                }>
-                    <td>
-                        <span className="start-time">{p.starttime}</span>
-                        <br/>
-                        <span className="end-time">{p.endtime}</span>
-                    </td>
-                    <td>
-                        <span className="lang">{p.lang}</span>
-                    </td>
-                    <td>
-                        <span className="hall">{p.hall}</span>
-                    </td>
-                    <td>
-                        <span className="sell-price">{p.price}</span>
-                    </td>
-                    <td>
-                        <div className="buy-btn">
-                            <Link to={{
-                                pathname:"/seatbuy",
-                            }}>
-                                <button>选座购票</button>
-                            </Link>
-                        </div>
-                    </td>
-                </tr>
-        );
+
+        for(i=0;i<dateNum;i++){
+            if(dateJudges[i]) {
+                let k = 0;
+                if (selectedMovie.state === 1) {
+                    k = 7;
+                }
+                var date1 = new Date();
+                var date2 = new Date(date1);
+                date2.setDate(date1.getDate() + i + k);
+                var time2 = date2.getMonth() + "-" + date2.getDate();
+                dateList.push(time2)
+            }
+        }
+
+        let plist=[];
+        let dateIndex=this.state.selectedDateIndex;
+
+        let selectedPlist=[];
+
+        if(schedules.length>0){
+            for(i=0;i<schedules.length;i++){
+                let k = 0;
+                if (selectedMovie.state === 1) {
+                    k = 7;
+                }
+                date2.setDate(date1.getDate() + schedules[i].date+ k);
+                time2 = date2.getMonth() + "-" + date2.getDate();
+                if(time2===dateList[dateIndex]){
+                    plist.push(schedules[i])
+                }
+            }
+            //console.log(plist)
+
+            selectedPlist=plist.map(
+                (p,index)=>
+                    <tr key={index} className={
+                        index%2===0?"pline ":"pline even"
+                    }>
+                        <td>
+                            <span className="start-time">{p.session}</span>
+                        </td>
+                        <td>
+                            <span className="lang">国语</span>
+                        </td>
+                        <td>
+                            <span className="hall">{p.hall}</span>
+                        </td>
+                        <td>
+                            <span className="sell-price">{p.price}</span>
+                        </td>
+                        <td>
+                            {this.state.iflogged?
+                                <div className="buy-btn">
+                                    <Link to={
+
+                                        {
+                                            pathname:"/seatbuy",
+                                            state:{
+                                                uid:this.state.uid,
+                                                token:this.state.token,
+                                                movieinfo:this.state.movies[this.state.selectedMovieIndex].movieBasic,
+                                                paipian:{
+                                                    cinema:this.state.info.name,
+                                                    date:dateList[this.state.selectedDateIndex],
+                                                    session:p.session,
+                                                    lang:"国语",
+                                                    hall:p.hall,
+                                                    price:p.price
+                                                }
+                                            }
+                                        }}>
+                                        <button>选座购票</button>
+                                    </Link>
+                                </div>:<div>请先登录以购票</div>
+                            }
+                        </td>
+                    </tr>
+            );
+
+        }
 
         return <div className="cinema-info">
             <Header index={-1}/>
@@ -615,11 +258,11 @@ export default class CinemaInfo extends React.Component {
                             <div className="telephone">{this.state.info.phone}</div>
                             <div className="features-group">
                                 <div className="group-title">影院服务</div>
-                                {this.state.info.service.map(
+                                {this.state.info.services.map(
                                     (service,index)=>
                                         <div className="feature" key={index}>
                                             <span className="tag">{service.name}</span>
-                                            <p className="desc text-ellipsis">{service.text}</p>
+                                            <p className="desc text-ellipsis">{service.detail}</p>
                                         </div>
                                 )}
                             </div>
@@ -639,7 +282,7 @@ export default class CinemaInfo extends React.Component {
                                     <div className={
                                         index===this.state.selectedMovieIndex?"movie active":"movie"
                                     } key={index} onClick={()=>this.selectMovie(index)}>
-                                        <img src={movie.picture} alt={movie.name}/>
+                                        <img src={movie.movieBasic.picture} alt={movie.movieBasic.c_name}/>
                                     </div>
                             )
                         }
@@ -649,11 +292,11 @@ export default class CinemaInfo extends React.Component {
                 </div>
                 <div className="show-list">
                     <div className="movie-info">
-                        <h2 className="movie-name">{selectedMovie.name}</h2>
+                        <h2 className="movie-name">{selectedMovie.c_name}</h2>
                         <div className="movie-desc">
                             <div>
                                 <span className="key">时长：</span>
-                                <span className="value">{selectedMovie.length}</span>
+                                <span className="value">{selectedMovie.length}分钟</span>
                             </div>
                             <div className="movie-type">
                                 <span className="key">类型：</span>

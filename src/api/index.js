@@ -22,10 +22,10 @@ export const apiRegister = (email, code, password, nickname) => ajax('/register'
 export const apiGetCode = (email) => ajax('/code', {email}, 'GET')
 
 //改变收藏状态
-export const apiChangeFollow = (id, token, followId) => ajax('/changeFollow', {
-    id,
-    followId
-}, 'POST', {headers: {"Authorization": token}})
+export const apiChangeFollow = (uid, movieId,token) => ajax('/changeFollow', {}, 'POST', {params:{
+        uid,
+        movieId
+    },headers: {"token": token}})
 
 //找回密码
 export const apiForget = (email) => ajax('/forget', {email})
@@ -43,19 +43,35 @@ export const apiSearch = (keyword) => ajax('/getSearch', {keyword})
 export const apiGetMovies=(searchForm)=>ajax('/getMovieList',{...searchForm},'POST')
 
 //获取用户订单列表
-export const apiGetUserOrder=(id,token)=>ajax('/getUserOrder',{id},'GET',{headers:{"Authorization":token}})
+export const apiGetUserOrder=(id,token)=>ajax('/getUserOrder',{id},'GET',{headers:{"token":token}})
 
 //退票
-export const apiReturnUserTicket=(id,orderId,token)=>ajax('/returnUserTicket',{id,orderId},'POST',{headers:{"Authorization":token}})
+export const apiReturnUserTicket=(id,orderId,token)=>ajax('/returnUserTicket',{id,orderId},'POST',{headers:{"token":token}})
 
 //获取用户收藏列表
-export const apiGetUserFavorite=(id,token)=>ajax('/getUserFavorite',{id},'GET',{headers:{"Authorization":token}})
+export const apiGetUserFavorite=(id,token)=>ajax('/getUserFavorite',{id},'GET',{headers:{"token":token}})
 
 //获取用户基本信息
-export const apiGetUserInfo=(id,token)=>ajax('/getUserInfo',{id},'GET',{headers:{"Authorization":token}})
+export const apiGetUserInfo=(id,token)=>ajax('/getUserInfo',{id},'GET',{headers:{"token":token}})
 
 //修改用户基本信息
-export const apiModifyUserInfo=(id,nickname,avatar,token)=>ajax('/modifyUserInfo',{id,nickname,avatar},'POST',{headers:{"Authorization":token}})
+export const apiModifyUserInfo=(id,nickname,avatar,token)=>ajax('/modifyUserInfo',{id,nickname,avatar},'POST',{headers:{"token":token}})
 
 //修改用户密码
-export const apiModifyPassword=(id,password,token)=>ajax('/modifyPassword',{id,password},'POST',{headers:{"Authorization":token}})
+export const apiModifyPassword=(id,password,token)=>ajax('/modifyPassword',{id,password},'POST',{headers:{"token":token}})
+//获取电影详情
+export const apiGetMovieInfo = (id) => ajax('/movieInfo', {id}, 'GET')
+
+//获取影院列表
+export const apiGetCinemas=(searchForm)=>ajax('/getCinemas',{...searchForm},'POST')
+
+//获取影院信息
+export const apiGetCinemaInfo = (id) => ajax('/getCinemaInfo', {id}, 'GET')
+
+//获取排片信息
+export const apiGetSchedule = (cinemaId) => ajax('/getSchedule', {cinemaId}, 'GET')
+
+//存储订单
+export const apiSaveOrder=(token, orderInfo)=>ajax('/saveOrder',{...orderInfo},'POST',{headers: {"token": token}})
+
+export const apiIfCollected=(uid,movieId,token)=>ajax('/isCollect',{uid,movieId},'GET',{headers: {"token": token}})

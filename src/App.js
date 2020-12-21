@@ -8,7 +8,7 @@ import Favorite from './pages/favorite/favorite';
 import Movies from './pages/movie/movies';
 import MovieInfo from './pages/movie/movieinfo';
 import Agreement from "./pages/signup/agreement";
-import Expense from './pages/expense/expense';
+//import Expense from './pages/expense/expense';
 import SeatBuy from './pages/expense/seatbuy'
 import Cinemas from './pages/cinema/cinemas'
 import CinemaInfo from './pages/cinema/cinemainfo'
@@ -32,12 +32,13 @@ export default class App extends Component {
                     <Route path='/agreement' component={Agreement}/>
                     <Route path='/favorite' component={Favorite}/>
                     <Route path='/movies' component={Movies}/>
-                    <Route path='/movieinfo' component={MovieInfo}/>                    <Route path='/seatbuy' component={SeatBuy}/>
+                    <Route path='/movieinfo' component={MovieInfo}/>
+                    <Route path='/seatbuy' component={SeatBuy}/>
                     <Route path='/cinemas' component={Cinemas}/>
                     <Route path='/cinemainfo' component={CinemaInfo}/>
                     <Route path='/rank/follow' component={RankFollow}/>
                     <Route path='/rank/top' component={RankTop}/>
-                    <Route path='/user/orders' component={Expense}/>
+                    <Route path='/user/orders' component={UserPage}/>
                     <Route path='/user' component={UserPage} />
                     <Route path='/search/:text' component={Search}/>
                     <Route exact path='/' component={Index}/>
