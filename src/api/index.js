@@ -58,7 +58,7 @@ export const apiGetUserInfo=(uid,token,error_handle,final)=>ajax('/getUserInfo',
 export const apiModifyUserInfo=(uid,nickname,avatar,token,error_handle,final)=>ajax('/modifyUserInfo',{},'POST',{headers:{"token":token},params:{uid,nickname,avatar}},error_handle,final)
 
 //修改用户密码
-export const apiModifyPassword=(uid,pwd,token)=>ajax('/modifyPassword',{},'POST',{headers:{"token":token},params:{uid,pwd}})
+export const apiModifyPassword=(uid,pwd,token,error_handle,final)=>ajax('/modifyPassword',{},'POST',{headers:{"token":token},params:{uid,pwd}},error_handle,final)
 
 
 //获取电影详情

@@ -40,6 +40,8 @@ class ModifyForm extends React.Component{
 
     formRef=React.createRef();
 
+    passFormRef=React.createRef();
+
     constructor(props){
         super(props);
         this.state={
@@ -91,24 +93,28 @@ class ModifyForm extends React.Component{
         message.success('开始发起修改密码请求');
         
         console.log(password.password);
-        apiModifyPassword(localStorage.getItem('id'),password.password,localStorage.getItem('token')).then((res)=>{
+        apiModifyPassword(localStorage.getItem('id'),password.password,localStorage.getItem('token'),(error)=>{
+
+        },()=>{
+            this.setState({
+                loading:false,
+            })
+        }).then((res)=>{
             console.log(res);
-            //TODO:检查后端传过来的是否成功信息
+            
             if(res.status===0){
-                message.success(res.msg);
+                message.success('修改密码成功');
+                localStorage.setItem('token',res.msg);
+                if(localStorage.getItem('remember')===1){
+                    this.setItem('password',password);
+                }
+                this.passFormRef.current.resetFields();
                 
             }else if(res.status===1){
                 message.error(res.msg);
             }else{
                 alert('status不为01')
             }
-        }).catch((err)=>{
-            console.log(err);
-            message.error(err);
-        }).finally(()=>{
-            this.setState({
-                loading:false,
-            })
         });
         
     }
@@ -224,7 +230,7 @@ class ModifyForm extends React.Component{
                         </Form>
                     </Tabs.TabPane>
                     <Tabs.TabPane tab="修改密码" key="1">
-                        <Form name="password_form" onFinish={this.onModifyPassword}>
+                        <Form name="password_form" ref={this.passFormRef}onFinish={this.onModifyPassword}>
                         <Form.Item
                     name="password"
                     label="密码"
