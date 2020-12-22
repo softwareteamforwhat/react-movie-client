@@ -30,9 +30,7 @@ export default class App extends Component {
                 <Switch>
                     <Route path='/login' component={Login}/>
                     <Route path='/signup' component={Signup}/>
-                    <Route path='/agreement' component={Agreement}/>
-                    <Route path='/favorite' component={Favorite}/>
-                    <Route path='/movies' component={Movies}/>
+                    <Route path='/agreement' component={Agreement}/>                    <Route path='/movies' component={Movies}/>
                     <Route path='/movieinfo' component={MovieInfo}/>
                     <Route path='/seatbuy' component={SeatBuy}/>
                     <Route path='/cinemas' component={Cinemas}/>
@@ -40,6 +38,7 @@ export default class App extends Component {
                     <Route path='/rank/follow' component={RankFollow}/>
                     <Route path='/rank/top' component={RankTop}/>
                     <Route path='/user/orders' component={Expense}/>
+                    <Route path='/user/favorite' component={Favorite}/>
                     <Route path='/user' component={UserPage} />
                     <Route path='/search/:text' component={Search}/>
                     <Route exact path='/' component={Index}/>

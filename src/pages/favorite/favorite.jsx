@@ -3,7 +3,7 @@ import Header from '../../components/header';
 import { Link } from 'react-router-dom';
 import { Col, Pagination, Row, Button, message, Empty, Spin } from 'antd';
 import './favorite.less'
-import { apiGetUserFavorite } from '../../api';
+import { apiChangeFollow, apiGetUserFavorite } from '../../api';
 
 export default class Favorite extends React.Component {
     constructor(props) {
@@ -12,27 +12,11 @@ export default class Favorite extends React.Component {
             movieList: [],
             loading:true, 
         };
-        apiGetUserFavorite(localStorage.getItem('id'),localStorage.getItem('token')).then((res)=>{
-            console.log(res);
-            //TODO:获取用户收藏列表
-        }).catch((err)=>{
-            console.log(err);
-            message.config({
-                top:100,
-            })
-            message.error(err);
-        });
-        
         
     }
 
     onChange = (page, pageSize = 10) => {
-        /*
-        apiGetTopRank(page).then((res) => {
-            console.log(res);
-            this.setState({movieList: res.data});
-        })
-        */
+        
         
     }
     componentDidMount() {
@@ -85,9 +69,41 @@ export default class Favorite extends React.Component {
 
     movieListRender = () => {
         const list = this.state.movieList;
-        const cancelFavorite = () => {
-            message.success('取消收藏电影成功');
-            //TODO:添加取消收藏api
+        const cancelFavorite = (e,index) => {
+            message.config({
+                top:100,
+            })
+            console.log(this.state.movieList[index].movieId);
+            //message.success('取消收藏电影成功');
+            //取消页面跳转
+            e.preventDefault();
+            
+            this.setState({
+                loading:true,
+            })
+            
+            apiChangeFollow(localStorage.getItem('id'),this.state.movieList[index].movieId,localStorage.getItem('token'),(error)=>{
+
+            },()=>{
+                this.setState({
+                    loading:false,
+                })
+            }).then((res)=>{
+                if(res.status===0){
+                    console.log(res);
+                    message.success('取消收藏成功');
+                    console.log(this.state.movieList);
+                    const delete_index=this.state.movieList[index].movieId
+                    this.setState((preState,props)=>({
+                        movieList:preState.movieList.filter(m=>(m.movieId!==delete_index))
+                    }))
+                } else if(res.status===1){
+                    message.error(res.msg);
+                }else{
+                    alert('status不为01');
+                }
+            });
+            
         }
 
         if(list.length===0){
@@ -112,18 +128,7 @@ export default class Favorite extends React.Component {
                             }}>
     
                                 <Row gutter={[8, 8]}>
-                                    <Col span={2} />
-                                    <Col span={2} style={{
-                                        display: "flex",
-                                        alignItems: "center"
-                                    }}> <span style={{
-    
-                                        fontWeight: "bold",
-                                        color: color,
-                                        fontStyle: "italic",
-                                        fontSize: size,
-    
-                                    }}></span></Col>
+                                    <Col span={4}/>
                                     <Col span={6} style={{
                                         display: "flex",
                                         justifyContent: "center",
@@ -172,7 +177,7 @@ export default class Favorite extends React.Component {
                                         textAlign: "center"
                                     }}>
                                         {/*FIXME: Button按钮会被电影跳转链接覆盖到*/}
-                                        <Button htmlType="buttton" onClick={cancelFavorite}>
+                                        <Button htmlType="buttton" onClick={(e) =>cancelFavorite(e,index)}>
                                             取消收藏
                                         </Button>
                                     </Col>

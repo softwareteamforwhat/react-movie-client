@@ -22,10 +22,10 @@ export const apiRegister = (email, code, password, nickname) => ajax('/register'
 export const apiGetCode = (email) => ajax('/code', {email}, 'GET')
 
 //改变收藏状态
-export const apiChangeFollow = (uid, movieId,token) => ajax('/changeFollow', {}, 'POST', {params:{
+export const apiChangeFollow = (uid, movieId,token,error_handle=(error)=>{},final=()=>{}) => ajax('/changeFollow', {}, 'POST', {params:{
         uid,
         movieId
-    },headers: {"token": token}})
+    },headers: {"token": token}},error_handle,final)
 
 //找回密码
 export const apiForget = (email) => ajax('/forget', {email})
