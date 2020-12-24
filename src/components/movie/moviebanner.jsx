@@ -3,22 +3,75 @@ import {Link} from "react-router-dom";
 import React from "react";
 import './moviebanner.less'
 import { Rate } from 'antd';
-import MyFollow from '../../components/follow/index'
 
 export default class MovieBanner extends Component {
 
     constructor(props){
         super(props);
+        this.state={
+            starTextJudge:true
+        };
         this.changeFollowState=this.changeFollowState.bind(this);
+        this.popBox=this.popBox.bind(this);
+        this.closeBox=this.closeBox.bind(this);
+        this.confirmStar=this.confirmStar.bind(this);
     }
 
     changeFollowState(){
         this.props.changeFollowState();
     }
+    confirmStar(){
+        this.setState({
+            starTextJudge:false
+        });
+    }
+
+    /*点击弹出按钮*/
+    popBox() {
+        this.setState({
+            starTextJudge:true
+        });
+        var popBox = document.getElementById("popBox");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "block";
+        popLayer.style.display = "block";
+    };
+
+    /*点击关闭按钮*/
+    closeBox() {
+        var popBox = document.getElementById("popBox");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "none";
+        popLayer.style.display = "none";
+    }
 
 
     render() {
         return <div className="banner">
+            <div id="popLayer"/>
+            <div id="popBox">
+                <div className="jBox-container">
+                    {this.state.starTextJudge?<div className={"jBox-content"}>
+                        <div className={"score-msg-container"}>请点击星星评分</div>
+                        <div className={"score-star-container"}>
+                            <Rate className={"rate"} allowHalf />
+                        </div>
+                        <div className={"score-content-container"}>
+                            <textarea className={"score-text"} placeholder={"快来发表你的评论吧"}/>
+                        </div>
+                        <button className={"confirm-btn"} onClick={()=>this.confirmStar()}>提交</button>
+                    </div>:
+                        <div className={"jBox-content"}>
+                            <div className={"jBox-text"}>已收到您的评价信息~</div></div>
+                    }
+
+                    <div className="close">
+                        <a onClick={()=>this.closeBox()}>×</a>
+                    </div>
+                </div>
+
+
+            </div>
             <div className="wrapper">
                 <div className="celeinfo-left">
                     <div className="avatar-shadow">
@@ -61,10 +114,12 @@ export default class MovieBanner extends Component {
                                 </div>
                                 {/*<MyFollow hasFollowed={this.props.ifFollowed} id={this.props.id} />*/}
                                 <div>
-                                    <button className="score">
+                                    <button className="score" onClick={()=>this.popBox()}>
                                         评分
                                     </button>
                                 </div>
+
+
 
                             </div>:<div className={"action-text"}>
                             登录后可进行收藏和评分操作

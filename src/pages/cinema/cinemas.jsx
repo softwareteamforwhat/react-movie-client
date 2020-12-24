@@ -146,7 +146,8 @@ class CinemaPanel extends Component{
                             <Link to={{
                                 pathname: "/cinemainfo",
                                 state:{
-                                    id: cinema.cinemaId
+                                    id: cinema.cinemaId,
+                                    movieId:this.props.movieId
                                 }
                             }}>
                                 <button>选座购票</button>
@@ -194,107 +195,7 @@ export default class Cinemas extends Component {
                     {
                         name:"可停车",
                         text:"商场免费停车"}
-                ]},
-            {
-                id:2,
-                picture: "https://p1.meituan.net/deal/201208/22/1_0822151022.jpg@292w_292h_1e_1c",
-                name: "中宁国际影城（京新广场店）",
-                address: "浦口区柳洲东路189号京新广场4楼",
-                phone: "电话：025-58860601",
-                price:30,
-                distance:"1km",
-                services: [
-                    {
-                        name:"退",
-                        text:"未取票用户放映前60分钟可退票"
-                    },
-                    {
-                        name:"改签",
-                        text:"未取票用户放映前60分钟可改签"
-                    },
-                    {
-                        name:"3D眼镜",
-                        text:"免押金"
-                    },
-                    {
-                        name:"可停车",
-                        text:"商场免费停车"}
-                ]},
-            {
-                id:3,
-                picture: "https://p1.meituan.net/deal/201208/22/1_0822151022.jpg@292w_292h_1e_1c",
-                name: "中宁国际影城（京新广场店）",
-                address: "浦口区柳洲东路189号京新广场4楼",
-                phone: "电话：025-58860601",
-                price:30,
-                distance:"1km",
-                services: [
-                    {
-                        name:"退",
-                        text:"未取票用户放映前60分钟可退票"
-                    },
-                    {
-                        name:"改签",
-                        text:"未取票用户放映前60分钟可改签"
-                    },
-                    {
-                        name:"3D眼镜",
-                        text:"免押金"
-                    },
-                    {
-                        name:"可停车",
-                        text:"商场免费停车"}
-                ]},
-            {
-                id:4,
-                picture: "https://p1.meituan.net/deal/201208/22/1_0822151022.jpg@292w_292h_1e_1c",
-                name: "中宁国际影城（京新广场店）",
-                address: "浦口区柳洲东路189号京新广场4楼",
-                phone: "电话：025-58860601",
-                price:30,
-                distance:"1km",
-                services: [
-                    {
-                        name:"退",
-                        text:"未取票用户放映前60分钟可退票"
-                    },
-                    {
-                        name:"改签",
-                        text:"未取票用户放映前60分钟可改签"
-                    },
-                    {
-                        name:"3D眼镜",
-                        text:"免押金"
-                    },
-                    {
-                        name:"可停车",
-                        text:"商场免费停车"}
-                ]},
-            {
-                id:4,
-                picture: "https://p1.meituan.net/deal/201208/22/1_0822151022.jpg@292w_292h_1e_1c",
-                name: "中宁国际影城（京新广场店）",
-                address: "浦口区柳洲东路189号京新广场4楼",
-                phone: "电话：025-58860601",
-                price:30,
-                distance:"1km",
-                services: [
-                    {
-                        name:"退",
-                        text:"未取票用户放映前60分钟可退票"
-                    },
-                    {
-                        name:"改签",
-                        text:"未取票用户放映前60分钟可改签"
-                    },
-                    {
-                        name:"3D眼镜",
-                        text:"免押金"
-                    },
-                    {
-                        name:"可停车",
-                        text:"商场免费停车"}
-                ]},
+                ]}
         ];
         var brands=["全部", "幸福蓝海国际影城", "万达影城", "卢米埃影城", "中影国际影城", "金逸影城", "横店影视", "上影国际影城",
             "华夏国际影城", "大地影院", "海上国际影城", "中传国际影城", "喜满客影城", "UME国际影城", "耀莱成龙国际影城",
@@ -394,7 +295,7 @@ export default class Cinemas extends Component {
     }
 
 
-    onChange = (page, pageSize=10) => {
+    onChange = (page) => {
         this.setState({
             current: page,
         },
@@ -488,6 +389,7 @@ export default class Cinemas extends Component {
                     />
                     <CinemaPanel
                         cinemas={this.state.cinemas}
+                        movieId={this.state.movieId}
                     />
                     <div className={"page-bar"}>
                         <Pagination  defaultCurrent={1} current={this.state.current} total={this.state.total} onChange={this.onChange} showSizeChanger={false}/>

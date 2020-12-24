@@ -11,7 +11,7 @@ export default class CinemaInfo extends React.Component {
 
         const {location}=this.props;
 
-        let cinemaId,iflogged,uid,token;
+        let cinemaId,movieId,iflogged,uid,token;
         if(localStorage.getItem("id")){
             uid=localStorage.getItem("id");
             token=localStorage.getItem("token");
@@ -23,9 +23,12 @@ export default class CinemaInfo extends React.Component {
 
         if(location.state&&location.state.id){//判断当前有参数
             cinemaId=location.state.id;
+            movieId=location.state.movieId;
             sessionStorage.setItem('cinemaId',cinemaId);// 存入到sessionStorage中
+            sessionStorage.setItem('movieId',movieId)
         }else{
             cinemaId=sessionStorage.getItem('cinemaId');// 当state没有参数时，取sessionStorage中的参数
+            movieId=sessionStorage.getItem('movieId');
         }
         //console.log(cinemaId)
         var info= {
@@ -85,9 +88,19 @@ export default class CinemaInfo extends React.Component {
 
 
         apiGetSchedule(cinemaId).then((res)=>{
-            console.log(res);
+            //console.log(res);
+            let index;
+            if(movieId!==undefined){
+                for(var i=0;i<6;i++){
+                    if(res.data[i].movieBasic.movieId===movieId){
+                        index=i;
+                    }
+                }
+            }
+
             this.setState({
                 movies:res.data,
+                selectedMovieIndex:index
             })
         });
 
@@ -95,6 +108,7 @@ export default class CinemaInfo extends React.Component {
         this.selectPrevMovie=this.selectPrevMovie.bind(this);
         this.selectNextMovie=this.selectNextMovie.bind(this);
         this.selectDate=this.selectDate.bind(this);
+        this.goTop=this.goTop.bind(this);
     }
 
     update(){
@@ -133,8 +147,12 @@ export default class CinemaInfo extends React.Component {
             {
                 selectedDateIndex:index
             },
-            ()=>this.update()
+            ()=>this.goTop()
         )
+    }
+
+    goTop(){
+            document.body.scrollTop = document.documentElement.scrollTop = 350
     }
 
     render() {
@@ -170,7 +188,7 @@ export default class CinemaInfo extends React.Component {
                 var date1 = new Date();
                 var date2 = new Date(date1);
                 date2.setDate(date1.getDate() + i + k);
-                var time2 = date2.getMonth() + "-" + date2.getDate();
+                var time2 = (date2.getMonth()+1) + "-" + date2.getDate();
                 dateList.push(time2)
             }
         }
@@ -186,13 +204,16 @@ export default class CinemaInfo extends React.Component {
                 if (selectedMovie.state === 1) {
                     k = 7;
                 }
+                date1 = new Date();
+                date2 = new Date(date1);
                 date2.setDate(date1.getDate() + schedules[i].date+ k);
-                time2 = date2.getMonth() + "-" + date2.getDate();
+                time2 = (date2.getMonth()+1 )+ "-" + date2.getDate();
+                //console.log(time2)
                 if(time2===dateList[dateIndex]){
                     plist.push(schedules[i])
                 }
             }
-            //console.log(plist)
+            //console.log(dateList[dateIndex],plist)
 
             selectedPlist=plist.map(
                 (p,index)=>
@@ -336,6 +357,7 @@ export default class CinemaInfo extends React.Component {
                 </div>
 
             </div>
+            <div className={"bottom"}/>
         </div>
     }
 }

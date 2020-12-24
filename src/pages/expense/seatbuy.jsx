@@ -182,7 +182,7 @@ export default class SeatBuy extends Component{
             tickets[this.state.ticketIndexs[i].x]=this.state.ticketIndexs[i].y;
         }
         orderInfo.seats=tickets;
-        console.log(this.state.token,orderInfo)
+        //console.log(this.state.token,orderInfo)
         apiSaveOrder(this.state.token,orderInfo).then(
             (res)=>{
                console.log("?",res)
@@ -315,9 +315,11 @@ export default class SeatBuy extends Component{
                                     </div>
                                 </div>
                                 <div className="confirm-order">
-                                    <button className={"confirm-btn"} onClick={()=>this.goPay()}>
+                                    {tickets.length===0?
+                                        <div/>:<button className={"confirm-btn"} onClick={()=>this.goPay()}>
                                         立即付款
-                                    </button>
+                                    </button>}
+
                                 </div>
                             </div>
                         </div>: <div className="ticket-buy">
