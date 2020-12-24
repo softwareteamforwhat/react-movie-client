@@ -200,7 +200,7 @@ export default class Favorite extends React.Component {
         return (
             <div className='favorite-whole-page'>
                 <Header index={-1} />
-                <h1>收藏电影</h1>
+                <h1>我的电影</h1>
                 <div className="rank-top-content" style={{ textAlign: "center" }}>
                     <Spin spinning={this.state.loading}>
                         <this.movieListRender />

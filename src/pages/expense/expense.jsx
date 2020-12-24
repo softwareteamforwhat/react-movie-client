@@ -155,7 +155,8 @@ export default class Expense extends Component{
                         
                         const size = index+1 <= 2 ? "800%" : "400%";
                         const color = index+1 <= 2 ? "#FFB400" : "black";
-                        return (<Col span={24} key={index}>
+                        const background=(index%2===0)?'background-white':'background-blue';
+                        return (<Col span={24} key={index} className={'expense-item '+background}>
                             <Link to={{
                                 pathname: "/movieinfo",
                                 state: {
@@ -184,8 +185,8 @@ export default class Expense extends Component{
                                     }}>
                                         <h2 style={{color: "black", textAlign: "left"}}>{order.movieBasic.c_name}</h2>
                                         <span style={{color: "black", textAlign: "left"}}>
-                                            <span className="item-title">{"类型："}</span>
-                                            <span className="item-value">{order.movieBasic.type.join('、')}</span>
+                                            <span className="item-title">{"下单时间："}</span>
+                                            <span className="item-value">{order.purchaseTime}</span>
                                         </span>
                                         <span style={{color: "black", textAlign: "left"}}>
                                             <span className="item-title">{"影院："}</span>
@@ -195,7 +196,7 @@ export default class Expense extends Component{
                                             <span className="item-title">{"影厅："}</span>
                                             <span className="item-value">{order.hall}</span>
                                         </span>
-                                        <span style={{color: "black", textAlign: "left"}}>
+                                        <span style={{color: "black", textAlign: "left"}} hidden={!order.lang}>
                                             <span className="item-title">{"版本："}</span>
                                             <span className="item-value">{order.lang}</span>
                                         </span>
