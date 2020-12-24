@@ -2,9 +2,9 @@ import React,{Component} from 'react';
 
 import Header from '../../components/header';
 import './expense.less';
-import {Col,Pagination,Row, Spin, Empty, message} from 'antd';
+import {Col,Pagination,Row, Spin, Empty, message, Button} from 'antd';
 import {Link} from 'react-router-dom';
-import { apiGetUserOrder } from '../../api';
+import { apiGetUserOrder,apiReturnUserTicket } from '../../api';
 
 /**
  * 注册的消费记录页面组件
@@ -119,10 +119,40 @@ export default class Expense extends Component{
                 <span>目前没有订单记录</span>
             }></Empty>
         }
+
+        const return_click_handler=(e,index)=>{
+            message.config({
+                top:100,
+            })
+            e.preventDefault();
+            this.setState({
+                loading:true,
+            })
+            console.log(this.state.orderList);
+            console.log(index);
+            apiReturnUserTicket(localStorage.getItem('id'),this.state.orderList[index].orderId,localStorage.getItem('token'),(error)=>{
+                
+            },()=>{
+                this.setState({
+                    loading:false,
+                })
+            }).then((res)=>{
+                if(res.status===0){
+                    console.log(res);
+                    message.success(res.msg);
+                }else if(res.status===1){
+                    
+                    message.error(res.msg);
+                }else{
+                    alert('status不为01');
+                }
+            });
+        }
         return (
 
             <Row>
                 {list.map((order, index) => {
+                        
                         const size = index+1 <= 2 ? "800%" : "400%";
                         const color = index+1 <= 2 ? "#FFB400" : "black";
                         return (<Col span={24} key={index}>
@@ -135,17 +165,7 @@ export default class Expense extends Component{
 
                                 <Row gutter={[8, 8]}>
                                     <Col span={2}/>
-                                    <Col span={2} style={{
-                                        display: "flex",
-                                        alignItems: "center"
-                                    }}> <span style={{
-
-                                        fontWeight: "bold",
-                                        color: color,
-                                        fontStyle: "italic",
-                                        fontSize: size,
-
-                                    }}></span></Col>
+                                    
                                     <Col span={6} style={{
                                         display: "flex",
                                         justifyContent: "center",
@@ -156,7 +176,7 @@ export default class Expense extends Component{
                                         <img style={{width: "180px", height: "250px"}} alt={order.movieBasic.name + "海报"}
                                             src={order.movieBasic.picture}/>
                                     </Col>
-                                    <Col span={8} style={{
+                                    <Col span={5} style={{
                                         display: "flex",
                                         flexDirection: "column",
                                         justifyContent: "center",
@@ -200,6 +220,14 @@ export default class Expense extends Component{
                                         
                                     </Col>
                                     <Col span={4} style={{
+                                        display:"flex",
+                                        justifyContent:"flex-end",
+                                        alignItems:"center",
+                                        textAlign:"center",
+                                    }}>
+                                        {order.state===0?'已支付':'已退票'}
+                                    </Col>
+                                    <Col span={4} style={{
                                         display: "flex",
                                         justifyContent: "flex-end",
                                         alignItems: "center",
@@ -209,8 +237,17 @@ export default class Expense extends Component{
                                             textAlign: "center",
                                             lineHeight: "100%",
                                             color: "red"
-                                        }}>总价：¥<strong style={{fontSize:30}}>{order.price*order.amount}</strong></span> </Col>
-                                    <Col span={2}/>
+                                        }}>总价：¥<strong style={{fontSize:30}}>{order.price*order.amount}</strong></span>
+                                        </Col>
+                                    <Col span={2} style={{
+                                        display:"flex",
+                                        justifyContent:"flex-end",
+                                        alignItems:"center",
+                                        textAlign:"center",
+                                    }}>
+                                    <Button type='primary' onClick={(e)=>return_click_handler(e,index)} disabled={order.state===1} hidden={order.state===1}>退票</Button>
+                                    </Col>
+                                    <Col span={1}></Col>
                                 </Row>
                             </Link>
                         </Col>)
