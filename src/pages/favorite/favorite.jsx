@@ -146,6 +146,9 @@ export default class Favorite extends React.Component {
                                         textAlign: "center"
                                     }}>
                                         <h2 style={{ color: "black", textAlign: "left" }}>{movie.c_name}</h2>
+                                        <h3 style={{color:"gray", textAlign:"left"}}>
+                                            {movie.e_name}
+                                        </h3>
                                         <span style={{ color: "black", textAlign: "left" }}>
                                             <span className='item-title'>{"类型："}</span>
                                             <span className='item-value'>
@@ -154,7 +157,7 @@ export default class Favorite extends React.Component {
                                         </span>
                                         <span style={{ color: "black", textAlign: "left" }}>
                                             <span className='item-title'>{"时长："}</span>
-                                            <span className='item-value'>{movie.length}</span>
+                                            <span className='item-value'>{movie.length}分钟</span>
                                         </span>
                                         <span style={{ color: "black", textAlign: "left" }}>
                                             <span className='item-title'>{"主演："}</span>
@@ -166,7 +169,7 @@ export default class Favorite extends React.Component {
                                         </span>
                                         <span style={{ color: "gray", textAlign: "left" }}>
                                             <span className="item-title">{"上映时间："}</span>
-                                            <span className="item-value">{movie.time}</span>
+                                            <span className="item-value">{movie.date}</span>
                                         </span>
     
                                     </Col>
