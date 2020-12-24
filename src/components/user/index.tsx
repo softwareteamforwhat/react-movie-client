@@ -19,7 +19,12 @@ const login_menu = (
     </Menu.Item>
     <Menu.Item>
       <a href="/user/info">
-        基本信息
+        个人信息
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a href='/user/favorite'>
+        我的收藏
       </a>
     </Menu.Item>
     <Menu.Item>

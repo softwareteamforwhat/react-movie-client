@@ -141,6 +141,7 @@ class ModifyForm extends React.Component{
             if(res.status===0){
                 message.success(res.msg);
                 this.props.changeAvatar(userInfo.avatar);
+                localStorage.setItem('avatar',userInfo.avatar);
             }else if(res.status===1){
                 message.error(res.msg);
             }else{
