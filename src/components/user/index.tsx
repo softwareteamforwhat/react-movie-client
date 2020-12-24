@@ -38,12 +38,22 @@ const logout_menu = (
     </Menu.Item>
   </Menu>
 );
-export default class User extends Component {
+
+type userState={
+  avatar:string,
+  token:string|null,
+}
+export default class User extends Component <any,userState>{
+  constructor(props){
+    super(props);
+    this.state={
+      avatar:localStorage.getItem('avatar')||userDefault,
+      token:localStorage.getItem('token'),
+    }
+  }
   render() {
-    const avatar: string = localStorage.getItem("avatar") || userDefault;
-    const token = localStorage.getItem("token");
-    const user_avator = <img src={avatar} alt="头像"/>;
-    if (token) {
+    const user_avator = <img src={this.state.avatar} alt="头像"/>;
+    if (this.state.token) {
       return (
         <div onClick={() => {
           window.location.href = "/user/info"

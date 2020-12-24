@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, createRef} from "react";
 import logo from '../../assets/images/logo.png';
 import './index.less';
 import User from "../user";
@@ -6,6 +6,13 @@ import MySearch from "../search";
 import {Fragment} from "react";
 
 export default class Header extends Component<{ index: number }, { color: string[] }> {
+    userRef=createRef<User>();
+
+    changeUserAvatar(avatar:string){
+        this.userRef.current?.setState({
+            avatar:avatar,
+        })
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -31,7 +38,7 @@ export default class Header extends Component<{ index: number }, { color: string
                             </ul>
                         </div>
                         <div className="user">
-                            <User/>
+                            <User ref={this.userRef}/>
                         </div>
                         <div className="search">
                             <MySearch/>

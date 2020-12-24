@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import Header from '../../components/header';
 import { Form, Input, Button, message, Tabs, Select, Spin} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -6,16 +6,21 @@ import './user.less';
 import {avatar_list} from '../../components/avatar/avatar'
 import {apiGetUserInfo, apiModifyUserInfo, apiModifyPassword}from '../../api'
 export default class UserPage extends React.Component {
-    
+    headRef=createRef();
     
        //const res=await apiGetUserInfo(localStorage.getItem('id'),localStorage.getItem('token'));
+
+    changeAvatar(avatar){
+        console.log('UserPage');
+        this.headRef.current.changeUserAvatar(avatar);
+    }
     
     render() {
         return (
             <div className='user-whole-page'>
-                <Header index={-1} />
+                <Header index={-1} ref={this.headRef}/>
                 <section className="modify-content">
-                    <ModifyForm />
+                    <ModifyForm changeAvatar={this.changeAvatar.bind(this)}/>
                     
                 </section>
             </div>
@@ -24,16 +29,7 @@ export default class UserPage extends React.Component {
 
 }
 
-/**
- * 获取假的用户数据
- */
-const getFakeUserInfo = () => {
-    const fakeUserInfo = {
-        'email': 'test@nju.edu.cn',
-        'nickname': 'test',
-    };
-    return fakeUserInfo;
-}
+
 
 
 class ModifyForm extends React.Component{
@@ -142,10 +138,9 @@ class ModifyForm extends React.Component{
             })
         }).then((res)=>{
             console.log(res)
-            
             if(res.status===0){
                 message.success(res.msg);
-                
+                this.props.changeAvatar(userInfo.avatar);
             }else if(res.status===1){
                 message.error(res.msg);
             }else{
