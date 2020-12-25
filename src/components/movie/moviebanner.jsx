@@ -129,7 +129,10 @@ export default class MovieBanner extends Component {
                     <div className="movie-status-container">
                         {
                             this.props.linktype===1?
-                            this.props.moviestate==="正在热映"?
+                            this.props.moviestate==="经典影片"?
+                                (
+                                    <button className="no-text">敬请期待</button>
+                                ):
                                 (
                                     <Link to={
                                         {
@@ -141,8 +144,6 @@ export default class MovieBanner extends Component {
                                     }>
                                         <button className="buy-button" >立即购票</button>
                                     </Link>
-                                ):(
-                                    <button className="no-text">敬请期待</button>
                                 ):
                                 <Link to={
                                     {
