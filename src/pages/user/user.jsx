@@ -101,8 +101,8 @@ class ModifyForm extends React.Component{
             if(res.status===0){
                 message.success('修改密码成功');
                 localStorage.setItem('token',res.msg);
-                if(localStorage.getItem('remember')===1){
-                    this.setItem('password',password);
+                if(localStorage.getItem('remember')==='1'){
+                    localStorage.setItem('password',password.password);
                 }
                 this.passFormRef.current.resetFields();
                 
