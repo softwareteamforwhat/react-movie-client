@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 
 import Header from '../../components/header';
 import './expense.less';
-import {Col,Pagination,Row, Spin, Empty, message, Button} from 'antd';
+import {Col,Pagination,Row, Spin, Empty, message, Button,Tabs} from 'antd';
 import {Link} from 'react-router-dom';
 import { apiGetUserOrder,apiReturnUserTicket } from '../../api';
 
@@ -14,7 +14,8 @@ export default class Expense extends Component{
     constructor(props){
         super(props);
         this.state={
-            orderList:[],
+            orderList_payed:[],
+            orderList_returned:[],
             loading:true,
         };
     }
@@ -25,7 +26,14 @@ export default class Expense extends Component{
                 <Header index={-1} />
                 <h1>我的订单</h1>
                 <Spin spinning={this.state.loading}>
-                    <this.orderListRender/>
+                    <Tabs defaultActiveKey='0' centered>
+                        <Tabs.TabPane tab="已支付" key="0">
+                            <this.orderListRender orderList={this.state.orderList_payed}/>
+                        </Tabs.TabPane>
+                        <Tabs.TabPane tab='已退票' key='1'>
+                            <this.orderListRender orderList={this.state.orderList_returned}/>
+                        </Tabs.TabPane>
+                    </Tabs> 
                 </Spin>
             </div>
         );
@@ -42,7 +50,8 @@ export default class Expense extends Component{
             console.log(res);
             if(res.status===0){
                 this.setState({
-                    orderList:res.data,
+                    orderList_payed:res.data.filter(order=>order.state===0),
+                    orderList_returned:res.data.filter(order=>order.state===1),
                 })
             } else if(res.status===1){
                 message.config({
@@ -111,8 +120,8 @@ export default class Expense extends Component{
         return expenseList;
     }
 
-    orderListRender = () => {
-        const list= this.state.orderList;
+    orderListRender = (props) => {
+        const list= props.orderList;
 
         if(list.length===0){
             return <Empty description={
@@ -128,9 +137,8 @@ export default class Expense extends Component{
             this.setState({
                 loading:true,
             })
-            console.log(this.state.orderList);
             console.log(index);
-            apiReturnUserTicket(localStorage.getItem('id'),this.state.orderList[index].orderId,localStorage.getItem('token'),(error)=>{
+            apiReturnUserTicket(localStorage.getItem('id'),this.state.orderList_payed[index].orderId,localStorage.getItem('token'),(error)=>{
                 
             },()=>{
                 this.setState({
@@ -140,6 +148,15 @@ export default class Expense extends Component{
                 if(res.status===0){
                     console.log(res);
                     message.success(res.msg);
+                    this.state.orderList_returned.push(this.state.orderList_payed[index]);
+                    this.state.orderList_payed.splice(index,1);
+                    
+                    
+                    //删除payed并且添加到returned
+                    this.setState((preState)=>({
+                        orderList_payed:preState.orderList_payed,
+                        orderList_returned:preState.orderList_returned,
+                    }))
                 }else if(res.status===1){
                     
                     message.error(res.msg);
