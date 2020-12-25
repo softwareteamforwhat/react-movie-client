@@ -2,7 +2,7 @@ import {Component} from "react";
 import {Link} from "react-router-dom";
 import React from "react";
 import './moviebanner.less'
-import { Rate } from 'antd';
+import { Rate ,message} from 'antd';
 
 export default class MovieBanner extends Component {
 
@@ -44,6 +44,7 @@ export default class MovieBanner extends Component {
         popBox.style.display = "none";
         popLayer.style.display = "none";
     }
+
 
 
     render() {
@@ -92,9 +93,10 @@ export default class MovieBanner extends Component {
                             <li>
                                 {this.props.info.time}
                             </li>
-                            {/*{this.props.linktype === 1 ?*/}
-                                {/*<Rate className={"rate"} disabled={true} allowHalf defaultValue={this.props.info.rank}/>:<div/>*/}
-                            {/*}*/}
+                            {this.props.linktype === 1 ?
+                                <Rate className={"rate"}  allowHalf defaultValue={this.props.info.rank} onChange={()=>message.success("评分成功")}
+                                />:<div/>
+                            }
 
                         </ul>
                     </div>
@@ -112,12 +114,13 @@ export default class MovieBanner extends Component {
                                         </button>
                                     }
                                 </div>
-                                <Rate className={"rate"}  allowHalf defaultValue={0}/>
+                                {/*<Rate className={"rate"}  allowHalf defaultValue={0}/>*/}
                                 {/*<div>*/}
                                     {/*<button className="score" onClick={()=>this.popBox()}>*/}
                                         {/*评分*/}
                                     {/*</button>*/}
                                 {/*</div>*/}
+                                <div className="score-text">{this.props.info.rank*2}分</div>
 
 
 
