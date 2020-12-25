@@ -89,7 +89,7 @@ export default class CinemaInfo extends React.Component {
 
         apiGetSchedule(cinemaId).then((res)=>{
             //console.log(res);
-            let index;
+            let index=0;
             if(movieId!==undefined){
                 for(var i=0;i<6;i++){
                     if(res.data[i].movieBasic.movieId===movieId){
@@ -120,7 +120,7 @@ export default class CinemaInfo extends React.Component {
                 selectedMovieIndex:index,
                 selectedDateIndex:0
             },
-            ()=>this.update()
+            ()=>this.goTop()
         )
     }
 
@@ -159,7 +159,7 @@ export default class CinemaInfo extends React.Component {
         //var dateNum=Math.ceil(Math.random()*6)+1;
         //var paipianNum=Math.ceil(Math.random()*2)+1;
         var dateNum=3;
-
+        console.log(this.state.selectedMovieIndex)
         let selectedMovie=this.state.movies[this.state.selectedMovieIndex].movieBasic;
         let schedules=this.state.movies[this.state.selectedMovieIndex].schedules;
 

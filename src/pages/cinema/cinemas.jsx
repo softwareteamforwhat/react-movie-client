@@ -128,7 +128,8 @@ class CinemaPanel extends Component{
                             <Link to={{
                                 pathname: "/cinemainfo",
                                 state:{
-                                    id: cinema.cinemaId
+                                    id: cinema.cinemaId,
+                                    movieId:this.props.movieId
                                 }
                             }}>
                                 <button className="cinema-name">{cinema.name}</button>
