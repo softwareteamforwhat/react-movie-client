@@ -117,6 +117,7 @@ export default class MovieInfo extends React.Component{
     }
 
     render(){
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
         return <div className="movie-info">
             <Header index={-1}/>
             <MovieBanner
