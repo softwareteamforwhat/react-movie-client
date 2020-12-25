@@ -227,7 +227,7 @@ export default class IndexRank extends Component<any, { movieList: RankTopRespon
                     <Link to={{
                       pathname: "/movieinfo",
                       state: {
-                        id: 1299955
+                        id: movie.movieId
                       }
                     }}>
                       <Row gutter={[8, 8]}>
@@ -289,7 +289,7 @@ export default class IndexRank extends Component<any, { movieList: RankTopRespon
                     <Link to={{
                       pathname: "/movieinfo",
                       state: {
-                        id: 1299955
+                        id: movie.movieId
                       }
                     }}>
                       <Row gutter={[8, 8]}>

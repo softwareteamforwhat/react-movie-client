@@ -11,7 +11,7 @@ const Logout = () => {
 }
 
 const login_menu = (
-  <Menu subMenuCloseDelay={0.5}>
+  <Menu className="menu">
     <Menu.Item>
       <a href="/user/orders">
         我的订单
@@ -35,7 +35,7 @@ const login_menu = (
   </Menu>
 );
 const logout_menu = (
-  <Menu subMenuCloseDelay={0.5}>
+  <Menu className="menu">
     <Menu.Item>
       <a href="/login">
         登录
@@ -44,27 +44,29 @@ const logout_menu = (
   </Menu>
 );
 
-type userState={
-  avatar:string,
-  token:string|null,
+type userState = {
+  avatar: string,
+  token: string | null,
 }
-export default class User extends Component <any,userState>{
-  constructor(props){
+export default class User extends Component <any, userState> {
+  constructor(props) {
     super(props);
-    this.state={
-      avatar:localStorage.getItem('avatar')||userDefault,
-      token:localStorage.getItem('token'),
+    this.state = {
+      avatar: localStorage.getItem('avatar') || userDefault,
+      token: localStorage.getItem('token'),
     }
   }
+
   render() {
-    const user_avator = <img src={this.state.avatar} alt="头像"/>;
+    const user_avator = <img src={this.state.avatar} style={{lineHeight: "100%", objectFit: "cover"}}
+                             alt="头像"/>;
     if (this.state.token) {
       return (
         <div onClick={() => {
           window.location.href = "/user/info"
         }}>
           <Dropdown overlay={login_menu} placement="bottomCenter" arrow>
-            <Button className="user-btn" shape="circle" icon={user_avator}/>
+            <div className="user-zone"><Button className="user-btn" shape="circle" icon={user_avator}/></div>
           </Dropdown>
         </div>
       );
@@ -74,7 +76,7 @@ export default class User extends Component <any,userState>{
           window.location.href = "/login"
         }}>
           <Dropdown overlay={logout_menu} placement="bottomCenter" arrow>
-            <Button className="user-btn" shape="circle" icon={<UserOutlined/>}/>
+            <div className="user-zone"><Button className="user-btn" shape="circle" icon={<UserOutlined/>}/></div>
           </Dropdown>
         </div>
       );

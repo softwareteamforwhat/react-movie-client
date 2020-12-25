@@ -33,6 +33,7 @@ export default class RankTop extends Component<any, { movieList: RankTopResponse
     }
     movieListRender = () => {
         const list: RankTopResponse[] = this.state.movieList;
+        console.log(list);
         return (
 
             <Row>
@@ -43,7 +44,7 @@ export default class RankTop extends Component<any, { movieList: RankTopResponse
                             <Link to={{
                                 pathname: "/movieinfo",
                                 state: {
-                                    id: movie.id
+                                    id: movie.movieId
                                 }
                             }}>
 
