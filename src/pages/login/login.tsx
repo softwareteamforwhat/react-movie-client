@@ -30,7 +30,7 @@ const NormalLoginForm = () => {
             localStorage.setItem("avatar", avatar);
             localStorage.setItem("id",_id);
             localStorage.setItem("token", token);
-            window.location.href = '/';
+            window.history.back();
         }else if(result.status===1){
             console.log(result)
             message.error('用户名或密码错误！');
