@@ -261,6 +261,7 @@ export default class Cinemas extends Component {
                     name: data.c_name,
                     name2:data.e_name,
                     place: data.area,
+                    rank:data.rank*0.5,
                     length: data.length+"分钟",
                     time: data.date+"上映",
                     description:data.description

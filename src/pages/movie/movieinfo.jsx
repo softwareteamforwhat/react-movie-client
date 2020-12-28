@@ -33,12 +33,14 @@ export default class MovieInfo extends React.Component {
     let iflogged, uid, ifFollowed, token;
     iflogged = false;
     ifFollowed = false;
-
-    if (localStorage.getItem("id") !== undefined) {
+    console.log(localStorage,iflogged)
+    if (localStorage.getItem("id")) {
       uid = localStorage.getItem("id");
       token = localStorage.getItem("token");
       iflogged = true;
     }
+
+    console.log(iflogged)
 
     this.state = {
       movieId: this.props.location.state.id,
@@ -178,7 +180,8 @@ export default class MovieInfo extends React.Component {
                                          src={actor.link}
                                     />
                                   </div>
-                                  <div className="info">{actor.name}</div>
+                                  <div className="info">{actor.name}
+                                    {actor.role?<span>({actor.role})</span>:<div/>}</div>
                                 </div>
                             )}
                           </div>
@@ -219,7 +222,9 @@ export default class MovieInfo extends React.Component {
                                        src={actor.link}
                                   />
                                 </div>
-                                <div className="info">{actor.name}</div>
+                                <div className="info">{actor.name}
+                                  {actor.role?<span>({actor.role})</span>:<div/>}
+                                </div>
                               </div>
                           )}
                         </div>

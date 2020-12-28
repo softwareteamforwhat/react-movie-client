@@ -93,10 +93,8 @@ export default class MovieBanner extends Component {
                             <li>
                                 {this.props.info.time}
                             </li>
-                            {this.props.linktype === 1 ?
-                                <Rate className={"rate"}  allowHalf defaultValue={this.props.info.rank} onChange={()=>message.success("评分成功")}
-                                />:<div/>
-                            }
+                            <div className="score-text">评分:{this.props.info.rank*2}分</div>
+
 
                         </ul>
                     </div>
@@ -120,7 +118,9 @@ export default class MovieBanner extends Component {
                                         {/*评分*/}
                                     {/*</button>*/}
                                 {/*</div>*/}
-                                <div className="score-text">{this.props.info.rank*2}分</div>
+
+                                <Rate className={"rate"}  allowHalf defaultValue={this.props.info.rank} onChange={()=>message.success("评分成功")}/>
+
 
 
 
@@ -141,7 +141,8 @@ export default class MovieBanner extends Component {
                                         {
                                             pathname:"/cinemas",
                                             state:{
-                                                id:this.props.info.id
+                                                id:this.props.info.id,
+                                                rank:this.props.info.rank
                                             }
                                         }
                                     }>
