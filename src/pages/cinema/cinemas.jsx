@@ -376,6 +376,7 @@ export default class Cinemas extends Component {
                         type={this.state.type}
                         moviestate={this.state.moviestate}
                         linktype={2}
+                        goTop={this.goTop}
                     />}
                 <div className="cinemas">
                     <SearchBar

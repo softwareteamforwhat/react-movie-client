@@ -120,10 +120,6 @@ export default class MovieBanner extends Component {
                                 {/*</div>*/}
 
                                 <Rate className={"rate"}  allowHalf defaultValue={this.props.info.rank} onChange={()=>message.success("评分成功")}/>
-
-
-
-
                             </div>:<div className={"action-text"}>
                             登录后可进行收藏和评分操作
                         </div>:<div/>
@@ -149,16 +145,22 @@ export default class MovieBanner extends Component {
                                         <button className="buy-button" >立即购票</button>
                                     </Link>
                                 ):
-                                <Link to={
-                                    {
-                                        pathname:"/movieinfo",
-                                        state:{
-                                            id:this.props.info.id
+                                <div className={"button-area"}>
+                                    <button className="buy-button" onClick={this.props.goTop}>查看影院</button>
+                                    <Link className={"return-link"} to={
+                                        {
+                                            pathname:"/movieinfo",
+                                            state:{
+                                                id:this.props.info.id
+                                            }
                                         }
-                                    }
-                                }>
-                                    <button className="buy-button">查看电影详情</button>
-                                </Link>
+                                    }>
+                                        <button className="return-button">查看电影详情</button>
+                                    </Link>
+
+                                </div>
+
+
 
                         }
                     </div>

@@ -224,6 +224,12 @@
         }
 
 
+
+
+
+
+
+
         .rate{
           height: 30px;
           margin: 0;
@@ -247,20 +253,52 @@
 
       .movie-status-container{
         position: absolute;
-        margin-top: 210px;
+        top: 210px;
+
 
         width: 250px;
-        height: 40px;
+        height: 100px;
 
         .buy-button{
           cursor: pointer;
           width: 100%;
-          height: 100%;
+          height: 40px;
           background-color: #cd0200;
           border: none;
           color: white;
           font-size: 18px;
         }
+
+        .button-area{
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          .buy-button{
+            cursor: pointer;
+            width: 100%;
+            height: 40px;
+            background-color: #cd0200;
+            border: none;
+            color: white;
+            font-size: 18px;
+          }
+
+          .return-link{
+            text-align: center;
+            height: 20px;
+            padding-top: 10px;
+            .return-button{
+              background-color: #392f59;
+              border: none;
+              font-size: 14px;
+              color: #fff;
+              cursor: pointer;
+
+            }
+          }
+        }
+
 
         .no-text{
           width: 100%;
