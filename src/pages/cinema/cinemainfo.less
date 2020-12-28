@@ -121,17 +121,19 @@
       overflow: hidden;
       box-shadow: inset 0 0 100px 80px #ededed;
       position: relative;
+      text-align: center;
 
       .movie-list {
         width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: space-between;
         transition: left .2s ease;
 
         .movie {
-          width: 168px;
-          height: 230px;
+          width: 140px;
+          height: 200px;
           border: 4px solid #fff;
           -webkit-box-shadow: 0 1px 3px 0 hsla(0,0%,66%,.5);
           box-shadow: 0 1px 3px 0 hsla(0,0%,66%,.5);
@@ -153,9 +155,6 @@
           }
         }
 
-        .movie:first-child{
-          margin-left: 34px;
-        }
         .active {
           -webkit-transform: scale(1);
           -ms-transform: scale(1);
