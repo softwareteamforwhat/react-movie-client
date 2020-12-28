@@ -51,7 +51,7 @@ export default class IndexMovie extends Component<any, any> {
                                     }
                                 }}>
                                     <div className="movie-poster"
-                                         style={{backgroundImage: "url(https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@160w_220h_1e_1c)"}}>
+                                         style={{backgroundImage: "url(https://p0.meituan.net/movie/8a4d51d25d44f15c216fbe2396bf49ae116445.jpg@160w_220h_1e_1c)"}}>
                                         <div className="movie-info">
                                             <div className="movie-title"
                                                  title="除暴">除暴
