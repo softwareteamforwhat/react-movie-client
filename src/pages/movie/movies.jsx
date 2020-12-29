@@ -247,7 +247,7 @@ export default class Movies extends Component {
             area:this.state.areas[this.state.selectedAreaIndex],
             year:this.state.years[this.state.selectedYearIndex],
             sortType:this.state.sorttypes[this.state.selectedSortTypeIndex],
-            page:1
+            page:page
         };
         if(searchMovieForm.movieType==="全部")searchMovieForm.movieType="";
         if(searchMovieForm.area==="全部")searchMovieForm.area="";
