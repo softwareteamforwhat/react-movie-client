@@ -79,6 +79,7 @@ export default class Expense extends Component{
             })
         }).then((res)=>{
             if(res.status===0){
+                /*
                 res.data.map((order)=>{
                     let strTime=order.session.slice(0,order.session.lastIndexOf('-'));
                     strTime=new Date().getFullYear()+"-"+strTime;
@@ -88,6 +89,7 @@ export default class Expense extends Component{
                     }
                     return order;
                 })
+                */
                 this.setState({
                     orderList_payed:res.data,
                 })
