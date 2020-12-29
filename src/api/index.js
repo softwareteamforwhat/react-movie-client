@@ -42,8 +42,11 @@ export const apiSearch = (keyword) => ajax('/getSearch', {keyword})
 //获取电影列表
 export const apiGetMovies=(searchForm)=>ajax('/getMovieList',{...searchForm},'POST')
 
-//获取用户订单列表
+//获取用户已支付订单列表
 export const apiGetUserOrder=(uid,token,error_handle,final)=>ajax('/getUserOrder',{uid},'GET',{headers:{"token":token}},error_handle,final)
+
+//获取用户已退票订单列表
+export const apiGetReturnOrder=(uid,token,error_handle,final)=>ajax('/getReturnOrder',{uid},'GET',{headers:{"token":token}},error_handle,final)
 
 //退票
 export const apiReturnUserTicket=(uid,orderId,token,error_handle,final)=>ajax('/returnUserTicket',{},'POST',{headers:{"token":token},params:{uid,orderId},},error_handle,final)

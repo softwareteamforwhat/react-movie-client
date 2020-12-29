@@ -2,13 +2,15 @@ import React,{Component} from 'react';
 
 import Header from '../../components/header';
 import './expense.less';
-import {Col,Pagination,Row, Spin, Empty, message, Button,Tabs} from 'antd';
+import {Col,Row, Spin, Empty, message, Button,Tabs} from 'antd';
 import {Link} from 'react-router-dom';
-import { apiGetUserOrder,apiReturnUserTicket } from '../../api';
+import { apiGetReturnOrder, apiGetUserOrder,apiReturnUserTicket } from '../../api';
 
 /**
  * 注册的消费记录页面组件
  */
+
+const TICKET_STATE=['已支付','已退票','已完成'];
 export default class Expense extends Component{
 
     constructor(props){
@@ -16,108 +18,108 @@ export default class Expense extends Component{
         this.state={
             orderList_payed:[],
             orderList_returned:[],
-            loading:true,
+            loading_payed:true,
+            loading_returned:true,
         };
     }
 
     render(){
         return (
-            <div className='expense-whole-page'>
+            <div className='expense-whole-page' style={{height:"100%"}}>
                 <Header index={-1} />
-                <h1>我的订单</h1>
-                <Spin spinning={this.state.loading}>
-                    <Tabs defaultActiveKey='0' centered>
-                        <Tabs.TabPane tab="已支付" key="0">
-                            <this.orderListRender orderList={this.state.orderList_payed}/>
+                <h1 style={{position:"relative",right:"16px"}}>我的订单</h1>
+                    <Tabs defaultActiveKey='0' centered style={{height:"100%",}}>
+                        <Tabs.TabPane tab="已支付" key="0" style={{height:"100%",}}>
+                            <div style={this.state.orderList_payed.length===0?{
+                                height:"100%",
+                                minHeight:'80vh',
+                                
+                                display:"flex",
+                                justifyContent:"center",
+                                alignItems:"center",}:{
+                                    
+                                }}>
+                            <Spin spinning={this.state.loading_payed} style={{position:"absolute",top:"0"}} >
+                                <this.orderListRender orderList={this.state.orderList_payed}/>
+                            </Spin>
+                            </div>
                         </Tabs.TabPane>
                         <Tabs.TabPane tab='已退票' key='1'>
-                            <this.orderListRender orderList={this.state.orderList_returned}/>
+                            <div style={this.state.orderList_returned.length===0?{
+                                height:"100%",
+                                minHeight:"80vh",
+                                
+                                display:"flex",
+                                justifyContent:"center",
+                                alignItems:"center",
+                            }:{}}>
+                            <Spin spinning={this.state.loading_returned}>
+                                <this.orderListRender orderList={this.state.orderList_returned}/>
+
+                            </Spin>
+                            </div>
                         </Tabs.TabPane>
                     </Tabs> 
-                </Spin>
+                
             </div>
         );
     }
     componentDidMount(){
+        //强制显示滚动条避免组件移位
+        document.body.style.overflowY="scroll";
+        message.config({
+            top:100,
+        })
         
         apiGetUserOrder(localStorage.getItem('id'),localStorage.getItem('token'),(error)=>{
             
         },()=>{
             this.setState({
-                loading:false,
+                loading_payed:false,
+            })
+        }).then((res)=>{
+            if(res.status===0){
+                res.data.map((order)=>{
+                    let strTime=order.session.slice(0,order.session.lastIndexOf('-'));
+                    strTime=new Date().getFullYear()+"-"+strTime;
+                    const sessionTime=new Date(strTime);
+                    if (sessionTime<new Date()){
+                        order.state=2;
+                    }
+                    return order;
+                })
+                this.setState({
+                    orderList_payed:res.data,
+                })
+                console.log(this.state.orderList_payed);
+            } else if(res.status===1){
+                
+                message.error(res.msg);
+            }else{
+                alert('status不为01');
+            }
+        });
+
+        apiGetReturnOrder(localStorage.getItem('id'),localStorage.getItem('token'),(error)=>{
+
+        },()=>{
+            this.setState({
+                loading_returned:false,
             })
         }).then((res)=>{
             console.log(res);
             if(res.status===0){
                 this.setState({
-                    orderList_payed:res.data.filter(order=>order.state===0),
-                    orderList_returned:res.data.filter(order=>order.state===1),
+                    orderList_returned:res.data
                 })
-            } else if(res.status===1){
-                message.config({
-                    top:100,
-                })
+                
+            }else if(res.status===1){
                 message.error(res.msg);
             }else{
                 alert('status不为01');
             }
         });
         
-    }
-
-    getFakeOrderList(){
-        const expenseList=[
-            {
-                "orderId":1234,
-                "movie":{
-                    movieId: "1240838",
-                    picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                    c_name: "除暴",
-                    e_name: "Caught in Time",
-                    type: ["犯罪", "剧情", "动作"],
-                    area: "中国香港,中国大陆",
-                    length: "95分钟",
-                    time: "2020-11-20中国大陆上映",
-                },
-                "time":new Date().toLocaleString(),
-                "status":"已支付",
-                "unitPrice":100,
-                "theater":"中宁国际影城",
-                "hall":"6号激光厅",
-                "vision":"国语2D",
-                "session":"12月8日 13:00",
-                "amount":2,
-                "seats":[
-                    "1排4座",
-                    "1排5座",
-                ],
-            },
-            {
-                "orderId":4321,
-                "movie":{
-                    movieId: "1240838",
-                    picture: "https://p1.meituan.net/movie/38dd31a0e1b18e1b00aeb2170c5a65b13885486.jpg@464w_644h_1e_1c",
-                    c_name: "除暴",
-                    e_name: "Caught in Time",
-                    type: ["犯罪", "剧情", "动作"],
-                    area: "中国香港,中国大陆",
-                    length: "95分钟",
-                    time: "2020-11-20中国大陆上映",
-                },
-                "time":new Date().toLocaleString(),
-                "status":"已支付",
-                "unitPrice":100,
-                "theater":"中宁国际影城",
-                "hall":"6号激光厅",
-                "vision":"国语2D",
-                "session":"12月8日 13:00",
-                "amount":1,
-                "seats":[
-                    "2排3座"
-                ],
-            },
-        ];
-        return expenseList;
     }
 
     orderListRender = (props) => {
@@ -135,28 +137,33 @@ export default class Expense extends Component{
             })
             e.preventDefault();
             this.setState({
-                loading:true,
+                loading_payed:true,
+                loading_returned:true,
             })
+
             console.log(index);
             apiReturnUserTicket(localStorage.getItem('id'),this.state.orderList_payed[index].orderId,localStorage.getItem('token'),(error)=>{
                 
             },()=>{
                 this.setState({
-                    loading:false,
+                    loading_payed:false,
+                    loading_returned:false,
                 })
             }).then((res)=>{
                 if(res.status===0){
                     console.log(res);
                     message.success(res.msg);
-                    this.state.orderList_returned.push(this.state.orderList_payed[index]);
+                    this.state.orderList_returned.unshift(this.state.orderList_payed[index]);
                     this.state.orderList_payed.splice(index,1);
                     
+                    this.setState((preState)=>{
+                        preState.orderList_returned[0].state=1;
+                        return {
+                            orderList_returned:preState.orderList_returned,
+                            orderList_payed:preState.orderList_payed,
+                        }
+                    })
                     
-                    //删除payed并且添加到returned
-                    this.setState((preState)=>({
-                        orderList_payed:preState.orderList_payed,
-                        orderList_returned:preState.orderList_returned,
-                    }))
                 }else if(res.status===1){
                     
                     message.error(res.msg);
@@ -170,8 +177,7 @@ export default class Expense extends Component{
             <Row>
                 {list.map((order, index) => {
                         
-                        const size = index+1 <= 2 ? "800%" : "400%";
-                        const color = index+1 <= 2 ? "#FFB400" : "black";
+                        
                         const background=(index%2===0)?'background-white':'background-blue';
                         return (<Col span={24} key={index} className={'expense-item '+background}>
                             <Link to={{
@@ -194,45 +200,56 @@ export default class Expense extends Component{
                                         <img style={{width: "180px", height: "250px"}} alt={order.movieBasic.name + "海报"}
                                             src={order.movieBasic.picture}/>
                                     </Col>
-                                    <Col span={5} style={{
+                                    <Col span={5} style={order.state===2?{
                                         display: "flex",
                                         flexDirection: "column",
                                         justifyContent: "center",
-                                        textAlign: "center"
+                                        textAlign: "center",
+                                        color:"gray",
+                                    }:{
+                                        display:"flex",
+                                        flexDirection:"column",
+                                        justifyContent:"center",
+                                        textAlign:"center",
+                                        color:"black"
                                     }}>
-                                        <h2 style={{color: "black", textAlign: "left"}}>{order.movieBasic.c_name}</h2>
-                                        <span style={{color: "black", textAlign: "left"}}>
+                                        <h2 style={order.state===2?{color:"gray",textAlign: "left"}:{
+                                            textAlign:"left",
+                                        }}>{order.movieBasic.c_name}</h2>
+                                        <span style={{textAlign: "left"}}>
                                             <span className="item-title">{"下单时间："}</span>
                                             <span className="item-value">{order.purchaseTime}</span>
                                         </span>
-                                        <span style={{color: "black", textAlign: "left"}}>
+                                        <span style={{textAlign: "left"}}>
                                             <span className="item-title">{"影院："}</span>
                                             <span className="item-value">{order.cinema}</span>
                                         </span>
-                                        <span style={{color: "black", textAlign: "left"}}>
+                                        <span style={{textAlign: "left"}}>
                                             <span className="item-title">{"影厅："}</span>
                                             <span className="item-value">{order.hall}</span>
                                         </span>
-                                        <span style={{color: "black", textAlign: "left"}} hidden={!order.lang}>
+                                        <span style={{textAlign: "left"}} hidden={!order.lang}>
                                             <span className="item-title">{"版本："}</span>
                                             <span className="item-value">{order.lang}</span>
                                         </span>
-                                        <span style={{color: "gray", textAlign: "left"}}>
+                                        <span style={{textAlign: "left"}}>
                                             <span className="item-title">{"场次："}</span>
                                             <span className="item-value">{order.session}</span>
                                         </span>
-                                        <span style={{color: "black", textAlign: "left"}}>
+                                        <span style={{textAlign: "left"}}>
                                             <span className="item-title">{"座位："}</span>
                                             <span className="item-value">{order.seats.join('、')}</span>
                                         </span>
-                                        <span style={{color: "red", textAlign: "left"}}>
+                                    
+                                        <span style={{textAlign: "left"}}>
+                                            <span className="item-title">{"数量："}</span>
+                                            <span className="item-value">{order.amount}</span>
+                                        </span>
+
+                                        <span style={{textAlign: "left"}}>
                                             <span className="item-title">{"票单价："}</span>
                                             {'¥'}
                                             <span className="item-value"><strong style={{fontSize:20}}>{order.price}</strong></span>
-                                        </span>
-                                        <span style={{color: "black", textAlign: "left"}}>
-                                            <span className="item-title">{"数量："}</span>
-                                            <span className="item-value">{order.amount}</span>
                                         </span>
                                         
                                         
@@ -243,7 +260,7 @@ export default class Expense extends Component{
                                         alignItems:"center",
                                         textAlign:"center",
                                     }}>
-                                        {order.state===0?'已支付':'已退票'}
+                                        {TICKET_STATE[order.state]}
                                     </Col>
                                     <Col span={4} style={{
                                         display: "flex",
@@ -263,7 +280,7 @@ export default class Expense extends Component{
                                         alignItems:"center",
                                         textAlign:"center",
                                     }}>
-                                    <Button type='primary' onClick={(e)=>return_click_handler(e,index)} disabled={order.state===1} hidden={order.state===1}>退票</Button>
+                                    <Button type='primary' onClick={(e)=>return_click_handler(e,index)} disabled={order.state!==0} hidden={order.state!==0}>退票</Button>
                                     </Col>
                                     <Col span={1}></Col>
                                 </Row>
