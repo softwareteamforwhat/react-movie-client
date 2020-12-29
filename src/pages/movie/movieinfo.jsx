@@ -40,7 +40,7 @@ export default class MovieInfo extends React.Component {
       iflogged = true;
     }
 
-    console.log(iflogged)
+    console.log(iflogged,token)
 
     this.state = {
       movieId: this.props.location.state.id,
