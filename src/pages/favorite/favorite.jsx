@@ -10,7 +10,8 @@ export default class Favorite extends React.Component {
         super(props);
         this.state = { 
             movieList: [],
-            loading:true, 
+            loading:true,
+            
         };
         
     }
@@ -30,7 +31,6 @@ export default class Favorite extends React.Component {
            console.log(res);
            if(res.status===0){
                this.setState({movieList:res.data})
-
            } else if(res.status===1){
                message.config({
                    top:100,
@@ -85,17 +85,20 @@ export default class Favorite extends React.Component {
             apiChangeFollow(localStorage.getItem('id'),this.state.movieList[index].movieId,localStorage.getItem('token'),(error)=>{
 
             },()=>{
+                console.log('finally');
                 this.setState({
                     loading:false,
                 })
             }).then((res)=>{
                 if(res.status===0){
+                    console.log('success');
                     console.log(res);
                     message.success('取消收藏成功');
                     console.log(this.state.movieList);
                     const delete_index=this.state.movieList[index].movieId
                     this.setState((preState,props)=>({
-                        movieList:preState.movieList.filter(m=>(m.movieId!==delete_index))
+                        movieList:preState.movieList.filter(m=>(m.movieId!==delete_index)),
+                        
                     }))
                 } else if(res.status===1){
                     message.error(res.msg);
@@ -106,18 +109,19 @@ export default class Favorite extends React.Component {
             
         }
 
-        if(list.length===0){
+        if(list.length===0&&!this.state.loading){
             return <Empty description={
-                <span>没有收藏任何电影，<a href='/'>去看看</a></span>
-            }>
-            </Empty>
+                    <span>没有收藏任何电影，<a href='/'>去看看</a></span>
+                }>
+                </Empty>
+            
         }
         else{
             return (
-                <Row>
+                
+                <Row style={{height:"100%",position:"absolute",top:0,width:"100%"}}>
                     {list.map((movie, index) => {
-                        const size = index + 1 <= 2 ? "800%" : "400%";
-                        const color = index + 1 <= 2 ? "#FFB400" : "black";
+                        
                         const background=(index%2===0)?'background-white':'background-blue';
                         return (<Col span={24} key={index} className={'favorite-item '+background}>
                             <Link to={{
@@ -191,6 +195,8 @@ export default class Favorite extends React.Component {
                     }
                     )}
                 </Row>
+                
+                
             );
         }
         
@@ -198,13 +204,23 @@ export default class Favorite extends React.Component {
 
     render() {
         return (
-            <div className='favorite-whole-page'>
+            <div className='favorite-whole-page' style={{height:"100%"}}>
                 <Header index={-1} />
-                <h1>我的电影</h1>
-                <div className="rank-top-content" style={{ textAlign: "center" }}>
+                <h1>我的收藏</h1>
+                <div className="rank-top-content"
+                    style={this.state.movieList.length===0?{
+                        height:"85%",
+                        display:'flex',
+                        justifyContent:"center",
+                        alignItems:"center",
+                }:{
+                    height:"85%",
+                }}>
                     <Spin spinning={this.state.loading}>
-                        <this.movieListRender />
-                        <Pagination showSizeChanger={false} defaultCurrent={1} total={this.state.movieList.length} onChange={this.onChange} />
+                        <this.movieListRender>
+
+                        </this.movieListRender>
+                        <Pagination showSizeChanger={false} defaultCurrent={1} total={this.state.movieList.length} pageSize={10} onChange={this.onChange} hideOnSinglePage={true}/>
                     </Spin>
                 </div>
             </div>

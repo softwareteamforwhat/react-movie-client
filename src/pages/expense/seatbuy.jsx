@@ -165,7 +165,7 @@ export default class SeatBuy extends Component{
             ()=>this.update()
         );
         var myDate = new Date();
-        var mytime=myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDate()+" "+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds();
+        var mytime=myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate()+" "+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds();
         const orderInfo={
             uid:this.state.uid,
             movieId:this.state.movieinfo.movieId,
