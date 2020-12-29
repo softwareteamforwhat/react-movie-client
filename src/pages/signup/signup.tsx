@@ -70,7 +70,12 @@ const RegistrationForm = () => {
       localStorage.setItem("avatar", avatar);
       localStorage.setItem("id", _id);
       localStorage.setItem("token", token);
-      window.location.href = '/';
+      // console.log(document.referrer);
+      if (document.referrer == "http://localhost:3000/login") {
+        window.history.go(-2);
+      } else {
+        window.location.href = "/";
+      }
     } else if (result.status === 1) {
       message.error("邮箱验证码不正确！");
     } else if (result.status === 2) {
