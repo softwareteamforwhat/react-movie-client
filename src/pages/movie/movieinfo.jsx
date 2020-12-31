@@ -181,7 +181,7 @@ export default class MovieInfo extends React.Component {
                                     />
                                   </div>
                                   <div className="info">{actor.name}
-                                    {actor.role?<span>({actor.role})</span>:<div/>}</div>
+                                   </div>
                                 </div>
                             )}
                           </div>
@@ -223,7 +223,7 @@ export default class MovieInfo extends React.Component {
                                   />
                                 </div>
                                 <div className="info">{actor.name}
-                                  {actor.role?<span>({actor.role})</span>:<div/>}
+
                                 </div>
                               </div>
                           )}

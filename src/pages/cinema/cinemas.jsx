@@ -256,7 +256,7 @@ export default class Cinemas extends Component {
                 console.log(res);
                 const data=res.data;
                 const info={
-                    id:this.props.location.state.id,
+                    id:movieId,
                     picture: data.picture,
                     name: data.c_name,
                     name2:data.e_name,
@@ -277,7 +277,7 @@ export default class Cinemas extends Component {
 
             });
         }
-
+        console.log("movieId",movieId)
         //获取影院列表
         apiGetCinemas(searchCinemaForm).then(
             (res)=>{

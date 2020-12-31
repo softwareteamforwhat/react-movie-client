@@ -90,9 +90,11 @@ export default class CinemaInfo extends React.Component {
     apiGetSchedule(cinemaId).then((res) => {
       //console.log(res);
       let index = 0;
+      console.log("movieId",movieId)
+      console.log(res.data[5].movieBasic.movieId)
       if (movieId !== undefined) {
         for (var i = 0; i < 6; i++) {
-          if (res.data[i].movieBasic.movieId === movieId) {
+          if (res.data[i].movieBasic.movieId ==movieId) {
             index = i;
           }
         }
