@@ -189,8 +189,8 @@ export default class CinemaInfo extends React.Component {
           }
           var date1 = new Date();
           var date2 = new Date(date1);
-          date2.setDate(date1.getDate() + i + k);
-          var time2 = (date2.getMonth() + 1) + "-" + (date2.getDate()+1);
+          date2.setDate(date1.getDate() + i + k+1);
+          var time2 = (date2.getMonth() + 1) + "-" + (date2.getDate());
           dateList.push(time2)
         }
       }
@@ -208,8 +208,8 @@ export default class CinemaInfo extends React.Component {
           }
           date1 = new Date();
           date2 = new Date(date1);
-          date2.setDate(date1.getDate() + schedules[i].date + k);
-          time2 = (date2.getMonth() + 1) + "-" + (date2.getDate()+1);
+          date2.setDate(date1.getDate() + schedules[i].date + k+1);
+          time2 = (date2.getMonth() + 1) + "-" + (date2.getDate());
           //console.log(time2)
           if (time2 === dateList[dateIndex]) {
             plist.push(schedules[i])
